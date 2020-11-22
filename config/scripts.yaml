@@ -1,0 +1,236 @@
+turn_off_kitchen_devices:
+  alias: Room / Kitchen / Devices / Off
+  sequence:
+  - data: {}
+    entity_id: light.kitchen_bulb_1
+    service: light.turn_off
+  - data: {}
+    entity_id: light.kitchen_bulb_2
+    service: light.turn_off
+  - data: {}
+    entity_id: climate.kitchen_ac
+    service: climate.turn_off
+  mode: single
+turn_off_living_room_devices:
+  alias: Room / Living Room / Devices / Off
+  sequence:
+  - data: {}
+    entity_id: media_player.living_room_tv
+    service: media_player.turn_off
+  - data: {}
+    entity_id: climate.living_room_ac
+    service: climate.turn_off
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.living_room_bulb_1
+  mode: single
+turn_on_bedroom_lights:
+  alias: Room / Bedroom / Lights / On
+  sequence:
+  - data: {}
+    entity_id: light.bedroom_bulb_1
+    service: light.turn_on
+  - data: {}
+    entity_id: light.bedroom_bulb_2
+    service: light.turn_on
+  mode: single
+turn_off_rack_room_lights:
+  alias: Room / Rack Room / Lights / Off
+  sequence:
+  - data: {}
+    entity_id: light.rack_room_bulb_1
+    service: light.turn_off
+  - data: {}
+    entity_id: light.rack_room_bulb_2
+    service: light.turn_off
+  - data: {}
+    entity_id: light.rack_room_bulb_3
+    service: light.turn_off
+  mode: single
+turn_off_bedroom_lights:
+  alias: Room / Bedroom / Lights / Off
+  sequence:
+  - data: {}
+    entity_id: light.bedroom_bulb_1
+    service: light.turn_off
+  - data: {}
+    entity_id: light.bedroom_bulb_2
+    service: light.turn_off
+  - data: {}
+    entity_id: switch.bedroom_bulb_3
+    service: switch.turn_off
+  mode: single
+turn_off_main_staircase_lights:
+  alias: Room / Main Staircase / Lights / Off
+  sequence:
+  - data: {}
+    entity_id: light.mainstaircase_bulb_1
+    service: light.turn_off
+  - data: {}
+    entity_id: light.mainstaircase_bulb_2
+    service: light.turn_off
+  mode: single
+turn_on_main_staircase_lights:
+  alias: Room / Main Staircase / Lights / On
+  sequence:
+  - data: {}
+    entity_id: light.mainstaircase_bulb_1
+    service: light.turn_on
+  - data: {}
+    entity_id: light.mainstaircase_bulb_2
+    service: light.turn_on
+  mode: single
+turn_on_hall_light:
+  alias: Room / Hall / Light / On
+  sequence:
+  - data: {}
+    entity_id: light.hall_bulb
+    service: light.turn_on
+  mode: single
+turn_off_hall_light:
+  alias: Room / Hall / Light / Off
+  sequence:
+  - data: {}
+    entity_id: light.hall_bulb
+    service: light.turn_off
+  mode: single
+routine_good_night:
+  alias: Routine / Good Night
+  sequence:
+  - service: script.room_living_room_off
+    data: {}
+  - service: script.turn_off_kitchen_devices
+    data: {}
+  - service: script.room_office_off
+    data: {}
+  - service: script.turn_off_rack_room_lights
+    data: {}
+  - service: script.turn_off_main_staircase_lights
+    data: {}
+  - service: script.turn_on_hall_light
+    data: {}
+  - service: script.turn_on_bedroom_lights
+    data: {}
+  - service: script.check_living_room_door
+    data: {}
+  - service: script.check_front_roof_door_tts
+    data: {}
+  - service: script.check_back_roof_door_tts
+    data: {}
+  mode: single
+turn_on_lights_office:
+  alias: Room / Office / Lights / On
+  sequence:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.office_light_1, light.office_light_2
+  mode: single
+room_office_lights_off:
+  alias: ' Room / Office / Lights / Off'
+  sequence:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.office_light_1, light.office_light_2
+  mode: single
+room_office_devices_off:
+  alias: Room / Office / Devices / Off
+  sequence:
+  - service: climate.turn_off
+    data: {}
+    entity_id: climate.office_ac
+  mode: single
+room_office_off:
+  alias: Room / Office / Off
+  sequence:
+  - service: script.room_office_lights_off
+    data: {}
+  - service: script.room_office_devices_off
+    data: {}
+  mode: single
+check_living_room_door:
+  alias: Check / Living Room / Door / TTS
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.6
+    entity_id: media_player.kitchen_display
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.kitchen_display
+      message: The Loft Alert. Living Room Door is open.
+  mode: single
+room_living_room_lights_off:
+  alias: Room / Living Room / Lights / Off
+  sequence:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.living_room_bulb_1
+  - service: light.turn_off
+    data: {}
+    entity_id: light.living_room_light_1
+  mode: single
+check_front_roof_door_tts:
+  alias: Check / Front Roof / Door / TTS
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.front_roof_door_sensor
+    state: 'on'
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.6
+    entity_id: media_player.kitchen_display
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.kitchen_display
+      message: The Loft Alert. Front Roof Door is open.
+  mode: single
+check_back_roof_door_tts:
+  alias: Check / Back Roof / Door / TTS
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.roof_back_door_sensor
+    state: 'on'
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.6
+    entity_id: media_player.kitchen_display
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.kitchen_display
+      message: The Loft Alert. Back Roof Door is open.
+  mode: single
+room_living_room_off:
+  alias: Room / Living Room / Off
+  sequence:
+  - service: script.room_living_room_lights_off
+    data: {}
+  - service: script.turn_off_living_room_devices
+    data: {}
+  mode: single
+notify_ios_android:
+  alias: Notify / Vacuum
+  sequence:
+  - service: notify.mobile_app_mark_cilia
+    data:
+      title: The Loft Notification
+      message: Looks like no one is home. Do you want to switch on the Vacuum?
+      data:
+        push:
+          category: vacuum
+          sound: Warsaw_Haptic.caf
+          thread-id: vacuum-notification-group
+  - service: notify.mobile_app_jessica_cilia
+    data:
+      title: The Loft Notification
+      message: Looks like no one is home. Do you want to switch on the Vacuum?
+      data:
+        group: vacuum-notification-group
+        color: '#42d7f5'
+        sticky: false
+        actions:
+        - action: START_VACUUM
+          title: Start Vacuum
+  mode: single

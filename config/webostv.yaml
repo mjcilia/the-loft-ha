@@ -1,0 +1,13 @@
+name: Living Room TV
+host: !secret webostv_host
+turn_on_action:
+  service: wake_on_lan.send_magic_packet
+  data:
+    mac: !secret webostv_mac
+customize:
+  sources:
+    - youtube
+    - netflix
+    - PS4
+    - GO Interactive
+    - Plex

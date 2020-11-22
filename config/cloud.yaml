@@ -1,0 +1,123 @@
+google_actions:
+  filter:
+    exclude_entities:
+      - binary_sensor.living_room_door_sensor
+      - binary_sensor.front_roof_door_sensor
+      - binary_sensor.roof_back_door_sensor
+      - media_player.the_loft_speaker_group
+      - media_player.kitchen_display
+      - media_player.roof_speaker
+      - media_player.bedroom_wifi
+      - light.kitchen_gateway
+      - script.check_back_roof_door_tts
+      - script.check_front_roof_door_tts
+      - script.check_living_room_door
+      - script.notify_ios_android
+      - script.room_living_room_lights_off
+      - script.room_office_devices_off
+      - script.room_office_off
+      - script.room_office_lights_off
+      - script.turn_off_bedroom_lights
+      - script.turn_off_hall_light
+      - script.turn_off_kitchen_devices
+      - script.turn_off_living_room_devices
+      - script.turn_off_main_staircase_lights
+      - script.turn_off_rack_room_lights
+      - script.turn_on_bedroom_lights
+      - script.turn_on_hall_light
+      - script.turn_on_lights_office
+      - script.turn_on_main_staircase_lights
+      - script.room_living_room_off
+    exclude_domains:
+      - group
+      - binary_sensor
+  entity_config:
+    # kitchen devices
+    climate.kitchen_ac:
+      name: Kitchen AC
+      aliases:
+        - Kitchen AC
+      room: kitchen
+    light.kitchen_bulb_1:
+      name: Kitchen Bulb 1
+      room: kitchen
+    light.kitchen_bulb_2:
+      name: Kitchen Bulb 2
+      room: kitchen
+    # living room devices
+    climate.living_room_ac:
+      name: Living Room AC
+      aliases:
+        - Living Room AC
+        - Living AC
+      room: living room
+    media_player.living_room_tv:
+      name: Living Room TV
+      aliases:
+        - TV
+      room: living room
+    switch.living_room_bulb_1:
+      name: Living Room Bulb 1
+      room: living room
+    light.living_room_light_1:
+      name: Living Room Light 1
+      aliases:
+        - Living Spotlights 1
+        - Living Downlights 1
+      room: living room
+    # hallway devices
+    light.hallway_bulb:
+      name: Hall Bulb
+      room: hall
+    # rack room
+    light.rack_room_bulb_1:
+      name: Rack Room Bulb 1
+      room: rack room
+    light.rack_room_bulb_2:
+      name: Rack Room Bulb 2
+      room: rack room
+    light.rack_room_bulb_3:
+      name: Rack Room Bulb 3
+      room: rack room
+    vacuum.xiaomi_vacuum_cleaner:
+      name: Nunu
+      room: rack room
+      aliases:
+        - Vacuum
+        - Vacuum Cleaner
+        - Nunu
+    # bedroom devices
+    light.bedroom_bulb_1:
+      name: Bedroom Bulb 1
+      room: bedroom
+    light.bedroom_bulb_2:
+      name: Bedroom Bulb 2
+      room: bedroom
+    switch.bedroom_bulb_3:
+      name: Bedroom Bulb 3
+      room: bedroom
+    # main staircase
+    light.mainstaircase_bulb_1:
+      name: Mainstaircase Bulb 1
+      room: main staircase
+    light.mainstaircase_bulb_2:
+      name: Mainstaircase Bulb 2
+      room: main staircase
+    # office devices
+    climate.office_ac:
+      name: Office AC
+      aliases:
+        - Office AC
+      room: office
+    light.office_light_1:
+      name: Office Light 1
+      aliases:
+        Office Spot Lights 1
+        Office Downlights 1
+      room: office
+    light.office_light_2:
+      name: Office Light 2
+      aliases:
+        Office Spot Lights 2
+        Office Downlights 2
+      room: office

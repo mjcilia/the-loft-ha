@@ -1,0 +1,12 @@
+# Xiaomi Aqara Gateways Integration
+discovery_retry: 10
+gateways:
+  - mac: !secret xiaomi_aqara_gateway_1_mac
+    key: !secret xiaomi_aqara_gateway_1_key
+    host: !secret xiaomi_aqara_gateway_1_host
+  - mac: !secret xiaomi_aqara_gateway_2_mac
+    key: !secret xiaomi_aqara_gateway_2_key
+    host: !secret xiaomi_aqara_gateway_2_host
+  - mac: !secret xiaomi_aqara_gateway_3_mac
+    key: !secret xiaomi_aqara_gateway_3_key
+    host: !secret xiaomi_aqara_gateway_3_host

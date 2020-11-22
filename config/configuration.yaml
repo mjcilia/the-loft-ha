@@ -1,0 +1,70 @@
+#################################################################
+## Home Assistant / The Loft HA
+## @Author: Mark Cilia
+## @Git: https://github.com/mjcilia/the-loft-ha
+#################################################################
+default_config:
+
+#################################################################
+## Home Assistant / Includes
+#################################################################
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+climate: !include climate.yaml
+cloud: !include cloud.yaml
+scene: !include scenes.yaml
+zone: !include zones.yaml
+sensor: !include sensors.yaml
+logger: !include logger.yaml
+
+#################################################################
+## Components
+#################################################################
+
+yeelight: !include yeelight.yaml
+xiaomi_aqara: !include xiaomi_aqara.yaml
+webostv: !include webostv.yaml
+wake_on_lan: # Enables `wake_on_lan` domain
+
+# Component / Xiaomi / Vacuum
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret xiaomi_miio_vacuum_host
+    token: !secret xiaomi_miio_vacuum_token
+
+# Component / Tuya / Smart Plugs
+tuya:
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: 356
+  platform: smart_life
+
+# Component / Synology
+synology_dsm:
+  - host: !secret synology_host
+    port: !secret synology_port
+    ssl: false
+    username: !secret synology_username
+    password: !secret synology_password
+
+# Discovery
+discovery:
+  ignore:
+    - yeelight
+
+#################################################################
+## Mobile / Notifications / IOS
+#################################################################
+
+notify:
+mobile_app:
+ios: !include ios.yaml
+
+#################################################################
+## Text To Speech / TTS
+#################################################################
+tts:
+  - platform: google_translate
+  

@@ -1,0 +1,4 @@
+# Platfrom Version Sensor
+- platform: version
+# Google Wifi Sensor
+- platform: google_wifi

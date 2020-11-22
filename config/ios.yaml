@@ -1,0 +1,13 @@
+# IOS App Related Configs
+# Vacuum Actions
+push:
+  categories:
+    - name: Vacuum
+      identifier: 'vacuum'
+      actions:
+        - identifier: 'START_VACUUM'
+          title: 'Start Vacuum'
+          activationMode: 'background'
+          authenticationRequired: true
+          destructive: false
+          behavior: 'default'
