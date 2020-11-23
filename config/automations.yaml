@@ -31,6 +31,7 @@
   - data: {}
     entity_id: switch.72627180bcddc292737e
     service: switch.turn_off
+
 - id: '1586102383951'
   alias: Kitchen Cube / Shake / Toggle Kitchen Lights
   description: ''
@@ -46,6 +47,8 @@
     service: light.toggle
   - entity_id: light.kitchen_bulb_2
     service: light.toggle
+
+
 - id: '1588362214269'
   alias: Hall Motion Sensor / On / Switch On Hall
   description: ''
@@ -75,6 +78,7 @@
   - data: {}
     entity_id: light.hall_bulb
     service: light.turn_off
+
 - id: '1588524093414'
   alias: Rack Room Sensor / On / Switch on Rack Room
   description: ''
@@ -94,6 +98,7 @@
   - data: {}
     entity_id: light.rack_room_bulb_3
     service: light.turn_on
+
 - id: '1588524190098'
   alias: Rack Room Sensor / Off / Switch off Rack Room
   description: ''

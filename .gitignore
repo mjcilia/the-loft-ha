@@ -1,1 +1,16 @@
+# White Listed Entries
+!*.yaml
+!.gitignore
+!*.md
+
+# Ignored Entry Folders
+.cloud
+.storage
+custom_components
+image
+tts
+
+# Ignored Entry Files
+home-assistant.log
+home-assistant_v2.db
 secrets.yaml
