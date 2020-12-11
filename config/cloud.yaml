@@ -1,3 +1,6 @@
+#################################################################
+# @cloud: Google Assistant
+#################################################################
 google_actions:
   filter:
     exclude_entities:
@@ -8,7 +11,10 @@ google_actions:
       - media_player.kitchen_display
       - media_player.roof_speaker
       - media_player.bedroom_wifi
+      - media_player.plex_plex_web_chrome
+      - media_player.plex_plex_for_lg_lg_oled55c8lla
       - light.kitchen_gateway
+      - light.rackroom_gateway
       - script.check_back_roof_door_tts
       - script.check_front_roof_door_tts
       - script.check_living_room_door
@@ -28,9 +34,13 @@ google_actions:
       - script.turn_on_lights_office
       - script.turn_on_main_staircase_lights
       - script.room_living_room_off
+      - script.notify_base_app
+      - script.notify_vacuum_app
     exclude_domains:
       - group
       - binary_sensor
+      - camera
+      - sensor
   entity_config:
     # kitchen devices
     climate.kitchen_ac:

@@ -1,0 +1,24 @@
+notify_vacuum_app:
+  alias: Notify / Vacuum / App
+  sequence:
+  - service: notify.mobile_app_mark_cilia
+    data:
+      title: The Loft Notification
+      message: Looks like no one is home. Do you want to switch on the Vacuum?
+      data:
+        push:
+          category: vacuum
+          sound: Warsaw_Haptic.caf
+          thread-id: vacuum-notification-group
+  - service: notify.mobile_app_jessica_cilia
+    data:
+      title: The Loft Notification
+      message: Looks like no one is home. Do you want to switch on the Vacuum?
+      data:
+        group: vacuum-notification-group
+        color: '#42d7f5'
+        sticky: false
+        actions:
+        - action: START_VACUUM
+          title: Start Vacuum
+  mode: single

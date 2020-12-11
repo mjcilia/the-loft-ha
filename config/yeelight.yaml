@@ -1,3 +1,6 @@
+#################################################################
+## @component: yeelight
+#################################################################
 devices:
   !secret yeelight_kitchen_light_1_host:
     name: Kitchen Bulb 1

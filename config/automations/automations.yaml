@@ -1,0 +1,141 @@
+- id: '1592124265679'
+  alias: Kitchen AC / Living Room Door / Alert 2
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.living_room_door_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: '{{ (is_state(''climate.kitchen_ac'', ''off'') == false) }}'
+  action:
+  - delay: 0:03
+  - condition: template
+    value_template: '{{ (is_state(''climate.kitchen_ac'', ''off'') == false) }}'
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - data:
+      gw_mac: 7C:49:EB:1C:F2:2F
+      ringtone_id: 12
+    service: xiaomi_aqara.play_ringtone
+  - data:
+      message: Close living room door for kitchen AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.living_room_tv
+  - data:
+      message: Close living room door for kitchen AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.mobile_app_the_loft_ha_wifi
+  - delay: 0:02
+  - condition: template
+    value_template: '{{ (is_state(''climate.kitchen_ac'', ''off'') == false) }}'
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - data: {}
+    entity_id: climate.kitchen_ac
+    service: climate.turn_off
+  - data:
+      message: Living room door still open. Kitchen AC has been switched off.
+      title: 'Alert: Kitchen AC Switched Off.'
+    service: notify.living_room_tv
+  - data:
+      message: Living room door still open. Kitchen AC has been switched off.
+      title: 'Alert: Kitchen AC Switched Off.'
+    service: notify.mobile_app_the_loft_ha_wifi
+- id: '1591958664345'
+  alias: Living Room AC / Living Room Door / Alert 1
+  description: Alerts if Living Room Door is open whilst trying to switch on Living
+    Room Air Conditioner.
+  trigger:
+  - platform: template
+    value_template: '{{ (is_state(''climate.living_room_ac'', ''off'') == false) }}'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  action:
+  - delay: 0:02
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - condition: template
+    value_template: '{{ (is_state(''climate.living_room_ac'', ''off'') == false) }}'
+  - data:
+      message: Close Living Room Door for Living Room AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.living_room_tv
+  - data:
+      message: Close Living Room Door for Living Room AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.mobile_app_the_loft_ha_wifi
+  - data:
+      gw_mac: 7C:49:EB:1C:F2:2F
+      ringtone_id: 12
+    service: xiaomi_aqara.play_ringtone
+  - delay: 0:02
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - condition: template
+    value_template: '{{ (is_state(''climate.living_room_ac'', ''off'') == false) }}'
+  - data: {}
+    entity_id: climate.living_room_ac
+    service: climate.turn_off
+  - data:
+      message: Living Room Door still open. Living Room AC has been switched off.
+      title: 'Alert: Living Room AC Switched Off.'
+    service: notify.living_room_tv
+  - data:
+      message: Living Room Door still open. Living Room AC has been switched off.
+      title: 'Alert: Living Room AC Switched Off.'
+    service: notify.mobile_app_the_loft_ha_wifi
+- id: '1592124265689'
+  alias: Living Room AC / Living Room Door / Alert 2
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.living_room_door_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: '{{ (is_state(''climate.living_room_ac'', ''off'') == false) }}'
+  action:
+  - delay: 0:03
+  - condition: template
+    value_template: '{{ (is_state(''living_room_ac'', ''off'') == false) }}'
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - data:
+      gw_mac: 7C:49:EB:1C:F2:2F
+      ringtone_id: 12
+    service: xiaomi_aqara.play_ringtone
+  - data:
+      message: Close living room door for Living Room AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.living_room_tv
+  - data:
+      message: Close living room door for Living Room AC to remain switched on.
+      title: 'Alert: Living Room Door is Open!'
+    service: notify.mobile_app_the_loft_ha_wifi
+  - delay: 0:02
+  - condition: template
+    value_template: '{{ (is_state(''climate.living_room_ac'', ''off'') == false) }}'
+  - condition: state
+    entity_id: binary_sensor.living_room_door_sensor
+    state: 'on'
+  - data: {}
+    entity_id: climate.living_room_ac
+    service: climate.turn_off
+  - data:
+      message: Living Room Door still open. Living Room AC has been switched off.
+      title: 'Alert: Living Room AC Switched Off.'
+    service: notify.living_room_tv
+  - data:
+      message: Living Room Door still open. Living Room AC has been switched off.
+      title: 'Alert: Living Room AC Switched Off.'
+    service: notify.mobile_app_the_loft_ha_wifi

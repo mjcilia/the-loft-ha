@@ -1,0 +1,31 @@
+#################################################################
+# @Automation
+# @Description: Switches Off Lights and Devices on HA Start. 
+# This is to safeguard against lights being switched on when 
+# power is restored post a power cut.
+# @Trigger: Home Assistant Start
+# @Action: Switch Off All Lights
+# @Action: Notify Mobile
+#################################################################
+- id: 'HomeAssistantStartSwitchOffRooms'
+  alias: Home Assistant / Start / Switch Off Rooms / Notify
+  description: Power Cut Scenario
+  trigger:
+  - event: start
+    platform: homeassistant
+  action:
+  - delay: 00:02:00
+  - service: script.turn_off_kitchen_devices
+  - service: script.room_living_room_off
+  - service: script.turn_off_rack_room_lights
+  - service: script.turn_off_bedroom_lights
+  - service: script.turn_off_hall_light
+  - service: script.turn_off_main_staircase_lights
+  - condition: state
+    entity_id: group.the_loft_members
+    state: 'not_home'
+  - service: script.notify_base_app
+    data:
+      title: The Loft Notification
+      message: Seems that there has been a power outage at the Loft! Power is now restored.
+  mode: single

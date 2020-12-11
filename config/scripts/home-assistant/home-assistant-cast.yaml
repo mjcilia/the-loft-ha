@@ -1,0 +1,18 @@
+#################################################################
+# @Script
+# @Description: Cast Home Assistant to Kitchen Display
+# @Sequence: Cast Home Assistant to Kitchen Display
+# @Device: Nest Hub Max
+# @Device_URL: https://store.google.com/gb/product/google_nest_hub_max?hl=en-GB
+#################################################################
+homeassistant_cast_kitchen_display:
+  alias: Home Assistant / Cast / Kitchen Display
+  sequence:
+  - service: media_player.turn_on
+    entity_id: media_player.kitchen_display
+  - wait_template: "{{ is_state('media_player.kitchen_display', 'idle') }}"
+  - service: cast.show_lovelace_view
+    data: 
+      view_path: internet-and-server,
+      entity_id: media_player.kitchen_display  
+  mode: single

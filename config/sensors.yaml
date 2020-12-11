@@ -1,4 +1,6 @@
-# Platfrom Version Sensor
-- platform: version
-# Google Wifi Sensor
+#################################################################
+## @sensors
+#################################################################
 - platform: google_wifi
+- platform: uptime
+- platform: version

@@ -1,0 +1,39 @@
+sensor.illumination_7c49eb1cf22f:
+  friendly_name: Kitchen Gateway Illumination
+  icon: mdi:brightness-6
+  device_class: sensor
+
+sensor.illumination_7c49ebb19bf5:
+  friendly_name: Rack Room Gateway Illumination
+  icon: mdi:brightness-6
+  device_class: sensor
+
+switch.bedroom_bulb_3:
+  icon: mdi:lightbulb
+
+switch.living_room_bulb_1:
+  icon: mdi:lightbulb
+
+sensor.battery_158d0001e19483:
+  friendly_name: Staircase Motion Sensor 1 Battery
+
+sensor.battery_158d00023ec75f:
+  friendly_name: Rack Room Motion Sensor Battery
+
+sensor.battery_158d0002413b7c:
+  friendly_name: Hall Motion Sensor Battery
+
+sensor.battery_158d00028aefda:
+  friendly_name: Bedroom Cube Battery
+
+sensor.battery_158d00028f8633:
+  friendly_name: Kitchen Cube Battery
+
+sensor.battery_158d0002b771b8:
+  friendly_name: Living Room Door Magnet Battery
+
+sensor.battery_158d0002b7b84e:
+  friendly_name: Roof Front Door Magnet Battery
+
+sensor.battery_158d0002c628be:
+  friendly_name: Roof Back Door Magnet Battery

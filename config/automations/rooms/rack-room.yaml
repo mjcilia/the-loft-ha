@@ -1,0 +1,39 @@
+#################################################################
+# @Automation
+# @Room: Rack Room
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Device: Xiaomi Motion Sensor
+# @Description: Switch On/Off Lights against Motion
+#################################################################
+- id: 'RackRoomSensorMotionDetectedSwitchOnRackRoom'
+  alias: Rack Room Sensor / Motion Detected / Switch on Rack Room
+  description: 'Switch On Lights against Motion'
+  trigger:
+  - entity_id: binary_sensor.rack_room_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.rack_room_bulb_1
+        - light.rack_room_bulb_2
+        - light.rack_room_bulb_3
+
+- id: 'RackRoomSensorMotionNotDetectedSwitchoffRackRoom'
+  alias: Rack Room Sensor / Motion Not Detected / Switch off Rack Room
+  description: 'Switch Off Lights against Motion'
+  trigger:
+  - entity_id: binary_sensor.rack_room_sensor
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+    service: light.turn_off
+    data:
+      entity_id:
+        - light.rack_room_bulb_1
+        - light.rack_room_bulb_2
+        - light.rack_room_bulb_3

@@ -1,0 +1,161 @@
+#################################################################
+# @Script
+# @Description: Sets Vacuum Fan Speed to Turbo
+# @Sequence: Sets Vacuum Fan Speed to Turbo
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+vacuum_set_fan_speed:
+  alias: Vacuum / Set Fan Speed / Turbo
+  sequence:
+  - service: vacuum.xiaomi_vacuum_cleaner
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      fan_speed: Turbo
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Main Bedroom used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_main_bedroom:
+  alias: Routine / Vacuum / Main Bedroom
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 22218
+          - 26105
+          - 25868
+          - 32690
+      repeats: 2
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Rack Room used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_rack_room:
+  alias: Routine / Vacuum / Rack Room
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 21558
+          - 22038
+          - 25150
+          - 25832
+      repeats: 2
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Office used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_office:
+  alias: Routine / Vacuum / Office
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 23238
+          - 18823
+          - 25584
+          - 21748
+      repeats: 2
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Spare Bedroom used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_spare_bedroom:
+  alias: Routine Vacuum / Spare Bedroom
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 21500
+          - 14652
+          - 25671
+          - 18215
+      repeats: 2
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Bathroom
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_bathroom:
+  alias: Routine / Vacuum / Bathroom
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 23354
+          - 12538
+          - 25642
+          - 14363
+      repeats: 2
+  mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Kitchen used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_kitchen:
+    alias: Routine / Vacuum / Kitchen
+    sequence:
+    - service: script.vacuum_set_fan_speed
+    - service: xiaomi_miio.vacuum_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        zone:
+          - - 21993
+            - 5760
+            - 27467
+            - 9989
+        repeats: 2
+    mode: single
+
+#################################################################
+# @Script
+# @Description: Vacuum Corridor used By Google Routine
+# @Sequence: Vacuum Room via Zoned Cleanup
+# @Device: Xiaomi Mi Robot Vacuum (1st gen)
+#################################################################
+routine_vacuum_corridor:
+  alias: Routine / Vacuum / Corridor
+  sequence:
+  - service: script.vacuum_set_fan_speed
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone:
+        - - 25381
+          - 10539
+          - 27467
+          - 31074
+      repeats: 2
+  mode: single

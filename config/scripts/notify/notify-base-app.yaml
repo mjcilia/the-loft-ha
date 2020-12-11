@@ -1,0 +1,21 @@
+notify_base_app:
+  alias: Notify / Base
+  sequence:
+  - service: notify.mobile_app_mark_cilia
+    data:
+      title: "{{ title }}"
+      message: "{{ message }}" 
+      data:
+        push:
+          category: ha-the-loft
+          sound: Warsaw_Haptic.caf
+          thread-id: ha-the-loft
+  - service: notify.mobile_app_jessica_cilia
+    data:
+      title: "{{ title }}"
+      message: "{{ message }}"
+      data:
+        group: ha-notification-group
+        color: '#42d7f5'
+        sticky: false
+  mode: single
