@@ -1,0 +1,15 @@
+notify_tts_base:
+  alias: Notify / Base
+  sequence:
+    - service: script.notify_base_tv
+      data:
+        message: "{{ message }}"
+    - service: script.notify_base_app_not_home
+      data:
+        title: "{{ title }}"
+        message: "{{ message }}"
+    - service: script.tts_base
+      data:
+        message: "{{ message }}"
+
+      

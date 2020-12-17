@@ -21,10 +21,7 @@
   - service: script.turn_off_bedroom_lights
   - service: script.turn_off_hall_light
   - service: script.turn_off_main_staircase_lights
-  - condition: state
-    entity_id: group.the_loft_members
-    state: 'not_home'
-  - service: script.notify_base_app
+  - service: script.notify_base_app_not_home
     data:
       title: The Loft Notification
       message: Seems that there has been a power outage at the Loft! Power is now restored.

@@ -21,6 +21,10 @@ cloud: !include cloud.yaml
 sensor: !include sensors.yaml
 logger: !include logger.yaml
 discovery: !include discovery.yaml
+input_text:
+  living_room_soundbar_source:
+    name: Living Room Soundbar Source
+    initial: TV
 
 ################################################################################
 ## @integrartions

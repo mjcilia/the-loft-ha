@@ -1,0 +1,51 @@
+######################################################################################################
+# @Automation
+# @Room: Office
+# @Alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
+# @Device: LightWave Smart Dimmer (2 Gang)
+# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
+# @Device: Xiaomi Mi Motion Sensor
+# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
+# -motion-sensor-for-mi-smart-home/
+######################################################################################################
+- id: 'StudyMotionSensorMotionDetectedSwitchOnOfficeLight1'
+  alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
+  description: 'Switch On Office Light 1 against Motion'
+  trigger:
+  - entity_id: binary_sensor.office_motion_sensor
+    platform: state
+    from: 'off'
+    to: 'on'
+  condition:
+  - after: '16:00'
+    before: '08:00'
+    condition: time
+  action:
+  - service: light.turn_on
+    entity_id: light.office_light_1
+  - service: light.turn_on
+    entity_id: light.office_light_1
+
+######################################################################################################
+# @Automation
+# @Room: Office
+# @Device: LightWave Smart Dimmer (2 Gang)
+# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
+# @Device: Xiaomi Mi Motion Sensor
+# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
+# -motion-sensor-for-mi-smart-home/
+######################################################################################################
+- id: 'StudyMotionSensorMotionNotDetectedSwitchOffOfficeLight1'
+  alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Light 1
+  trigger:
+  - entity_id: binary_sensor.office_motion_sensor
+    from: 'on'
+    platform: state
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+  - service: light.turn_off
+    entity_id:
+      - light.office_light_1
+      - light.office_light_2

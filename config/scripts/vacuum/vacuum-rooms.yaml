@@ -7,7 +7,7 @@
 vacuum_set_fan_speed:
   alias: Vacuum / Set Fan Speed / Turbo
   sequence:
-  - service: vacuum.xiaomi_vacuum_cleaner
+  - service: vacuum.set_fan_speed
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
       fan_speed: Turbo
@@ -22,7 +22,6 @@ vacuum_set_fan_speed:
 routine_vacuum_main_bedroom:
   alias: Routine / Vacuum / Main Bedroom
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -43,7 +42,6 @@ routine_vacuum_main_bedroom:
 routine_vacuum_rack_room:
   alias: Routine / Vacuum / Rack Room
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -64,7 +62,6 @@ routine_vacuum_rack_room:
 routine_vacuum_office:
   alias: Routine / Vacuum / Office
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -85,7 +82,6 @@ routine_vacuum_office:
 routine_vacuum_spare_bedroom:
   alias: Routine Vacuum / Spare Bedroom
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -106,7 +102,6 @@ routine_vacuum_spare_bedroom:
 routine_vacuum_bathroom:
   alias: Routine / Vacuum / Bathroom
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -127,7 +122,6 @@ routine_vacuum_bathroom:
 routine_vacuum_kitchen:
     alias: Routine / Vacuum / Kitchen
     sequence:
-    - service: script.vacuum_set_fan_speed
     - service: xiaomi_miio.vacuum_clean_zone
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -148,7 +142,6 @@ routine_vacuum_kitchen:
 routine_vacuum_corridor:
   alias: Routine / Vacuum / Corridor
   sequence:
-  - service: script.vacuum_set_fan_speed
   - service: xiaomi_miio.vacuum_clean_zone
     data:
       entity_id: vacuum.xiaomi_vacuum_cleaner
