@@ -12,7 +12,7 @@
   alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
   description: 'Switch On Office Light 1 against Motion'
   trigger:
-  - entity_id: binary_sensor.office_motion_sensor
+  - entity_id: binary_sensor.motion_158d0003ce121b
     platform: state
     from: 'off'
     to: 'on'
@@ -38,14 +38,12 @@
 - id: 'StudyMotionSensorMotionNotDetectedSwitchOffOfficeLight1'
   alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Light 1
   trigger:
-  - entity_id: binary_sensor.office_motion_sensor
-    from: 'on'
+  - entity_id: binary_sensor.motion_158d0003ce121b
     platform: state
     to: 'off'
-    for:
-      minutes: 5
   action:
   - service: light.turn_off
-    entity_id:
-      - light.office_light_1
-      - light.office_light_2
+    data:
+      entity_id:
+        - light.office_light_1
+        - light.office_light_2

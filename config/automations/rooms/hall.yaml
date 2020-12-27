@@ -10,7 +10,7 @@
 - id: 'HallMotionSensorMotionDetectedSwitchOnHall'
   alias: Hall Motion Sensor / Motion Detected / Switch On Hall
   trigger:
-  - entity_id: binary_sensor.hall_motion_sensor
+  - entity_id: binary_sensor.motion_sensor_158d0002413b7c
     platform: state
     from: 'off'
     to: 'on'
@@ -26,7 +26,7 @@
 - id: 'HallMotionSensorMotionNotDetectedSwitchOffHall'
   alias: Hall Motion Sensor / Motion Not Detected / Switch Off Hall
   trigger:
-  - entity_id: binary_sensor.hall_motion_sensor
+  - entity_id: binary_sensor.motion_sensor_158d0002413b7c
     from: 'on'
     platform: state
     to: 'off'

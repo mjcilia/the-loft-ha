@@ -4,19 +4,18 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.cube_158d00028aefda
+      entity_id: binary_sensor.bedroom_cube
       action_type: shake_air
   action:
   - service: light.toggle
     data:
-      entity_id: light.bedroom_bulb_1
+      entity_id: 
+        - light.bedroom_bulb_1
+        - light.bedroom_bulb_2
       brightness: 50
       transition: 1
-  - service: light.toggle
-    data:
-      entity_id: light.bedroom_bulb_2
-      brightness: 50
-      transition: 1
+  - service: light.turn_off
+    entity_id: light.hall_bulb
   mode: single
 
 - id: BedroomCubeFlip90ToggleBedroomLight1
@@ -25,7 +24,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.cube_158d00028aefda
+      entity_id: binary_sensor.bedroom_cube
       action_type: flip90
   action:
   - service: light.toggle
@@ -41,7 +40,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.cube_158d00028aefda
+      entity_id: binary_sensor.bedroom_cube
       action_type: flip180
   action:
   - service: light.toggle
@@ -57,7 +56,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.cube_158d00028aefda
+      entity_id: binary_sensor.bedroom_cube
       action_type: tap_twice
   action:
   - service: script.turn_off_bedroom_lights
@@ -83,7 +82,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.cube_158d00028aefda
+      entity_id: binary_sensor.bedroom_cube
       action_type: rotate
   action:
   - service: light.turn_on

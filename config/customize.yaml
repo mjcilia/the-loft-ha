@@ -1,3 +1,79 @@
+#################################################################
+## @Device: Living Room Table Switch
+#################################################################
+binary_sensor.switch_158d0003e7c53f:
+  friendly_name: Living Room Table Switch
+
+sensor.battery_158d0003e7c53f:
+  friendly_name: Living Room Table Switch Battery
+  
+#################################################################
+## @Device: Living Room Smart Plug
+#################################################################
+switch.72627180bcddc292737e:
+  friendly_name: Living Room Bulb 1
+  icon: mdi:lightbulb
+
+#################################################################
+## @Device: Living Room Light 1
+#################################################################
+light.living_room_lights:
+  friendly_name: Living Room Light 1
+
+#################################################################
+## @Device: Hall Motion Sensor
+#################################################################
+binary_sensor.motion_sensor_158d0002413b7c:
+  friendly_name: Hall Motion Sensor
+
+sensor.battery_158d0002413b7c:
+  friendly_name: Hall Motion Sensor Battery
+
+#################################################################
+## @Device: Office Motion Sensor
+#################################################################
+binary_sensor.motion_sensor_158d0003ce121b:
+  friendly_name: Office Motion Sensor
+
+sensor.battery_158d0003ce121b:
+  friendly_name: Office Motion Sensor Battery
+
+#################################################################
+## @Device: Rack Room Motion Sensor
+#################################################################
+binary_sensor.motion_sensor_158d00023ec75f:
+  friendly_name: Rack Room Motion Sensor
+
+sensor.battery_158d00023ec75f:
+  friendly_name: Rack Room Motion Sensor Battery
+
+#################################################################
+## @Device: Staircase Motion Sensor
+#################################################################
+binary_sensor.motion_sensor_158d0001e19483:
+  friendly_name: Staircase Motion Sensor
+
+sensor.battery_158d0001e19483:
+  friendly_name: Staircase Motion Sensor 1 Battery
+
+#################################################################
+## @Device: Bedroom Cube
+#################################################################  
+binary_sensor.cube_158d00028aefda:
+  friendly_name: Bedroom Cube
+
+sensor.battery_158d00028aefda:
+  friendly_name: Bedroom Cube Battery
+
+#################################################################
+## @Device: Kitchen Cube
+#################################################################
+binary_sensor.cube_158d00028f8633:
+  friendly_name: Kitchen Cube
+
+sensor.battery_158d00028f8633:
+  friendly_name: Kitchen Cube Battery
+
 sensor.illumination_7c49eb1cf22f:
   friendly_name: Kitchen Gateway Illumination
   icon: mdi:brightness-6
@@ -10,25 +86,7 @@ sensor.illumination_7c49ebb19bf5:
 
 switch.bedroom_bulb_3:
   icon: mdi:lightbulb
-
-switch.living_room_bulb_1:
-  icon: mdi:lightbulb
-
-sensor.battery_158d0001e19483:
-  friendly_name: Staircase Motion Sensor 1 Battery
-
-sensor.battery_158d00023ec75f:
-  friendly_name: Rack Room Motion Sensor Battery
-
-sensor.battery_158d0002413b7c:
-  friendly_name: Hall Motion Sensor Battery
-
-sensor.battery_158d00028aefda:
-  friendly_name: Bedroom Cube Battery
-
-sensor.battery_158d00028f8633:
-  friendly_name: Kitchen Cube Battery
-
+  
 sensor.battery_158d0002b771b8:
   friendly_name: Living Room Door Magnet Battery
 

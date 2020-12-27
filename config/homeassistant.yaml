@@ -1,0 +1,7 @@
+#################################################################
+## @home-assistant
+#################################################################
+name: The Loft
+latitude: !secret latitude_home
+longitude: !secret longitude_home
+customize: !include customize.yaml

@@ -15,7 +15,7 @@
   trigger:
   - event_data:
       action_type: shake_air
-      entity_id: binary_sensor.kitchen_cube
+      entity_id: binary_sensor.cube_158d00028f8633
     event_type: xiaomi_aqara.cube_action
     platform: event
   action:
@@ -42,7 +42,7 @@
   trigger:
   - event_data:
       action_type: tap_twice
-      entity_id: binary_sensor.kitchen_cube
+      entity_id: binary_sensor.cube_158d00028f8633
     event_type: xiaomi_aqara.cube_action
     platform: event
   condition: []
@@ -70,12 +70,12 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.kitchen_cube
+      entity_id: binary_sensor.cube_158d00028f8633
       action_type: flip90
   action:
   - service: switch.toggle
     data:
-      entity_id: switch.72627180bcddc292737e
+      entity_id: switch.living_room_bulb_1
   mode: single
 
 #################################################################
@@ -97,7 +97,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.kitchen_cube
+      entity_id: binary_sensor.cube_158d00028f8633
       action_type: rotate
   action:
   - service: media_player.volume_set

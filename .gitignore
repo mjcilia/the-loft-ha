@@ -14,3 +14,6 @@ tts
 home-assistant.log
 home-assistant_v2.db
 secrets.yaml
+
+# Ignored Integration Generated Files
+.sonoff.json

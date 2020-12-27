@@ -1,0 +1,33 @@
+######################################################################################################
+# @Automation
+# @Alias: Mark / App / Charging / Complete
+# @Device: Iphone 7
+# @Device_URL: https://support.apple.com/kb/SP743?locale=en_MT
+# @Trigger:
+#  - State / Battery / 100
+# @Condition:
+#  - Time / 08:00:00 / 21:00:00
+# @Action:
+#  - Script / Notify / TTS
+######################################################################################################
+- id: 'MarkAppChargingComplete'
+  alias: Mark / App / Charging / Complete
+  description: 'Notify When Charging Complete'
+  
+  # trigger
+  trigger:
+  - platform: template
+    value_template: "{{ states.sensor.mark_cilia_battery_state.state == 'Full' }}"
+
+  # condition
+  condition:
+  - condition: time
+    after: '22:00:00'
+    before: '08:00:00'
+  
+  # action
+  action:
+  - service: script.notify_tts_base
+    data:
+      title: "The Loft Alert"
+      message: "Lord Mark. Your phone is fully charged."

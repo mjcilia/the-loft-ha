@@ -66,10 +66,10 @@ google_actions:
       aliases:
         - TV
       room: living room
-    switch.living_room_bulb_1:
+    switch.72627180bcddc292737e:
       name: Living Room Bulb 1
       room: living room
-    light.living_room_light_1:
+    light.living_room_lights:
       name: Living Room Light 1
       aliases:
         - Living Spotlights 1

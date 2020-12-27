@@ -1,0 +1,20 @@
+- id: 'MarkAppChargingComplete'
+  alias: Mark / App / Charging / Complete
+  description: 'Notify When Charging Complete'
+  
+  trigger:
+  - platform: state
+    entity_id:  sensor.mark_cilia_battery_level
+    from: '99'
+    to: '100'
+
+  condition:
+  - condition: time
+    after: '22:00:00'
+    before: '08:00:00'
+  
+  action:
+  - service: script.notify_tts_base
+    data:
+      title: "The Loft Alert"
+      message: "Lord Mark. Your phone is fully charged."

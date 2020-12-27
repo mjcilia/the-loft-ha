@@ -10,7 +10,7 @@
   alias: Rack Room Sensor / Motion Detected / Switch on Rack Room
   description: 'Switch On Lights against Motion'
   trigger:
-  - entity_id: binary_sensor.rack_room_sensor
+  - entity_id: binary_sensor.motion_sensor_158d00023ec75f
     from: 'off'
     platform: state
     to: 'on'
@@ -26,7 +26,7 @@
   alias: Rack Room Sensor / Motion Not Detected / Switch off Rack Room
   description: 'Switch Off Lights against Motion'
   trigger:
-  - entity_id: binary_sensor.rack_room_sensor
+  - entity_id: binary_sensor.motion_sensor_158d00023ec75f
     from: 'on'
     platform: state
     to: 'off'

@@ -1,15 +1,10 @@
 ######################################################################################################
 # @Automation
 # @Room: Kitchen
-# @Description: Alerts if Living Room Door is open whilst trying to switch On Kitchen Air Conditioner.
-# If Living Room door is not closed, Kitchen AC is switched off.
 # @Device: Gree Air Conditioner / Fairy Series
 # @Device_URL: https://btmalta.com/product/gree-fairy-wall-mounted-type/
 # @Device: Xiaomi Mi Door Window Sensor
 # @Device_URL: https://xiaomi-mi.com/sockets-and-sensors/xiaomi-mi-door-window-sensors/
-# @Trigger: Kitchen AC Switched On
-# @Condition: Living Room Door Open
-# @Action: Notifies And Switches Off Kitchen AC if Living Room Door is not Closed.
 ######################################################################################################
 - id: 'KitchenACLivingRoomDoorAlert'
   alias: Kitchen AC / Living Room Door / Alert

@@ -1,0 +1,46 @@
+######################################################################################################
+# @Automation
+# @Room: Balcony
+# @Alias: Balcony / LED Light Strip / On
+# @Device: Sonoff L1 Smart Strip light
+# @Device_URL: https://sonoff.tech/product/wifi-smart-lighting/l1-smart-strip-light
+# @Trigger: Time / 17:30:00
+# @Action: LED Light Strip / On
+######################################################################################################
+- id: 'BalconyLEDLightStripOn'
+  alias: Balcony / LED Light Strip / On
+  description: 'Turns LED Light Strip on at Set Interval'
+  
+  # trigger
+  trigger:
+  - platform: time
+    at: "17:30:00"
+  
+  # action
+  action:
+  - service: light.turn_on
+    entity_id: light.balcony_light_strip
+    data:
+      effect: Colorful
+      brightness: 255
+      hs_color:
+        - 29.836
+        - 71.765
+
+######################################################################################################
+# @Automation
+# @Room: Balcony
+# @Alias: Balcony / LED Light Strip / Off
+# @Device: Sonoff L1 Smart Strip light
+# @Device_URL: https://sonoff.tech/product/wifi-smart-lighting/l1-smart-strip-light
+# @Trigger: Time / 23:30:00
+# @Action: LED Light Strip / Off
+######################################################################################################
+- id: 'BalconyLEDLightStripOff'
+  alias: Balcony / LED Light Strip / Off
+  trigger:
+  - platform: time
+    at: "23:30:00"
+  action:
+    - service: light.turn_off
+      entity_id: light.balcony_light_strip

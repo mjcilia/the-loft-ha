@@ -1,8 +1,9 @@
 #################################################################
-## discovery
+## @zones
 #################################################################
 
-ignore:
-  - yeelight
-  - xiaomi_gw
-  - sonos
+#- name: The Loft
+#  latitude: !secret latitude_home
+#  longitude: !secret longitude_home
+#  radius: 100
+#  icon: mdi:home

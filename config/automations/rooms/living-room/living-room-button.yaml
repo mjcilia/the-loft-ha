@@ -1,0 +1,91 @@
+######################################################################################################
+# @Automation
+# @Room: Living Room
+# @Alias: Living Room Button / Single Click / Toggle Living Room Bulb
+# @Device: Xiaomi Mi Wireless Switch
+# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
+# switch-for-mi-smart-home/category/759/
+# @Device: Teckin Smart Plug
+# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
+# @Trigger:
+#  - Mi Wireless Switch / Single Click
+# @Action:
+#  - Toggle Living Room Bulb
+######################################################################################################
+- id: 'LivingRoomButtonSingleClickToggleLivingRoomBulb'
+  alias: Living Room Button / Single Click / Toggle Living Room Bulb
+  description: 'Toggles Living Room Bulb on Single Click'
+  
+  #trigger
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d0003e7c53f
+      click_type: single
+
+  #action
+  action:
+    service: switch.toggle
+    entity_id: switch.72627180bcddc292737e
+
+######################################################################################################
+# @Automation
+# @Room: Living Room
+# @Alias: Living Room Button / Double Click / Toggle Living Room Light
+# @Device: Xiaomi Mi Wireless Switch
+# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
+# switch-for-mi-smart-home/category/759/
+# @Device: LightWave Smart Dimmer (2 Gang)
+# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
+# @Trigger:
+#  - Mi Wireless Switch / Double Click
+# @Action:
+#  - Toggle Living Room Lights (Front Light)
+######################################################################################################
+- id: 'LivingRoomButtonDoubleClickToggleLivingRoomLight'
+  alias: Living Room Button / Double Click / Toggle Living Room Light
+
+  #trigger
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d0003e7c53f
+      click_type: double
+  
+  #action
+  action:
+    service: light.toggle
+    data:
+      entity_id: light.living_room_lights
+      transition: 1
+      brightness: 255
+
+
+######################################################################################################
+# @Automation
+# @Room: Living Room
+# @Alias: Living Room Button / Long Press Click / Routine / Night
+# @Device: Xiaomi Mi Wireless Switch
+# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
+# switch-for-mi-smart-home/category/759/
+# @Trigger:
+#  - Mi Wireless Switch / Long Press Click 
+# @Action:
+#  - Routine / Goodnight
+######################################################################################################
+- id: 'LivingRoomButtonLongPressClickRoutineNight'
+  alias: Living Room Button / Long Press Click / Routine / Night
+
+  #trigger
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d0003e7c53f
+      click_type: long_click_press
+  
+  #action
+  action:
+    service: script.routine_good_night

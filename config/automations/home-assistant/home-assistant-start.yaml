@@ -1,18 +1,25 @@
-#################################################################
+######################################################################################################
 # @Automation
-# @Description: Switches Off Lights and Devices on HA Start. 
-# This is to safeguard against lights being switched on when 
-# power is restored post a power cut.
-# @Trigger: Home Assistant Start
-# @Action: Switch Off All Lights
-# @Action: Notify Mobile
-#################################################################
+# @Alias: Alias
+# @Device: Synology DS218+
+# @Device_URL: https://www.synology.com/en-global/products/DS218
+# @Trigger:
+#  - Home Assistant Start
+# @Action:
+#  - Switch Off / All / Lights
+#  - Script / 
+######################################################################################################
+
 - id: 'HomeAssistantStartSwitchOffRooms'
   alias: Home Assistant / Start / Switch Off Rooms / Notify
-  description: Power Cut Scenario
+  description: "Switches Off Lights and Devices on HA Start. This is to safeguard against lights being switched on when power is restored post a power cut."
+  
+  # trigger
   trigger:
   - event: start
     platform: homeassistant
+  
+  #action
   action:
   - delay: 00:02:00
   - service: script.turn_off_kitchen_devices
@@ -25,4 +32,3 @@
     data:
       title: The Loft Notification
       message: Seems that there has been a power outage at the Loft! Power is now restored.
-  mode: single
