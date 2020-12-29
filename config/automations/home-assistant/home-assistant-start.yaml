@@ -7,9 +7,13 @@
 #  - Home Assistant Start
 # @Action:
 #  - Switch Off / All / Lights
-#  - Script / 
+#  - Script / Off / Kitchen Devices
+#  - Script / Off / Living Room
+#  - Script / Off / Rack Room Lights
+#  - Script / Off / Hall Light 
+#  - Script / Off / Mainstaircase Lights 
+#  - Script / Notify / App / Not Home
 ######################################################################################################
-
 - id: 'HomeAssistantStartSwitchOffRooms'
   alias: Home Assistant / Start / Switch Off Rooms / Notify
   description: "Switches Off Lights and Devices on HA Start. This is to safeguard against lights being switched on when power is restored post a power cut."

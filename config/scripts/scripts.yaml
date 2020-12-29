@@ -151,7 +151,7 @@ check_living_room_door:
   alias: Check / Living Room / Door / TTS
   sequence:
   - condition: state
-    entity_id: binary_sensor.living_room_door_sensor
+    entity_id: binary_sensor.door_window_sensor_158d0002b771b8
     state: 'on'
   - service: media_player.volume_set
     data:
@@ -176,7 +176,7 @@ check_front_roof_door_tts:
   alias: Check / Front Roof / Door / TTS
   sequence:
   - condition: state
-    entity_id: binary_sensor.front_roof_door_sensor
+    entity_id: binary_sensor.door_window_sensor_158d0002b7b84e
     state: 'on'
   - service: media_player.volume_set
     data:
@@ -191,7 +191,7 @@ check_back_roof_door_tts:
   alias: Check / Back Roof / Door / TTS
   sequence:
   - condition: state
-    entity_id: binary_sensor.roof_back_door_sensor
+    entity_id: binary_sensor.door_window_sensor_158d0002c628be
     state: 'on'
   - service: media_player.volume_set
     data:

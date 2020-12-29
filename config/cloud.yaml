@@ -4,9 +4,9 @@
 google_actions:
   filter:
     exclude_entities:
-      - binary_sensor.living_room_door_sensor
-      - binary_sensor.front_roof_door_sensor
-      - binary_sensor.roof_back_door_sensor
+      - binary_sensor.door_window_sensor_158d0002b771b8
+      - binary_sensor.door_window_sensor_158d0002b7b84e
+      - binary_sensor.door_window_sensor_158d0002c628be
       - media_player.the_loft_speaker_group
       - media_player.kitchen_display
       - media_player.roof_speaker

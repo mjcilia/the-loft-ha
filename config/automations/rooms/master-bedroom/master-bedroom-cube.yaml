@@ -1,11 +1,28 @@
+######################################################################################################
+# @Automation
+# @Room: Bedroom
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Bedroom Cube / Shake
+# @Action:
+#  - Toggle / Bedroom Lights
+#  - Hall Light / Off
+######################################################################################################
 - id: BedroomCubeShakeAlertToggleBedroomLights
   alias: Bedroom Cube / Shake / Toggle Bedroom Lights
+  
+  #triggger
   trigger:
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.bedroom_cube
+      entity_id:  binary_sensor.cube_158d00028aefda
       action_type: shake_air
+  
+  #action
   action:
   - service: light.toggle
     data:
@@ -18,14 +35,30 @@
     entity_id: light.hall_bulb
   mode: single
 
+######################################################################################################
+# @Automation
+# @Room: Bedroom
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Bedroom Cube / Flip 90
+# @Action:
+#  - Toggle / Bedroom Bulb 1
+######################################################################################################
 - id: BedroomCubeFlip90ToggleBedroomLight1
   alias: Bedroom Cube / Flip90 / Toggle Bedroom Light 1
+
+  #trigger
   trigger:
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.bedroom_cube
+      entity_id:  binary_sensor.cube_158d00028aefda
       action_type: flip90
+  
+  #action
   action:
   - service: light.toggle
     data:
@@ -34,14 +67,30 @@
       transition: 1
   mode: single
 
+######################################################################################################
+# @Automation
+# @Room: Bedroom
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Bedroom Cube / Flip 180
+# @Action:
+#  - Toggle / Bedroom Bulb 2
+######################################################################################################
 - id: BedroomCubeFlip180ToggleBedroomLight2
   alias: Bedroom Cube / Flip180 / Toggle Bedroom Light 2
+
+  #trigger
   trigger:
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.bedroom_cube
+      entity_id:  binary_sensor.cube_158d00028aefda
       action_type: flip180
+  
+  #action
   action:
   - service: light.toggle
     data:
@@ -50,14 +99,31 @@
       transition: 1
   mode: single
 
+######################################################################################################
+# @Automation
+# @Room: Bedroom
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Bedroom Cube / Tap Twice
+# @Action:
+#  - Script / Off / Bedroom / Lights
+#  - Script / Off / Hall / Lights
+######################################################################################################
 - id: BedroomCubeTapTwiceSwitchOffBedroomAndHallLights
-  alias: Bedroom Cube / Tap Twice / Switch Off Bedroom and Hall Lights 
+  alias: Bedroom Cube / Tap Twice / Switch Off Bedroom and Hall Lights
+
+  #trigger
   trigger:
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.bedroom_cube
+      entity_id:  binary_sensor.cube_158d00028aefda
       action_type: tap_twice
+  
+  #action
   action:
   - service: script.turn_off_bedroom_lights
   - service: script.turn_off_hall_light
@@ -66,14 +132,14 @@
 #################################################################
 # @Automation
 # @Room: Master Bedroom
-# @Description: Increases/Decreases Light brightness depending
-# on cube rotation. 
 # @Device: Aqara Magic Cube
 # @Device_URL: https://www.aqara.com/us/cube.html
 # @Device: Yeelight LED Bulb 1S (White)
 # @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger: Bedroom Cube Rotate
-# @Action: Increase/Decrease Light Brightness
+# @Trigger:
+#  - Bedroom Cube / Rotate
+# @Action:
+#  - Increase/Decrease / Bedroom Lights / Brightness
 #################################################################
 - id: BedroomCubeRotateBrightnessBedroomLights
   alias: Bedroom Cube / Rotate / Brightness Bedroom Lights
@@ -82,7 +148,7 @@
   - platform: event
     event_type: xiaomi_aqara.cube_action
     event_data:
-      entity_id: binary_sensor.bedroom_cube
+      entity_id:  binary_sensor.cube_158d00028aefda
       action_type: rotate
   action:
   - service: light.turn_on

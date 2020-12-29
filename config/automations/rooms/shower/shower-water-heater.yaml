@@ -1,0 +1,60 @@
+######################################################################################################
+# @Automation
+# @Room: Shower
+# @Alias: Shower / Water Heater / On
+# @Device: Shelly 1pm
+# @Device_URL: https://shelly.cloud/products/shelly-1pm-smart-home-automation-relay/
+# @Trigger:
+#  - Time / 06:00:00
+#  - Time / 17:00:00
+# @Action:
+#  - Water Heater / On
+######################################################################################################
+- id: 'ShowerWaterHeaterOn'
+  alias: Shower / Water Heater / On
+  description: 'Switch On Water Heater at Set Intervals'
+
+  #trigger
+  trigger:
+  - platform: time
+    at: "06:00:00"
+  - platform: time
+    at: "17:00:00"
+  
+  #action
+  action:
+  - service: switch.turn_on
+    entity_id: switch.spare_bathroom_water_heater_sw
+
+######################################################################################################
+# @Automation
+# @Room: Shower
+# @Alias: Shower / Water Heater / Off
+# @Device: Shelly 1pm
+# @Device_URL: https://shelly.cloud/products/shelly-1pm-smart-home-automation-relay/
+# @Trigger:
+#  - Switch / On / 90 mins
+# @Action:
+#  - Water Heater / Off
+######################################################################################################
+- id: 'ShowerWaterHeaterOff'
+  alias: Shower / Water Heater / Off
+  description: 'Switch Off Water Heater after switched off for 90mins'
+
+  #trigger
+  trigger:
+  - platform: state
+    entity_id: switch.spare_bathroom_water_heater_sw
+    from: 'off'
+    to: 'on'
+    for: 
+      minutes: '90'
+
+  #action
+  action:
+  - service: switch.turn_off
+    entity_id: switch.spare_bathroom_water_heater_sw
+  - service: script.notify_tts_base
+    data:
+      title: "The Loft Notification"
+      message: "Shower Water Heater is Warm. Water Heater is now switched off."

@@ -10,6 +10,4 @@ notify_tts_base:
         message: "{{ message }}"
     - service: script.tts_base
       data:
-        message: "{{ message }}"
-
-      
+        message: "{{ message }}"      

@@ -17,3 +17,4 @@ secrets.yaml
 
 # Ignored Integration Generated Files
 .sonoff.json
+webostv.conf

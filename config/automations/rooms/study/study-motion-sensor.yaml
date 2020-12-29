@@ -1,25 +1,37 @@
 ######################################################################################################
 # @Automation
-# @Room: Office
+# @Room: Study
 # @Alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
 # @Device: LightWave Smart Dimmer (2 Gang)
 # @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
 # @Device: Xiaomi Mi Motion Sensor
 # @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
 # -motion-sensor-for-mi-smart-home/
+# @Trigger:
+#  - Motion / Detected
+# @Condition:
+#  - 08:00 / 16:00
+# @Action:
+#  - Office Light 1 / On
 ######################################################################################################
 - id: 'StudyMotionSensorMotionDetectedSwitchOnOfficeLight1'
   alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
   description: 'Switch On Office Light 1 against Motion'
+
+  #trigger
   trigger:
   - entity_id: binary_sensor.motion_158d0003ce121b
     platform: state
     from: 'off'
     to: 'on'
+  
+  #condition
   condition:
   - after: '16:00'
     before: '08:00'
     condition: time
+  
+  #action
   action:
   - service: light.turn_on
     entity_id: light.office_light_1
@@ -28,19 +40,29 @@
 
 ######################################################################################################
 # @Automation
-# @Room: Office
+# @Room: Study
+# @Alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
 # @Device: LightWave Smart Dimmer (2 Gang)
 # @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
 # @Device: Xiaomi Mi Motion Sensor
 # @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
 # -motion-sensor-for-mi-smart-home/
+# @Trigger:
+#  - Motion / Not Detected
+# @Action:
+#  - Office Light 1 / Off
+#  - Office Light 2 / Off
 ######################################################################################################
 - id: 'StudyMotionSensorMotionNotDetectedSwitchOffOfficeLight1'
   alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Light 1
+
+  #trigger
   trigger:
   - entity_id: binary_sensor.motion_158d0003ce121b
     platform: state
     to: 'off'
+  
+  #action
   action:
   - service: light.turn_off
     data:
