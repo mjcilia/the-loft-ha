@@ -107,3 +107,10 @@ binary_sensor.door_window_sensor_158d0002c628be:
 
 sensor.battery_158d0002c628be:
   friendly_name: Roof Back Door Magnet Battery
+
+#################################################################
+## @Device: Shower Water Heater Switch
+#################################################################
+switch.spare_bathroom_water_heater_sw:
+  friendly_name: Shower Water Heater
+  icon: mdi:water

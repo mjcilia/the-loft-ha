@@ -27,8 +27,8 @@
   #condition
   condition:
   - condition: time
-    after: '16:00'
-    before: '08:00'
+    before: !secret light_condition_before
+    after: !secret light_condition_after
   
   #action
   action:

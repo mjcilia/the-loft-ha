@@ -45,7 +45,7 @@
     state: 'on'
   - condition: template
     value_template: '{{ (is_state("climate.living_room_ac", "off") == false) }}'
-  - service: script.notify_tts_base
+  - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
       message: "Living Room Door is Open! Close Living Room Door for Living Room AC to remain switched on."
@@ -59,7 +59,7 @@
     value_template: '{{ (is_state("climate.living_room_ac", "off") == false) }}'
   - service: climate.turn_off
     entity_id: climate.living_room_ac
-  - service: script.notify_tts_base
+  - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
       message: "Living Room Door is Open! Close Living Room Door for Living Room AC to remain switched on."

@@ -11,10 +11,8 @@ google_actions:
       - media_player.kitchen_display
       - media_player.roof_speaker
       - media_player.bedroom_wifi
-      - media_player.plex_plex_web_chrome
-      - media_player.plex_plex_for_lg_lg_oled55c8lla
-      - light.kitchen_gateway
-      - light.rackroom_gateway
+      - light.gateway_light_7c49eb1cf22f
+      - light.gateway_light_7c49ebb19bf5
       - script.check_back_roof_door_tts
       - script.check_front_roof_door_tts
       - script.check_living_room_door
@@ -122,12 +120,44 @@ google_actions:
     light.office_light_1:
       name: Office Light 1
       aliases:
-        Office Spot Lights 1
-        Office Downlights 1
+        - Office Spot Lights 1
+        - Office Downlights 1
       room: office
     light.office_light_2:
       name: Office Light 2
       aliases:
-        Office Spot Lights 2
-        Office Downlights 2
+        - Office Spot Lights 2
+        - Office Downlights 2
       room: office
+    #shower
+    switch.spare_bathroom_water_heater_sw:
+      name: Shower Water Heater
+      aliases: 
+        - Shower Water Heater
+        - Shower Geyser
+      room: shower
+    #scripts living room iptv
+    script.living_room_tv_iptv_sky_sports:
+      name: Sky Sports
+      aliases:
+        - Sky Sports
+        - Sky Sports Premier League
+    script.living_room_tv_iptv_sky_sports_football:
+      name: Sky Sports Football
+      aliases:
+        - Sky Sports Football
+    script.living_room_tv_iptv_food_network:
+      name: Food Network
+      aliases: Food Network
+    script.living_room_tv_channel_up:
+      name: Channel Up
+      aliases:
+        - Channel Up
+        - TV Channel Up
+        - Increase Channel
+    script.living_room_tv_channel_down:
+      name: Channel Dowm
+      aliases:
+        - Channel Down
+        - TV Channel Down
+        - Decrease Channel

@@ -19,15 +19,3 @@ notify_base_app:
         color: '#42d7f5'
         sticky: false
   mode: single
-
-notify_base_app_not_home:
-  alias: Notify / App / Not Home
-  sequence:
-  - condition: state
-    entity_id: group.the_loft_members
-    state: 'not_home'
-  - service: script.notify_base_app
-    data: 
-      title: "{{ title }}"
-      message: "{{ message }}"
-  mode: single

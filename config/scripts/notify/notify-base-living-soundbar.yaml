@@ -1,0 +1,34 @@
+notify_base_living_soundbar:
+  alias: Notify / Base / TTS
+  sequence:
+  - service: input_text.set_value
+    data:
+      entity_id: input_text.living_room_soundbar_source
+      value: "{{ state_attr('media_player.living_room_soundbar', 'source') }}"
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.living_room_soundbar
+      volume_level: >
+        {%- if (states.media_player.living_room_soundbar.state == 'playing') -%}
+          {{ state_attr('media_player.living_room_soundbar', 'volume_level') }}
+        {%- else -%}
+           0.2
+        {%- endif -%}
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.living_room_soundbar
+      media_content_id: https://raw.githubusercontent.com/mjcilia/the-loft-ha/main/config/sounds/the_loft_alert.mp3
+      media_content_type: music
+  - delay: 00:00:04
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.living_room_soundbar
+      message: "The Loft Alert. {{ message }}"
+      language: 'en'
+  - delay: 00:00:06
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.living_room_soundbar
+      source: "{{ states.input_text.living_room_soundbar_source.state }}"
+  mode: single
+  

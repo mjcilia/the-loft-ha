@@ -1,13 +1,14 @@
-notify_tts_base:
+notify_base_tts:
   alias: Notify / Base
   sequence:
     - service: script.notify_base_tv
       data:
+        title: "{{ title }}"
         message: "{{ message }}"
-    - service: script.notify_base_app_not_home
+    - service: script.notify_base_app
       data:
         title: "{{ title }}"
         message: "{{ message }}"
-    - service: script.tts_base
+    - service: script.notify_base_living_soundbar
       data:
         message: "{{ message }}"      

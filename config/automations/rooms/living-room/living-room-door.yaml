@@ -58,7 +58,7 @@
   - condition: state
     entity_id: binary_sensor.door_window_sensor_158d0002b771b8
     state: 'on'
-  - service: script.notify_tts_base
+  - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
       message: "Living Room Door is Open! Close living room door for Kitchen AC to remain switched on."
@@ -76,7 +76,7 @@
     entity_id:
       - climate.kitchen_ac
       - climate.living_room_ac
-  - service: script.notify_tts_base
+  - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
       message: "Kitchen AC has been switched off."

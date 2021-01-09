@@ -6,7 +6,6 @@
 # @Trigger:
 #  - State / Battery / 100
 # @Condition:
-#  - Time / 08:00:00 / 21:00:00
 #  - Battery / Charging
 # @Action:
 #  - Script / Notify / TTS
@@ -23,16 +22,13 @@
 
   # condition
   condition:
-  - condition: time
-    after: '08:00:00'
-    before: '22:00:00'
   - condition: state
     entity_id: sensor.rmx1931_battery_state
     state:  "charging"
   
   # action
   action:
-  - service: script.notify_tts_base
+  - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
       message: "Madam Jessica. Your phone is fully charged."
