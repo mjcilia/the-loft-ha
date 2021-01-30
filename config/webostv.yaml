@@ -6,8 +6,8 @@ turn_on_action:
     mac: !secret webostv_mac
 customize:
   sources:
-    - youtube
-    - netflix
+    - Youtube
+    - Netflix
     - PS4
     - GO Interactive
-    - Plex
+    - Smart IPTV

@@ -142,13 +142,20 @@ google_actions:
       aliases:
         - Sky Sports
         - Sky Sports Premier League
+        - Premier League
     script.living_room_tv_iptv_sky_sports_football:
       name: Sky Sports Football
       aliases:
         - Sky Sports Football
     script.living_room_tv_iptv_food_network:
       name: Food Network
-      aliases: Food Network
+      aliases: 
+        - Food Network
+    script.living_room_tv_iptv_history_channel:
+      name: History Channel
+      aliases: 
+        - History
+        - History Channel
     script.living_room_tv_channel_up:
       name: Channel Up
       aliases:

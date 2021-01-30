@@ -1,0 +1,69 @@
+######################################################################################################
+# @Automation
+# @Alias: Home Assistant / Health Check / Door Window Sensors / Battery / Alert
+# @Device: Xiaomi Mi Door Window Sensor
+# @Device_URL: https://xiaomi-mi.com/sockets-and-sensors/xiaomi-mi-door-window-sensors/
+# @Trigger:
+#  - Time / 10:00:00
+#  - State / Binary Sensor / Door Window Sensors Battery / On
+#  - State / Binary Sensor / Motion Sensors Battery / On
+#  - State / Binary Sensor / Magic Cube Battery / On
+#  - State / Binary Sensor / Wireless Switch Battery / On
+# @Condition:
+#  - Time / 09:00:00 / 22:00:00
+# @Action:
+#  - Notify / Mark
+######################################################################################################
+- id: 'HomeAssistantHealthCheckDoorWindowSensorsBatteryAlert'
+  alias: Home Assistant / Health Check / Door Window Sensors / Battery / Alert
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.door_window_sensors_battery
+      to: 'on'
+      for:
+        minutes: 15
+
+    - platform: state
+      entity_id: binary_sensor.motion_sensors_battery
+      to: 'on'
+      for:
+        minutes: 15
+
+    - platform: state
+      entity_id: binary_sensor.magic_cube_battery
+      to: 'on'
+      for:
+        minutes: 15
+
+    - platform: state
+      entity_id: binary_sensor.wireless_switch_battery
+      to: 'on'
+      for:
+        minutes: 15
+  
+  # condition
+  condition:
+    - condition: time
+      after: '09:00:00'
+      before: '22:00:00'
+  
+  #action
+  action:
+  - service: script.notify_base_app_mark
+    data:
+      title: "The Loft Alert"
+      message: >
+        Health Check Failure.
+        {% for state in states.sensor -%}
+        {% if ('battery' in state.name.lower())
+            and state.state|int < 15
+            and state.state|int > 0
+        -%}
+        {{ state.name|string }} is at {{ state.state|int }}%.
+        {% endif -%}
+        {% endfor -%}

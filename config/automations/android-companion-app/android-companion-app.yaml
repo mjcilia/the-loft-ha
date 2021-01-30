@@ -30,5 +30,5 @@
   action:
   - service: script.notify_base_tts
     data:
-      title: "The Loft Alert"
-      message: "Madam Jessica. Your phone is fully charged."
+      title: "The Loft Notification"
+      message: "RealMe Pro x2 is fully charged."

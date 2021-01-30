@@ -18,6 +18,7 @@ automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 climate: !include climate.yaml
 cloud: !include cloud.yaml
+binary_sensor: !include binary_sensor.yaml
 sensor: !include sensors.yaml
 logger: !include logger.yaml
 discovery: !include discovery.yaml
