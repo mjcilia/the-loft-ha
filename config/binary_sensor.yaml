@@ -1,35 +1,58 @@
 - platform: template
   sensors:
-    door_window_sensors_battery:
-      friendly_name: 'Door/Window Sensors / Battery'
+    wireless_devices_battery_sensors:
+      friendly_name: 'Wireless Devices Battery Sensors'
+      delay_on:
+          seconds: 60
       value_template: >-
         {{
-          states('sensor.battery_158d0002b771b8')|int < 15 
-            or states('sensor.battery_158d0002c628be')|int < 15
-            or states('sensor.battery_158d0002b7b84e')|int < 15
+          states.sensor
+            |selectattr('attributes.device_class', 'in', ['battery'])
+            |selectattr('attributes.voltage')
+            |selectattr('state', '<', '15')
+            |list|count > 0 
         }}
 
-    motion_sensors_battery:
-      friendly_name: 'Motion Sensors / Battery'
+    light_availability_sensors:
+      friendly_name: 'Light Availability Sensors'
+      delay_on:
+        seconds: 60
+      value_template: >-
+        {{ 
+          states.light
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
+        }}
+      
+    switch_availability_sensors:
+      friendly_name: 'Switch Availability Sensors'
+      delay_on:
+        seconds: 60
       value_template: >-
         {{
-          states('sensor.battery_158d0001e19483')|int < 15
-            or states('sensor.battery_158d00023ec75f')|int < 15
-            or states('sensor.battery_158d0002413b7c')|int < 15
-            or states('sensor.battery_158d0003ce121b')|int < 15
+          states.switch
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
         }}
 
-    magic_cube_battery:
-      friendly_name: 'Magic Cube / Battery'
+    climate_availability_sensors:
+      friendly_name: 'Climate Availability Sensors'
+      delay_on:
+        seconds: 60
       value_template: >-
         {{
-          states('sensor.battery_158d00028aefda')|int < 15
-            or states('sensor.battery_158d00028f8633')|int < 15
+          states.climate
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
         }}
-    
-    wireless_switch_battery:
-      friendly_name: 'Wireless Switch / Battery'
+
+    media_availability_sensors:
+      friendly_name: 'Media Availability Sensors'
+      delay_on:
+        seconds: 60
       value_template: >-
         {{
-          states('sensor.battery_158d0003e7c53f')|int < 15
+          states.media_player
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
         }}

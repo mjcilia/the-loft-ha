@@ -22,10 +22,8 @@ binary_sensor: !include binary_sensor.yaml
 sensor: !include sensors.yaml
 logger: !include logger.yaml
 discovery: !include discovery.yaml
-input_text:
-  living_room_soundbar_source:
-    name: Living Room Soundbar Source
-    initial: TV
+input_datetime: !include input_datetime.yaml
+input_boolean: !include input_boolean.yaml
 
 ################################################################################
 ## @integrartions
@@ -60,9 +58,9 @@ tuya:
 ## @integration: Sonoff
 ## @integration_url: https://github.com/AlexxIT/SonoffLAN
 ################################################################################
-sonoff:
-  username: !secret sonoff_username
-  password: !secret sonoff_password
+#sonoff:
+#  username: !secret sonoff_username
+#  password: !secret sonoff_password
 
 ################################################################################
 ## @integration: Synology Dsm
@@ -98,7 +96,6 @@ webostv:
         - netflix
         - PS4
         - GO Interactive
-        - Plex
         - Smart IPTV
 
 wake_on_lan:

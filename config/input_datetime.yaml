@@ -1,0 +1,11 @@
+shower_morning_time:
+  name: Shower Morning Time
+  has_date: false
+  has_time: true
+  initial: '06:00'
+
+shower_evening_time:
+  name: Shower Evening Time
+  has_date: false
+  has_time: true
+  initial: '16:00'

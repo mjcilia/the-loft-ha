@@ -1,0 +1,49 @@
+######################################################################################################
+# @Automation
+# @Alias: Home Assistant / Health Check / Switch Availability / Alert
+# @Device: Shelly 1pm
+# @Device_URL: https://shelly.cloud/products/shelly-1pm-smart-home-automation-relay/
+# @Trigger:
+#  - Time / 10:00:00
+#  - State / Binary Sensor / Switch Availability Sensors / On
+# @Condition:
+#  - Time / 09:00:00 / 22:00:00
+#  - State / Binary Sensor / Switch Availability Sensors / On
+# @Action:
+#  - Notify / Mark
+######################################################################################################
+- id: 'HomeAssistantHealthCheckSwitchAvailabilityAlert'
+  alias: Home Assistant / Health Check / Switch Availability / Alert
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.switch_availability_sensors
+      to: 'on'
+      for:
+        minutes: 30
+  
+  # condition
+  condition:
+    - condition: time
+      after: '09:00:00'
+      before: '22:00:00'
+
+    - condition: state
+      entity_id: binary_sensor.switch_availability_sensors
+      state: 'on'
+  
+  #action
+  action:
+  - service: script.notify_base_app_mark
+    data:
+      title: "The Loft Alert"
+      message: >-
+        {%- for switch in states.switch %}
+          {%- if switch.state|string == "unavailable" %}
+        Health Check Failure. {{ switch.name }} is {{ switch.state }}!
+          {%- endif %}
+        {%- endfor %}

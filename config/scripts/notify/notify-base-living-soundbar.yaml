@@ -1,36 +1,55 @@
 notify_base_living_soundbar:
   alias: Notify / Base / TTS
   sequence:
+
+  # turn soundbar on
   - service: media_player.turn_on
     entity_id: media_player.living_room_soundbar
+
+  # take snapshot  
   - service: sonos.snapshot
-    entity_id: media_player.living_room_soundbar
+    data:
+      entity_id: media_player.living_room_soundbar
+  
+  # set volume
   - service: media_player.volume_set
     data:
       entity_id: media_player.living_room_soundbar
-      volume_level: >
-        {%- if (states.media_player.living_room_soundbar.state == 'playing') -%}
-          {{ state_attr('media_player.living_room_soundbar', 'volume_level') }}
-        {%- else -%}
-           0.2
-        {%- endif -%}
+      volume_level: 0.2
+
+  # play sound effect
   - service: media_player.play_media
     data:
       entity_id: media_player.living_room_soundbar
       media_content_id: https://raw.githubusercontent.com/mjcilia/the-loft-ha/main/config/sounds/the_loft_alert.mp3
       media_content_type: music
+  
+  # delay for 4 seconds
+  - delay: "00:00:04"
+
+  # increase volume for tts
   - service: media_player.volume_set
     data:
       entity_id: media_player.living_room_soundbar
-      volume_level: > 
-        {{ state_attr('media_player.living_room_soundbar', 'volume_level') + 0.2 }}
-  - delay: 00:00:04
+      volume_level: 0.4
+
+  # play tts messgae
   - service: tts.google_translate_say
     data:
       entity_id: media_player.living_room_soundbar
       language: 'en'
-  - delay: 00:00:06
+      message: > 
+        {{ title }}. {{ message }}
+  
+  # delay for 2 seconds
+  - delay: "00:00:02"
+
+  # wait until tts has finished playing
+  - wait_template: "{{ not is_state('media_player.living_room_soundbar', 'playing') }}"
+
+  # restore sonos snapshot
   - service: sonos.restore
-    entity_id: media_player.living_room_soundbar
+    data:
+      entity_id: media_player.living_room_soundbar
   mode: single
   

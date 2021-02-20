@@ -1,0 +1,49 @@
+######################################################################################################
+# @Automation
+# @Alias: Home Assistant / Health Check / Light Availability / Alert
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Time / 10:00:00
+#  - State / Binary Sensor / Light Availability Sensors / On
+# @Condition:
+#  - Time / 09:00:00 / 22:00:00
+#  - State / Binary Sensor / Light Availability Sensors / On
+# @Action:
+#  - Notify / Mark
+######################################################################################################
+- id: 'HomeAssistantHealthCheckLightAvailabilityAlert'
+  alias: Home Assistant / Health Check / Light Availability / Alert
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.light_availability_sensors
+      to: 'on'
+      for:
+        minutes: 30
+  
+  # condition
+  condition:
+    - condition: time
+      after: '09:00:00'
+      before: '22:00:00'
+
+    - condition: state
+      entity_id: binary_sensor.light_availability_sensors
+      state: 'on'
+  
+  #action
+  action:
+  - service: script.notify_base_app_mark
+    data:
+      title: "The Loft Alert"
+      message: >-
+        {%- for light in states.light %}
+          {%- if light.state|string == "unavailable" %}
+        Health Check Failure. {{ light.name }} is {{ light.state }}!
+          {%- endif %}
+        {%- endfor %}

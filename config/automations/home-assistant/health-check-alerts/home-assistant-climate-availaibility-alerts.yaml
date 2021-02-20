@@ -1,0 +1,49 @@
+######################################################################################################
+# @Automation
+# @Alias: Home Assistant / Health Check / Climate Availability / Alert
+# @Device: Gree Air Conditioner / Fairy Series
+# @Device_URL: https://btmalta.com/product/gree-fairy-wall-mounted-type/
+# @Trigger:
+#  - Time / 10:00:00
+#  - State / Binary Sensor / Climate Availability Sensors / On
+# @Condition:
+#  - Time / 09:00:00 / 22:00:00
+#  - State / Binary Sensor / Climate Availability Sensors / On
+# @Action:
+#  - Notify / Mark
+######################################################################################################
+- id: 'HomeAssistantHealthCheckClimateAvailabilityAlert'
+  alias: Home Assistant / Health Check / Climate Availability / Alert
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.climate_availability_sensors
+      to: 'on'
+      for:
+        minutes: 30
+  
+  # condition
+  condition:
+    - condition: time
+      after: '09:00:00'
+      before: '22:00:00'
+
+    - condition: state
+      entity_id: binary_sensor.climate_availability_sensors
+      state: 'on'
+  
+  #action
+  action:
+  - service: script.notify_base_app_mark
+    data:
+      title: "The Loft Alert"
+      message: >-
+        {%- for thermostat in states.climate %}
+          {%- if thermostat.state|string == "unavailable" %}
+        Health Check Failure. {{ thermostat.name }} is {{ thermostat.state }}!
+          {%- endif %}
+        {%- endfor %}

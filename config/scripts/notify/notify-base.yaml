@@ -11,4 +11,5 @@ notify_base_tts:
         message: "{{ message }}"
     - service: script.notify_base_living_soundbar
       data:
-        message: "{{ message }}"      
+        title: "{{ title }}"
+        message: "{{ message }}"   

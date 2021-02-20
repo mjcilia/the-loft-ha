@@ -138,5 +138,33 @@
   - service: script.notify_base_tv
     data:
       title: "The Loft Notification"
-      message: "Volume set at {{ state_attr('media_player.living_room_soundbar','volume_level') * 100 }}%"
+      message: "Volume set at {{ (state_attr('media_player.living_room_soundbar','volume_level')|float * 100) | round(0) }}%"
   mode: single
+
+
+- id: KitchenCubeTapTwiceSwitchOffLivingRoomandKitchen
+  alias: Kitchen Cube / Tap Twice / Switch Off / Living Room and Kitchen
+  description: 'Switch off Kitchen and Living Room when tapping cube Twice'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: tap_twice
+
+  #action
+  action:
+    - service: light.turn_off
+      entity_id: 
+        - light.kitchen_bulb_1
+        - light.kitchen_bulb_2
+        - light.living_room_lights
+    - service: switch.turn_off
+      entity_id: switch.72627180bcddc292737e
+    - service: media_player.turn_off
+      entity_id:
+        - media_player.kitchen_display
+        - media_player.living_room_tv
+        - media_player.living_room_soundbar

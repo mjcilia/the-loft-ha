@@ -1,0 +1,36 @@
+######################################################################################################
+# @Automation
+# @Alias: Home Assistant / Health Check
+# @Trigger:
+#  - Time / 10:00:00
+# @Condition:
+#  - State / Binary Sensor / Wireless Devices Battery Sensors / Off
+#  - State / Binary Sensor / Light Availability Sensors / Off
+# @Action:
+#  - Notify / Mark
+######################################################################################################
+- id: 'HomeAssistantHealthCheck'
+  alias: Home Assistant / Health Check
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+  
+  #condition
+  condition:
+    - condition: state
+      entity_id: 
+        - binary_sensor.wireless_devices_battery_sensors
+        - binary_sensor.light_availability_sensors
+        - binary_sensor.switch_availability_sensors
+        - binary_sensor.climate_availability_sensors
+        - binary_sensor.media_availability_sensors
+      state: 'off'
+  
+  #action
+  action:
+    - service: script.notify_base_app_mark
+      data:
+        title: "The Loft Notifcation"
+        message: "Health Check Complete. Devices Healthy."

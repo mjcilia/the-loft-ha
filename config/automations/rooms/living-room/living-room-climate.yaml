@@ -62,4 +62,4 @@
   - service: script.notify_base_tts
     data:
       title: "The Loft Alert"
-      message: "Living Room Door is Open! Close Living Room Door for Living Room AC to remain switched on."
+      message: "Living Room Door still open. Living Room AC has been switched off."

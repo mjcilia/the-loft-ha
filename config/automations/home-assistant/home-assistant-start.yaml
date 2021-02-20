@@ -32,7 +32,7 @@
   - service: script.turn_off_bedroom_lights
   - service: script.turn_off_hall_light
   - service: script.turn_off_main_staircase_lights
-  - service: script.notify_base_app_not_home
+  - service: script.notify_base_tts
     data:
-      title: The Loft Notification
+      title: The Loft Alert
       message: Seems that there has been a power outage at the Loft! Power is now restored.
