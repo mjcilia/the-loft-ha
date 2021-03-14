@@ -1,0 +1,10 @@
+doors_windows_check:
+  alias: Check / Doors and Windows
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.doors_windows_sensors
+    state: "on" 
+  - service: script.notify_base_living_soundbar
+    data:
+      title: "The Loft Alert"
+      message: "{{ state_attr('binary_sensor.doors_windows_sensors', 'message') }}"

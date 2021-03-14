@@ -1,7 +1,0 @@
-is_kitchen_living_ac_on:
-  alias: Is / Kitchen Living AC / On
-  sequence:
-  - data: {}
-    entity_id: light.kitchen_bulb_1
-    service: light.turn_off
-  mode: single

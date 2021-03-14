@@ -4,19 +4,14 @@
 # @Device: Synology DS218+
 # @Device_URL: https://www.synology.com/en-global/products/DS218
 # @Trigger:
-#  - Home Assistant Start
+#  - Home Assistant / Start
 # @Action:
-#  - Switch Off / All / Lights
-#  - Script / Off / Kitchen Devices
-#  - Script / Off / Living Room
-#  - Script / Off / Rack Room Lights
-#  - Script / Off / Hall Light 
-#  - Script / Off / Mainstaircase Lights 
-#  - Script / Notify / App / Not Home
+#  - Automation / Off / ios_iphone_location_update_5
+#  - Automation / Off / ios_ipad_location_update_5
 ######################################################################################################
-- id: 'HomeAssistantStartSwitchOffRooms'
-  alias: Home Assistant / Start / Switch Off Rooms / Notify
-  description: "Switches Off Lights and Devices on HA Start. This is to safeguard against lights being switched on when power is restored post a power cut."
+- id: 'HomeAssistantStart'
+  alias: Home Assistant / Start
+  description: "Turns off certain automations."
   
   # trigger
   trigger:
@@ -26,13 +21,7 @@
   #action
   action:
   - delay: 00:02:00
-  - service: script.turn_off_kitchen_devices
-  - service: script.room_living_room_off
-  - service: script.turn_off_rack_room_lights
-  - service: script.turn_off_bedroom_lights
-  - service: script.turn_off_hall_light
-  - service: script.turn_off_main_staircase_lights
-  - service: script.notify_base_tts
-    data:
-      title: The Loft Alert
-      message: Seems that there has been a power outage at the Loft! Power is now restored.
+  - service: automation.turn_off
+    entity_id: 
+      - automation.ios_iphone_location_update_5
+      - automation.ios_ipad_location_update_5

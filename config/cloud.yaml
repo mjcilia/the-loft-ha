@@ -39,31 +39,22 @@ google_actions:
       - binary_sensor
       - camera
       - sensor
+      
   entity_config:
-    # kitchen devices
-    climate.kitchen_ac:
-      name: Kitchen AC
-      aliases:
-        - Kitchen AC
-      room: kitchen
+
+    #################################################################
+    ## @lights: kitchen
+    #################################################################
     light.kitchen_bulb_1:
       name: Kitchen Bulb 1
       room: kitchen
     light.kitchen_bulb_2:
       name: Kitchen Bulb 2
       room: kitchen
-    # living room devices
-    climate.living_room_ac:
-      name: Living Room AC
-      aliases:
-        - Living Room AC
-        - Living AC
-      room: living room
-    media_player.living_room_tv:
-      name: Living Room TV
-      aliases:
-        - TV
-      room: living room
+
+    #################################################################
+    ## @lights: living room
+    #################################################################
     switch.72627180bcddc292737e:
       name: Living Room Bulb 1
       room: living room
@@ -73,11 +64,30 @@ google_actions:
         - Living Spotlights 1
         - Living Downlights 1
       room: living room
-    # hallway devices
+
+    #################################################################
+    ## @lights: dining room
+    #################################################################
+    light.dining_room_lights:
+      name: Dining Room Light 1
+      aliases:
+        - Dining Spotlights 1
+        - Dining Downlights 1
+      room: dining room
+    light.dining_room_lights_2:
+      name: Dining Room Light 2
+      room: dining room
+
+    #################################################################
+    ## @lights: hall way
+    #################################################################
     light.hallway_bulb:
       name: Hall Bulb
       room: hall
-    # rack room
+
+    #################################################################
+    ## @lights: rack room
+    #################################################################
     light.rack_room_bulb_1:
       name: Rack Room Bulb 1
       room: rack room
@@ -87,14 +97,10 @@ google_actions:
     light.rack_room_bulb_3:
       name: Rack Room Bulb 3
       room: rack room
-    vacuum.xiaomi_vacuum_cleaner:
-      name: Nunu
-      room: rack room
-      aliases:
-        - Vacuum
-        - Vacuum Cleaner
-        - Nunu
-    # bedroom devices
+    
+    #################################################################
+    ## @lights: bedroom
+    #################################################################
     light.bedroom_bulb_1:
       name: Bedroom Bulb 1
       room: bedroom
@@ -104,19 +110,20 @@ google_actions:
     switch.bedroom_bulb_3:
       name: Bedroom Bulb 3
       room: bedroom
-    # main staircase
+
+    #################################################################
+    ## @lights: main staircase
+    #################################################################
     light.mainstaircase_bulb_1:
       name: Mainstaircase Bulb 1
       room: main staircase
     light.mainstaircase_bulb_2:
       name: Mainstaircase Bulb 2
       room: main staircase
-    # office devices
-    climate.office_ac:
-      name: Office AC
-      aliases:
-        - Office AC
-      room: office
+
+    #################################################################
+    ## @lights: office
+    #################################################################
     light.office_light_1:
       name: Office Light 1
       aliases:
@@ -129,42 +136,61 @@ google_actions:
         - Office Spot Lights 2
         - Office Downlights 2
       room: office
-    #shower
+    
+    #################################################################
+    ## @climate: kitchen
+    #################################################################
+    climate.kitchen_ac:
+      name: Kitchen AC
+      aliases:
+        - Kitchen AC
+      room: kitchen
+    
+    #################################################################
+    ## @climate: living room
+    #################################################################
+    climate.living_room_ac:
+      name: Living Room AC
+      aliases:
+        - Living Room AC
+        - Living AC
+      room: living room
+
+    #################################################################
+    ## @climate: office
+    #################################################################
+    climate.office_ac:
+      name: Office AC
+      aliases:
+        - Office AC
+      room: office
+
+    #################################################################
+    ## @media: living room
+    #################################################################
+    media_player.living_room_tv:
+      name: Living Room TV
+      aliases:
+        - TV
+      room: living room
+
+    #################################################################
+    ## @vacuum: rack room
+    #################################################################
+    vacuum.xiaomi_vacuum_cleaner:
+      name: Nunu
+      room: rack room
+      aliases:
+        - Vacuum
+        - Vacuum Cleaner
+        - Nunu
+ 
+    #################################################################
+    ## @water-heater: shower
+    #################################################################
     switch.spare_bathroom_water_heater_sw:
       name: Shower Water Heater
       aliases: 
         - Shower Water Heater
         - Shower Geyser
       room: shower
-    #scripts living room iptv
-    script.living_room_tv_iptv_sky_sports:
-      name: Sky Sports
-      aliases:
-        - Sky Sports
-        - Sky Sports Premier League
-        - Premier League
-    script.living_room_tv_iptv_sky_sports_football:
-      name: Sky Sports Football
-      aliases:
-        - Sky Sports Football
-    script.living_room_tv_iptv_food_network:
-      name: Food Network
-      aliases: 
-        - Food Network
-    script.living_room_tv_iptv_history_channel:
-      name: History Channel
-      aliases: 
-        - History
-        - History Channel
-    script.living_room_tv_channel_up:
-      name: Channel Up
-      aliases:
-        - Channel Up
-        - TV Channel Up
-        - Increase Channel
-    script.living_room_tv_channel_down:
-      name: Channel Dowm
-      aliases:
-        - Channel Down
-        - TV Channel Down
-        - Decrease Channel

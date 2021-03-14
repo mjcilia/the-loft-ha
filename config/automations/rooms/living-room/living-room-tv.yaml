@@ -91,3 +91,32 @@
     data:
       title: "The Loft Notification"
       message: "Volume Automatically Adjusted."
+
+
+
+- id: 'LivingRoomTVGOInteractiveOn'
+  alias: Living Room TV / GO Interactive / On
+  description: 'Switch On GO Interactive Set Top Box On when Living Room is Switched On.'
+
+  #trigger
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_tv
+      from: 'off'
+      to: 'on'
+
+    - platform: state
+      entity_id: media_player.living_room_tv
+      from: 'on'
+      to: 'off'
+      for: 
+        seconds: 5
+
+  #action
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room_rm_pro_remote
+        device: GO Interactive
+        command:
+          - power

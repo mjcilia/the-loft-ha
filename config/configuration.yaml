@@ -18,7 +18,7 @@ automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 climate: !include climate.yaml
 cloud: !include cloud.yaml
-binary_sensor: !include binary_sensor.yaml
+binary_sensor: !include_dir_merge_list binary_sensors
 sensor: !include sensors.yaml
 logger: !include logger.yaml
 discovery: !include discovery.yaml
@@ -43,16 +43,6 @@ vacuum:
   - platform: xiaomi_miio
     host: !secret xiaomi_miio_vacuum_host
     token: !secret xiaomi_miio_vacuum_token
-
-################################################################################
-## @integration: Tuya
-## @integration_url: https://www.home-assistant.io/integrations/tuya/
-################################################################################
-tuya:
-  username: !secret tuya_username
-  password: !secret tuya_password
-  country_code: !secret tuya_country_code
-  platform: smart_life
 
 ################################################################################
 ## @integration: Sonoff
@@ -125,5 +115,5 @@ ios: !include ios.yaml
 #################################################################
 tts:
   - platform: google_translate
-    cache: true
+    cache: false
     cache_dir: /tmp/tts

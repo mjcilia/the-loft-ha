@@ -28,6 +28,18 @@ light.living_room_lights:
   friendly_name: Living Room Light 1
 
 #################################################################
+## @Device: Dining Room Light 1
+#################################################################
+light.dining_room_lights:
+  friendly_name: Dining Room Light 1
+
+#################################################################
+## @Device: Dining Room Light 2
+#################################################################
+light.dining_room_lights_2:
+  friendly_name: Dining Room Light 2
+
+#################################################################
 ## @Device: Hall Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0002413b7c:

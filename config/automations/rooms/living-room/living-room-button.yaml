@@ -87,4 +87,4 @@
   
   #action
   action:
-    service: script.routine_good_night
+    service: script.routine_night

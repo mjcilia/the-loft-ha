@@ -21,7 +21,7 @@
       at: !secret health_check_daily_run_time
 
     - platform: state
-      entity_id: binary_sensor.switch_availability_sensors
+      entity_id: binary_sensor.switch_availability_sensor
       to: 'on'
       for:
         minutes: 30
@@ -33,7 +33,7 @@
       before: '22:00:00'
 
     - condition: state
-      entity_id: binary_sensor.switch_availability_sensors
+      entity_id: binary_sensor.switch_availability_sensor
       state: 'on'
   
   #action
@@ -41,9 +41,4 @@
   - service: script.notify_base_app_mark
     data:
       title: "The Loft Alert"
-      message: >-
-        {%- for switch in states.switch %}
-          {%- if switch.state|string == "unavailable" %}
-        Health Check Failure. {{ switch.name }} is {{ switch.state }}!
-          {%- endif %}
-        {%- endfor %}
+      message: "Health Check Failure! {{ state_attr('binary_sensor.switch_availability_sensor', 'message') }}"

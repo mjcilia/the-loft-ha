@@ -7,6 +7,8 @@ Home Assistant Config
 - [ ] Health Check State Names Healthy/Error
 - [ ] Health Check Icons
 - [ ] Format Good Night Routine / Check Windows
+- [ ] Rotate Kitchen Cube / Increase/Decrease Kitchen Hub Volume
+- [ ] TV Drop Down
 
 #### Monitored Health Checks
 - [x] Magnet Sensors / Battery State / Below 15%
@@ -59,19 +61,19 @@ Home Assistant Config
   - [x] Kitchen Air Conditioner
   - [x] Office Air Conditioner
 
+- [x] Media Players / Availability
+  - [x] Living Room TV
+  - [x] Living Room Soundbar
+  - [x] Kitchen Display
+  - [x] Roof Speaker
+  - [x] Bedroom Wifi
+
+- [x] Security Cameras / Availability
+  - [x] Front Roof Camera
+  - [x] Front Door Camera
+  - [x] Kitchen Display Camera
+
 #### Components to Monitor
-
-- [ ] Media Players / Availability
-  - [ ] Living Room TV
-  - [ ] Living Room Soundbar
-  - [ ] Kitchen Display
-  - [ ] Roof Speaker
-  - [ ] Bedroom Wifi
-
-- [ ] Security Cameras / Availability
-  - [ ] Front Roof Camera
-  - [ ] Front Door Camera
-  - [ ] Kitchen Display Camera
 
 - [ ] Misc Devices / Availability
   - [ ] Xiaomi Vacuum

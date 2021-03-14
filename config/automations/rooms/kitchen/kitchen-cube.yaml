@@ -34,39 +34,6 @@
 ######################################################################################################
 # @Automation
 # @Room: Kitchen
-# @Description: Switches Off Living Room and Kitchen upon
-# tapping twice
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Trigger:
-#  - Kitchen Cube / Tap Twice
-# @Action:
-#  - Script / Off / Living Room
-#  - Script / Off / Kitchen
-######################################################################################################
-- id: 'KitchenCubeTapTwiceTurnOffKitchenLiving'
-  alias: 'Kitchen Cube / Tap Twice / Turn Off / Kitchen / Living'
-  description: 'Switches Off Living Room and Kitchen upon tapping twice'
-
-  #trigger
-  trigger:
-  - event_data:
-      action_type: tap_twice
-      entity_id: binary_sensor.cube_158d00028f8633
-    event_type: xiaomi_aqara.cube_action
-    platform: event
-  
-  #action
-  action:
-    service: script.turn_on
-    data:
-      entities:
-      - script.room_living_room_off
-      - script.turn_off_kitchen_devices
-
-######################################################################################################
-# @Automation
-# @Room: Kitchen
 # @Description: Toggles Living room switch on Cube flip90
 # @Device: Aqara Magic Cube
 # @Device_URL: https://www.aqara.com/us/cube.html

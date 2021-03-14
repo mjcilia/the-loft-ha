@@ -1,10 +1,25 @@
 living_room_tv_channel_up:
   alias: Living Room / TV / Channel / Up
   sequence:
-  - service: webostv.button
-    data:
-      entity_id: media_player.living_room_tv
-      button: "CHANNELUP"
+    choose:
+      # IF living room TV source is GO Interactive
+      - conditions:
+        - condition: template
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') != 'GO Interactive' }}"
+        # Switch on TV    
+        sequence:
+          - service: remote.send_command
+            data:
+              entity_id: remote.living_room_rm_pro_remote
+              device: GO Interactive
+              command:
+                - 1
+    # ELSE
+    default:      
+      - service: webostv.button
+        data:
+          entity_id: media_player.living_room_tv
+          button: "CHANNELUP"
 
 living_room_tv_channel_down:
   alias: Living Room / TV / Channel / Down

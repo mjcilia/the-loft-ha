@@ -1,6 +1,6 @@
 ######################################################################################################
 # @Automation
-# @Alias: Jessica / Phone / Charging / Complete
+# @Alias: Android / Realme X2 Pro / Charging / Complete
 # @Device: Realme X2 Pro
 # @Device_URL: https://www.realme.com/eu/realme-x2-pro
 # @Trigger:
@@ -10,8 +10,8 @@
 # @Action:
 #  - Script / Notify / TTS
 ######################################################################################################
-- id: 'JessicaPhoneChargingComplete'
-  alias: Jesscia / Phone / Charging / Complete
+- id: 'AndroidRealmeX2ProChargingComplete'
+  alias: Android / Realme X2 Pro / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger
@@ -28,7 +28,7 @@
   
   # action
   action:
-  - service: script.notify_base_tts
+  - service: script.notify_base_living_soundbar
     data:
       title: "The Loft Notification"
       message: "Jessica your phone is fully charged."

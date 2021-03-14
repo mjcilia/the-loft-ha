@@ -1,0 +1,18 @@
+lightwaverf_switch_color:
+  alias: Lightwaverf / Switches / Color
+  sequence:
+  # Set Dining Room Light Switch 
+  - service: lightwave2.set_led_rgb
+    data:
+      entity_id: light.dining_room_lights
+      rgb: '#ffffff'
+  # Set Living Room Light Switch
+  - service: lightwave2.set_led_rgb
+    data:
+      entity_id: light.living_room_lights
+      rgb: '#ffffff'
+  # Set Office Light Switch
+  - service: lightwave2.set_led_rgb
+    data:
+      entity_id: light.office_light_1
+      rgb: '#ffffff'

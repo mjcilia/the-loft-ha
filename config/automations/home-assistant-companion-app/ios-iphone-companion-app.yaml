@@ -1,0 +1,135 @@
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPhone / Location / Update / 5
+# @Device: iPhone 8
+# @Device_URL: https://www.techradar.com/reviews/iphone-8-review
+# @Trigger:
+#  - Time Pattern / 5 mins
+# @Action:
+#  - Update Location
+######################################################################################################
+- id: 'IOSiPhoneLocationUpdate5'
+  alias: IOS / iPhone / Location / Update / 5
+  description: 'Update iPhone Location for Battery Stats every 5 minutes'
+  
+  # trigger
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+  
+  # action
+  action:
+  - service: notify.mobile_app_mark_cilia
+    data:
+      message: "request_location_update"
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPhone / Location / Update / 30
+# @Device: iPhone 8
+# @Device_URL: https://www.techradar.com/reviews/iphone-8-review
+# @Trigger:
+#  - Time Pattern / 30 mins
+# @Action:
+#  - Update Location
+######################################################################################################
+- id: 'IOSiPhoneLocationUpdate30'
+  alias: IOS / iPhone / Location / Update / 30
+  description: 'Update Phone Location for Battery Stats every 30 minutes'
+  
+  # trigger
+  trigger:
+  - platform: time_pattern
+    minutes: '/30'
+  
+  # action
+  action:
+  - service: notify.mobile_app_mark_cilia
+    data:
+      message: "request_location_update"
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPhone / Charging / Increase Location Frequency
+# @Device: iPhone 8
+# @Device_URL: https://www.techradar.com/reviews/iphone-8-review
+# @Trigger:
+#  - Battery State / Charging
+# @Action:
+#  - Automation / Turn On / IOSiPhoneLocationUpdate5
+######################################################################################################
+- id: 'IOSiPhoneChargingIncreaseLocationFrequency'
+  alias: IOS / iPhone / Charging / Increase Location Frequency
+  description: 'Increase Location Frequency When Charging'
+
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.mark_cilia_battery_state
+      to:  "Charging"
+    
+  # action
+  action:
+    - service: automation.turn_on
+      entity_id: automation.ios_iphone_location_update_5
+      
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPhone / Charging / Decrease Location Frequency
+# @Device: iPhone 8
+# @Device_URL: https://www.techradar.com/reviews/iphone-8-review
+# @Trigger:
+#  - Battery State / Not Charging
+# @Action:
+#  - Automation / Turn Off / IOSiPhoneLocationUpdate5
+######################################################################################################
+- id: 'IOSiPhoneChargingDecreaseLocationFrequency'
+  alias: IOS / iPhone / Charging / Decrease Location Frequency
+  description: 'Increase Location Frequency When Charging'
+
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.mark_cilia_battery_state
+      to:  "Not Charging"
+    
+  # action
+  action:
+    - service: automation.turn_off
+      entity_id: automation.ios_iphone_location_update_5
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPhone / Charging / Complete
+# @Device: iPhone 8
+# @Device_URL: https://www.techradar.com/reviews/iphone-8-review
+# @Trigger:
+#  - Battery Level / Above / 99
+# @Condition:
+#  - Battery State / Charging
+# @Action:
+#  - Notify / Living Room Soundbar
+######################################################################################################
+- id: 'IOSiPhoneChargingComplete'
+  alias: IOS / iPhone / Charging / Complete
+  description: 'Notify When Charging Complete'
+  
+  # trigger
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.mark_cilia_battery_level
+      above: 99
+      for: "00:10:00"
+
+  # condition
+  condition:
+  - condition: state
+    entity_id: sensor.mark_cilia_battery_state
+    state:  "Charging"
+  
+  # action
+  action:
+  - service: script.notify_base_living_soundbar
+    data:
+      title: "The Loft Notification"
+      message: "Mark your phone is fully charged."

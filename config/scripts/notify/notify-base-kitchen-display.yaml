@@ -1,0 +1,55 @@
+notify_base_kitchen_display:
+  alias: Notify / Kitchen Display / TTS
+  sequence:
+
+  # create snaphsot
+  - service: scene.create
+    data:
+      scene_id: kitchen_display
+      snapshot_entities:
+        - media_player.kitchen_display
+  
+  # set volume
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_display
+      volume_level: 0.5
+
+  # delay
+  - delay: "00:00:02"
+  
+  # play sound effect
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.kitchen_display
+      media_content_id: https://raw.githubusercontent.com/mjcilia/the-loft-ha/main/config/sounds/the_loft_alert.mp3
+      media_content_type: music
+  
+  # wait until tts has finished playing
+  - delay: "00:00:04"
+  - wait_template: "{{ not is_state('media_player.kitchen_display', 'playing') }}"
+
+  # increase volume for tts
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_display
+      volume_level: 0.7
+
+  # play tts messgae
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.kitchen_display
+      language: 'en'
+      message: > 
+        {{ title }}. {{ message }}
+  
+  # wait until tts has finished playing
+  - delay: "00:00:04"
+  - wait_template: "{{ not is_state('media_player.kitchen_display', 'playing') }}"
+
+  # restore scene snapshot
+  - service: scene.turn_on
+    target:
+      entity_id: scene.kitchen_display
+
+  mode: single

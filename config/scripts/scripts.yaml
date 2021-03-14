@@ -94,27 +94,6 @@ turn_off_hall_light:
     entity_id: light.hall_bulb
     service: light.turn_off
   mode: single
-routine_good_night:
-  alias: Routine / Good Night
-  sequence:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.night_mode
-  - service: script.room_living_room_off
-    data: {}
-  - service: script.room_office_off
-    data: {}
-  - service: script.turn_off_rack_room_lights
-    data: {}
-  - service: script.turn_off_main_staircase_lights
-    data: {}
-  - service: script.turn_on_hall_light
-    data: {}
-  - service: script.turn_on_bedroom_lights
-    data: {}
-  - delay: "00:04:00"  
-  - service: script.turn_off_kitchen_devices
-    data: {}
-  mode: single
 turn_on_lights_office:
   alias: Room / Office / Lights / On
   sequence:
@@ -144,21 +123,6 @@ room_office_off:
   - service: script.room_office_devices_off
     data: {}
   mode: single
-check_living_room_door:
-  alias: Check / Living Room / Door / TTS
-  sequence:
-  - condition: state
-    entity_id: binary_sensor.door_window_sensor_158d0002b771b8
-    state: 'on'
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.6
-    entity_id: media_player.kitchen_display
-  - service: tts.google_translate_say
-    data:
-      entity_id: media_player.kitchen_display
-      message: The Loft Alert. Living Room Door is open.
-  mode: single
 room_living_room_lights_off:
   alias: Room / Living Room / Lights / Off
   sequence:
@@ -168,36 +132,6 @@ room_living_room_lights_off:
   - service: light.turn_off
     data: {}
     entity_id: light.living_room_lights
-  mode: single
-check_front_roof_door_tts:
-  alias: Check / Front Roof / Door / TTS
-  sequence:
-  - condition: state
-    entity_id: binary_sensor.door_window_sensor_158d0002b7b84e
-    state: 'on'
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.6
-    entity_id: media_player.kitchen_display
-  - service: tts.google_translate_say
-    data:
-      entity_id: media_player.kitchen_display
-      message: The Loft Alert. Front Roof Door is open.
-  mode: single
-check_back_roof_door_tts:
-  alias: Check / Back Roof / Door / TTS
-  sequence:
-  - condition: state
-    entity_id: binary_sensor.door_window_sensor_158d0002c628be
-    state: 'on'
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.6
-    entity_id: media_player.kitchen_display
-  - service: tts.google_translate_say
-    data:
-      entity_id: media_player.kitchen_display
-      message: The Loft Alert. Back Roof Door is open.
   mode: single
 room_living_room_off:
   alias: Room / Living Room / Off

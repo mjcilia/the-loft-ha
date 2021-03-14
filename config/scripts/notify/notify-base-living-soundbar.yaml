@@ -1,5 +1,5 @@
 notify_base_living_soundbar:
-  alias: Notify / Base / TTS
+  alias: Notify / Base / Living Room Soundbar
   sequence:
 
   # turn soundbar on
@@ -24,8 +24,9 @@ notify_base_living_soundbar:
       media_content_id: https://raw.githubusercontent.com/mjcilia/the-loft-ha/main/config/sounds/the_loft_alert.mp3
       media_content_type: music
   
-  # delay for 4 seconds
+  # wait until tts has finished playing
   - delay: "00:00:04"
+  - wait_template: "{{ not is_state('media_player.living_room_soundbar', 'playing') }}"
 
   # increase volume for tts
   - service: media_player.volume_set
@@ -40,11 +41,9 @@ notify_base_living_soundbar:
       language: 'en'
       message: > 
         {{ title }}. {{ message }}
-  
-  # delay for 2 seconds
-  - delay: "00:00:02"
 
   # wait until tts has finished playing
+  - delay: "00:00:02"
   - wait_template: "{{ not is_state('media_player.living_room_soundbar', 'playing') }}"
 
   # restore sonos snapshot

@@ -1,0 +1,135 @@
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPad / Location / Update / 5
+# @Device: iPad 6th Generation
+# @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
+# @Trigger:
+#  - Time Pattern / 5 mins
+# @Action:
+#  - Update Location
+######################################################################################################
+- id: 'IOSiPadLocationUpdate5'
+  alias: IOS / iPad / Location / Update / 5
+  description: 'Update iPad Location for Battery Stats every 5 minutes'
+  
+  # trigger
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+  
+  # action
+  action:
+  - service: notify.mobile_app_marks_ipad
+    data:
+      message: "request_location_update"
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPad / Location / Update / 30
+# @Device: iPad 6th Generation
+# @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
+# @Trigger:
+#  - Time Pattern / 30 mins
+# @Action:
+#  - Update Location
+######################################################################################################
+- id: 'IOSiPadLocationUpdate30'
+  alias: IOS / iPad / Location / Update / 30
+  description: 'Update iPad Location for Battery Stats every 5 minutes'
+  
+  # trigger
+  trigger:
+  - platform: time_pattern
+    minutes: '/30'
+  
+  # action
+  action:
+  - service: notify.mobile_app_marks_ipad
+    data:
+      message: "request_location_update"
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPad / Charging / Increase Location Frequency
+# @Device: iPad 6th Generation
+# @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
+# @Trigger:
+#  - Battery State / Charging
+# @Action:
+#  - Automation / Turn On / IOSiPadLocationUpdate5
+######################################################################################################
+- id: 'IOSiPadChargingIncreaseLocationFrequency'
+  alias: IOS / iPad / Charging / Increase Location Frequency
+  description: 'Increase Location Frequency When Charging'
+
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.marks_ipad_battery_state
+      to:  "Charging"
+    
+  # action
+  action:
+    - service: automation.turn_on
+      entity_id: automation.ios_ipad_location_update_5
+      
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPad / Charging / Decrease Location Frequency
+# @Device: iPad 6th Generation
+# @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
+# @Trigger:
+#  - Battery State / Not Charging
+# @Action:
+#  - Automation / Turn Off / IOSiPadLocationUpdate5
+######################################################################################################
+- id: 'IOSiPadChargingDecreaseLocationFrequency'
+  alias: IOS / iPad / Charging / Decrease Location Frequency
+  description: 'Increase Location Frequency When Charging'
+
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.marks_ipad_battery_state
+      to:  "Not Charging"
+    
+  # action
+  action:
+    - service: automation.turn_off
+      entity_id: automation.ios_ipad_location_update_5
+
+######################################################################################################
+# @Automation
+# @Alias: IOS / iPad / Charging / Complete
+# @Device: iPad 6th Generation
+# @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
+# @Trigger:
+#  - Battery Level / Above / 99
+# @Condition:
+#  - Battery State / Charging
+# @Action:
+#  - Notify / Living Room Soundbar
+######################################################################################################
+- id: 'IOSiPadChargingComplete'
+  alias: IOS / iPad / Charging / Complete
+  description: 'Notify When Charging Complete'
+  
+  # trigger
+  trigger:
+    - platform: numeric_state
+      entity_id:  sensor.marks_ipad_battery_level
+      above: 99
+      for: "00:10:00"
+
+  # condition
+  condition:
+  - condition: state
+    entity_id: sensor.marks_ipad_battery_state
+    state:  "Charging"
+  
+  # action
+  action:
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Notification"
+      message: "Tablet is fully charged."

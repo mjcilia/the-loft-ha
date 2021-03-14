@@ -1,0 +1,19 @@
+- platform: template
+  sensors:
+    switch_availability_sensor:
+      friendly_name: 'Switch Availability Sensors'
+      delay_on:
+        seconds: 60
+      value_template: >-
+        {{
+          states.switch
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
+        }}
+      attribute_templates: 
+        message: >-
+          {%- for switch in states.switch %}
+            {%- if switch.state|string == "unavailable" -%}
+              {{ switch.name }} is {{ switch.state }}!
+            {%- endif %}
+          {%- endfor %}
