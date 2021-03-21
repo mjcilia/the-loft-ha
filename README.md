@@ -68,12 +68,12 @@ Home Assistant Config
   - [x] Roof Speaker
   - [x] Bedroom Wifi
 
-- [x] Security Cameras / Availability
-  - [x] Front Roof Camera
-  - [x] Front Door Camera
-  - [x] Kitchen Display Camera
+#### Components to 
 
-#### Components to Monitor
+- [ ] Security Cameras / Availability
+  - [ ] Front Roof Camera
+  - [ ] Front Door Camera
+  - [ ] Kitchen Display Camera
 
 - [ ] Misc Devices / Availability
   - [ ] Xiaomi Vacuum

@@ -11,10 +11,10 @@
 # @Device_URL: https://store.google.com/gb/category/audio_entertainment_systems?hl=en-GB
 # @Trigger:
 #  - Time / 10:00:00
-#  - State / Binary Sensor / Media Availability Sensors / On
+#  - State / Binary Sensor / Media Availability Sensor / On
 # @Condition:
 #  - Time / 09:00:00 / 22:00:00
-#  - State / Binary Sensor / Media Availability Sensors / On
+#  - State / Binary Sensor / Media Availability Sensor / On
 # @Action:
 #  - Notify / Mark
 ######################################################################################################
@@ -27,7 +27,7 @@
       at: !secret health_check_daily_run_time
 
     - platform: state
-      entity_id: binary_sensor.media_availability_sensors
+      entity_id: binary_sensor.media_availability_sensor
       to: 'on'
       for:
         minutes: 30
@@ -35,21 +35,16 @@
   # condition
   condition:
     - condition: time
-      after: '09:00:00'
-      before: '22:00:00'
+      after: !secret health_check_alert_after
+      before: !secret health_check_alert_before
 
     - condition: state
-      entity_id: binary_sensor.media_availability_sensors
+      entity_id: binary_sensor.media_availability_sensor
       state: 'on'
   
   #action
   action:
-  - service: script.notify_base_app_mark
-    data:
-      title: "The Loft Alert"
-      message: >-
-        {%- for media in states.media_player %}
-          {%- if media.state|string == "unavailable" %}
-        Health Check Failure. {{ media.name }} is {{ media.state }}!
-          {%- endif %}
-        {%- endfor %}
+    - service: script.notify_base_app_mark
+      data:
+        title: "The Loft Alert"
+        message: "Health Check Failure! {{ state_attr('binary_sensor.media_availability_sensor', 'message') }}"

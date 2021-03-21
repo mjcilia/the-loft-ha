@@ -1,17 +1,18 @@
 ######################################################################################################
 # @Automation
-# @Alias: Android / Realme X2 Pro / Charging / Complete
+# @Alias: Home Assitant / Companion App / Android / Realme X2 Pro / Charging / Complete
 # @Device: Realme X2 Pro
 # @Device_URL: https://www.realme.com/eu/realme-x2-pro
 # @Trigger:
 #  - State / Battery / 100
 # @Condition:
 #  - Battery / Charging
+#  - Jessica / Home
 # @Action:
 #  - Script / Notify / TTS
 ######################################################################################################
-- id: 'AndroidRealmeX2ProChargingComplete'
-  alias: Android / Realme X2 Pro / Charging / Complete
+- id: 'HomeAssitantCompanionAppAndroidRealmeX2ProChargingComplete'
+  alias: Home Assitant / Companion App / Android / Realme X2 Pro / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger
@@ -25,6 +26,10 @@
   - condition: state
     entity_id: sensor.rmx1931_battery_state
     state:  "charging"
+
+  - condition: state
+    entity_id: "device_tracker.jessica_cilia"
+    state: "home"
   
   # action
   action:

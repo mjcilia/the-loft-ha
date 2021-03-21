@@ -1,0 +1,28 @@
+living_room_tv_ps4:
+  alias: Living Room / TV / PS4
+  sequence:
+  - choose:
+    # IF living room TV off
+    - conditions:
+        - condition: state
+          entity_id: media_player.living_room_tv
+          state: 'off'
+      # Switch on TV    
+      sequence:
+        - service: media_player.turn_on
+          entity_id: media_player.living_room_tv
+        - wait_template: "{{ is_state('media_player.living_room_tv', 'on') }}"
+        - delay: 00:00:02
+  - choose:
+    # IF Media Source is Not PS4
+    - conditions:
+      - condition: template
+        value_template: "{{ state_attr('media_player.living_room_tv', 'source') != 'PS4' }}"
+      # Switch TV Source to GO Interactive
+      sequence:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.living_room_tv
+            source: PS4
+        - wait_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'PS4') }}"
+        - delay: 00:00:03

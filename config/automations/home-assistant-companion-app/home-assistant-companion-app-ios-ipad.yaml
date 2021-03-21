@@ -1,21 +1,30 @@
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPad / Location / Update / 5
+# @Alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 5
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
 #  - Time Pattern / 5 mins
+# @Condition
+#  - After / home_assistant_companion_app_ios_after / 06:00
+#  - Before / home_assistant_companion_app_ios_before / 22:00
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'IOSiPadLocationUpdate5'
-  alias: IOS / iPad / Location / Update / 5
+- id: 'HomeAssitantCompanionAppIOSiPadLocationUpdate5'
+  alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 5
   description: 'Update iPad Location for Battery Stats every 5 minutes'
   
   # trigger
   trigger:
   - platform: time_pattern
     minutes: '/5'
+
+  # condition
+  condition:
+    - condition: time
+      after: !secret home_assistant_companion_app_ios_after
+      before: !secret home_assistant_companion_app_ios_before
   
   # action
   action:
@@ -25,16 +34,19 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPad / Location / Update / 30
+# @Alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 30
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
 #  - Time Pattern / 30 mins
+# @Condition
+#  - After / home_assistant_companion_app_ios_after / 06:00
+#  - Before / home_assistant_companion_app_ios_before / 22:00
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'IOSiPadLocationUpdate30'
-  alias: IOS / iPad / Location / Update / 30
+- id: 'HomeAssitantCompanionAppIOSiPadLocationUpdate30'
+  alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 30
   description: 'Update iPad Location for Battery Stats every 5 minutes'
   
   # trigger
@@ -42,6 +54,12 @@
   - platform: time_pattern
     minutes: '/30'
   
+  # condition
+  condition:
+    - condition: time
+      after: !secret home_assistant_companion_app_ios_after
+      before: !secret home_assistant_companion_app_ios_before
+  
   # action
   action:
   - service: notify.mobile_app_marks_ipad
@@ -50,16 +68,16 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPad / Charging / Increase Location Frequency
+# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Increase Location Frequency
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
 #  - Battery State / Charging
 # @Action:
-#  - Automation / Turn On / IOSiPadLocationUpdate5
+#  - Automation / Turn On / HomeAssitantCompanionAppIOSiPadLocationUpdate5
 ######################################################################################################
-- id: 'IOSiPadChargingIncreaseLocationFrequency'
-  alias: IOS / iPad / Charging / Increase Location Frequency
+- id: 'HomeAssitantCompanionAppIOSiPadChargingIncreaseLocationFrequency'
+  alias: Home Assitant / Companion App / IOS / iPad / Charging / Increase Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -71,20 +89,20 @@
   # action
   action:
     - service: automation.turn_on
-      entity_id: automation.ios_ipad_location_update_5
+      entity_id: automation.home_assistant_companion_app_ios_ipad_location_update_5
       
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPad / Charging / Decrease Location Frequency
+# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
 #  - Battery State / Not Charging
 # @Action:
-#  - Automation / Turn Off / IOSiPadLocationUpdate5
+#  - Automation / Turn Off / HomeAssitantCompanionAppIOSiPadLocationUpdate5
 ######################################################################################################
-- id: 'IOSiPadChargingDecreaseLocationFrequency'
-  alias: IOS / iPad / Charging / Decrease Location Frequency
+- id: 'HomeAssitantCompanionAppIOSiPadChargingDecreaseLocationFrequency'
+  alias: Home Assitant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -96,36 +114,35 @@
   # action
   action:
     - service: automation.turn_off
-      entity_id: automation.ios_ipad_location_update_5
+      entity_id: automation.home_assistant_companion_app_ios_ipad_location_update_5
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPad / Charging / Complete
+# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Complete
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
 #  - Battery Level / Above / 99
 # @Condition:
-#  - Battery State / Charging
+#  - Battery State / Full
 # @Action:
 #  - Notify / Living Room Soundbar
 ######################################################################################################
-- id: 'IOSiPadChargingComplete'
-  alias: IOS / iPad / Charging / Complete
+- id: 'HomeAssitantCompanionAppIOSiPadChargingComplete'
+  alias: Home Assitant / Companion App / IOS / iPad / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger
   trigger:
-    - platform: numeric_state
-      entity_id:  sensor.marks_ipad_battery_level
-      above: 99
-      for: "00:10:00"
+    - platform: state
+      entity_id: sensor.marks_ipad_battery_state
+      from: "Charging"
+      to: "Full"
 
-  # condition
   condition:
-  - condition: state
-    entity_id: sensor.marks_ipad_battery_state
-    state:  "Charging"
+    - condition: state
+      entity_id: "group.the_loft_members"
+      state: "home"
   
   # action
   action:

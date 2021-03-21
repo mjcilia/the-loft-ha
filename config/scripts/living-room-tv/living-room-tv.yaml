@@ -5,26 +5,49 @@ living_room_tv_channel_up:
       # IF living room TV source is GO Interactive
       - conditions:
         - condition: template
-          value_template: "{{ state_attr('media_player.living_room_tv', 'source') != 'GO Interactive' }}"
-        # Switch on TV    
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'GO Interactive' }}"
+        # Go Interactive Channel Up   
         sequence:
           - service: remote.send_command
             data:
               entity_id: remote.living_room_rm_pro_remote
               device: GO Interactive
               command:
-                - 1
-    # ELSE
-    default:      
-      - service: webostv.button
-        data:
-          entity_id: media_player.living_room_tv
-          button: "CHANNELUP"
+                - CHANNELUP
+      # IF living room TV source is Smart IPTV
+      - conditions:
+        - condition: template
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'Smart IPTV' }}"
+        # WebOsTV Channel Up
+        sequence:    
+          - service: webostv.button
+            data:
+              entity_id: media_player.living_room_tv
+              button: "CHANNELUP"
 
 living_room_tv_channel_down:
   alias: Living Room / TV / Channel / Down
   sequence:
-  - service: webostv.button
-    data:
-      entity_id: media_player.living_room_tv
-      button: "CHANNELDOWN"
+    choose:
+      # IF living room TV source is GO Interactive
+      - conditions:
+        - condition: template
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'GO Interactive' }}"
+        # Go Interactive Channel Up   
+        sequence:
+          - service: remote.send_command
+            data:
+              entity_id: remote.living_room_rm_pro_remote
+              device: GO Interactive
+              command:
+                - CHANNELDOWN
+      # IF living room TV source is Smart IPTV
+      - conditions:
+        - condition: template
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'Smart IPTV' }}"
+        # WebOsTV Channel Up
+        sequence:    
+          - service: webostv.button
+            data:
+              entity_id: media_player.living_room_tv
+              button: "CHANNELDOWN"

@@ -1,0 +1,19 @@
+- platform: template
+  sensors:
+    climate_availability_sensor:
+      friendly_name: 'Climate Availability Sensors'
+      delay_on:
+        seconds: 60
+      value_template: >-
+        {{
+          states.climate
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
+        }}
+      attribute_templates: 
+        message: >-
+          {%- for thermostat in states.climate %}
+            {%- if thermostat.state|string == "unavailable" -%}
+              {{ thermostat.name }} is {{ thermostat.state }}!
+            {%- endif %}
+          {%- endfor %}

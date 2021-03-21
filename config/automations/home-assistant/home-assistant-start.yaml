@@ -20,7 +20,6 @@
   
   #action
   action:
-  - delay: 00:02:00
   - service: automation.turn_off
     entity_id: 
       - automation.ios_iphone_location_update_5

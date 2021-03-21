@@ -1,21 +1,30 @@
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPhone / Location / Update / 5
+# @Alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 5
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
 #  - Time Pattern / 5 mins
+# @Condition
+#  - After / home_assistant_companion_app_ios_after / 06:00
+#  - Before / home_assistant_companion_app_ios_before / 22:00
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'IOSiPhoneLocationUpdate5'
-  alias: IOS / iPhone / Location / Update / 5
+- id: 'HomeAssitantCompanionAppIOSiPhoneLocationUpdate5'
+  alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 5
   description: 'Update iPhone Location for Battery Stats every 5 minutes'
   
   # trigger
   trigger:
   - platform: time_pattern
     minutes: '/5'
+
+  # condition
+  condition:
+    - condition: time
+      after: !secret home_assistant_companion_app_ios_after
+      before: !secret home_assistant_companion_app_ios_before
   
   # action
   action:
@@ -25,16 +34,19 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPhone / Location / Update / 30
+# @Alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 30
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
 #  - Time Pattern / 30 mins
+# @Condition
+#  - After / home_assistant_companion_app_ios_after / 06:00
+#  - Before / home_assistant_companion_app_ios_before / 22:00
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'IOSiPhoneLocationUpdate30'
-  alias: IOS / iPhone / Location / Update / 30
+- id: 'HomeAssitantCompanionAppIOSiPhoneLocationUpdate30'
+  alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 30
   description: 'Update Phone Location for Battery Stats every 30 minutes'
   
   # trigger
@@ -42,6 +54,12 @@
   - platform: time_pattern
     minutes: '/30'
   
+  # condition
+  condition:
+    - condition: time
+      after: !secret home_assistant_companion_app_ios_after
+      before: !secret home_assistant_companion_app_ios_before
+  
   # action
   action:
   - service: notify.mobile_app_mark_cilia
@@ -50,16 +68,16 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPhone / Charging / Increase Location Frequency
+# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
 #  - Battery State / Charging
 # @Action:
-#  - Automation / Turn On / IOSiPhoneLocationUpdate5
+#  - Automation / Turn On / HomeAssitantCompanionAppIOSiPhoneLocationUpdate5
 ######################################################################################################
-- id: 'IOSiPhoneChargingIncreaseLocationFrequency'
-  alias: IOS / iPhone / Charging / Increase Location Frequency
+- id: 'HomeAssitantCompanionAppIOSiPhoneChargingIncreaseLocationFrequency'
+  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -71,11 +89,11 @@
   # action
   action:
     - service: automation.turn_on
-      entity_id: automation.ios_iphone_location_update_5
+      entity_id: automation.home_assistant_companion_app_ios_iphone_location_update_5
       
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPhone / Charging / Decrease Location Frequency
+# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -83,8 +101,8 @@
 # @Action:
 #  - Automation / Turn Off / IOSiPhoneLocationUpdate5
 ######################################################################################################
-- id: 'IOSiPhoneChargingDecreaseLocationFrequency'
-  alias: IOS / iPhone / Charging / Decrease Location Frequency
+- id: 'HomeAssitantCompanionAppIOSiPhoneChargingDecreaseLocationFrequency'
+  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -96,22 +114,23 @@
   # action
   action:
     - service: automation.turn_off
-      entity_id: automation.ios_iphone_location_update_5
+      entity_id: automation.home_assistant_companion_app_ios_iphone_location_update_5
 
 ######################################################################################################
 # @Automation
-# @Alias: IOS / iPhone / Charging / Complete
+# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Complete
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
 #  - Battery Level / Above / 99
 # @Condition:
 #  - Battery State / Charging
+#  - Mark / Home
 # @Action:
 #  - Notify / Living Room Soundbar
 ######################################################################################################
-- id: 'IOSiPhoneChargingComplete'
-  alias: IOS / iPhone / Charging / Complete
+- id: 'HomeAssitantCompanionAppIOSiPhoneChargingComplete'
+  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger
@@ -126,6 +145,10 @@
   - condition: state
     entity_id: sensor.mark_cilia_battery_state
     state:  "Charging"
+
+  - condition: state
+    entity_id: "device_tracker.mark_cilia"
+    state: "home"
   
   # action
   action:

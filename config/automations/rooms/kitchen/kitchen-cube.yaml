@@ -65,6 +65,38 @@
 ######################################################################################################
 # @Automation
 # @Room: Kitchen
+# @Description: Toggles Kitchen Lamp on Cube flip180
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Teckin Smart Plug
+# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
+# @Trigger:
+#  - Kitchen Cube / Flip180
+# @Action:
+#  - Toggle / Kitchen Lamp
+######################################################################################################
+- id: KitchenCubeFlip180ToggleKitchenLamp
+  alias: Kitchen Cube / Flip180 / Toggle Kitchen Lamp
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: flip180
+  
+  #action
+  action:
+    service: light.toggle
+    data:
+      entity_id:
+        - light.xiaomi_philips_smart_led_bulb
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Kitchen
 # @Description: Increases/Decreases Sonos Beam Volume depending
 # on cube rotation.
 # @Device: Aqara Magic Cube
@@ -135,3 +167,36 @@
         - media_player.kitchen_display
         - media_player.living_room_tv
         - media_player.living_room_soundbar
+
+
+- id: KitchenCubeMoveLivingRoomTVChannelUp
+  alias: Kitchen Cube / Move / Living Room TV / Channel Up
+  description: 'Channel Up when moving cube'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: move
+
+  #action
+  action:
+    - service: script.living_room_tv_channel_up
+
+- id: KitchenCubeFreeFallLivingRoomTVChannelDown
+  alias: Kitchen Cube / Free Fall / Living Room TV / Channel Down
+  description: 'Channel Down when cube in free fall'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: free_fall
+
+  #action
+  action:
+    - service: script.living_room_tv_channel_down
