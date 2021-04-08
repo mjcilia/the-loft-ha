@@ -1,6 +1,6 @@
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 5
+# @Alias: Home Assistant / Companion App / IOS / iPhone / Location / Update / 5
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -11,8 +11,8 @@
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPhoneLocationUpdate5'
-  alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 5
+- id: 'HomeAssistantCompanionAppIOSiPhoneLocationUpdate5'
+  alias: Home Assistant / Companion App / IOS / iPhone / Location / Update / 5
   description: 'Update iPhone Location for Battery Stats every 5 minutes'
   
   # trigger
@@ -34,7 +34,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 30
+# @Alias: Home Assistant / Companion App / IOS / iPhone / Location / Update / 30
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -45,8 +45,8 @@
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPhoneLocationUpdate30'
-  alias: Home Assitant / Companion App / IOS / iPhone / Location / Update / 30
+- id: 'HomeAssistantCompanionAppIOSiPhoneLocationUpdate30'
+  alias: Home Assistant / Companion App / IOS / iPhone / Location / Update / 30
   description: 'Update Phone Location for Battery Stats every 30 minutes'
   
   # trigger
@@ -68,7 +68,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
+# @Alias: Home Assistant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -76,8 +76,8 @@
 # @Action:
 #  - Automation / Turn On / HomeAssitantCompanionAppIOSiPhoneLocationUpdate5
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPhoneChargingIncreaseLocationFrequency'
-  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
+- id: 'HomeAssistantCompanionAppIOSiPhoneChargingIncreaseLocationFrequency'
+  alias: Home Assistant / Companion App / IOS / iPhone / Charging / Increase Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -93,7 +93,7 @@
       
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
+# @Alias: Home Assistant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -101,8 +101,8 @@
 # @Action:
 #  - Automation / Turn Off / IOSiPhoneLocationUpdate5
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPhoneChargingDecreaseLocationFrequency'
-  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
+- id: 'HomeAssistantCompanionAppIOSiPhoneChargingDecreaseLocationFrequency'
+  alias: Home Assistant / Companion App / IOS / iPhone / Charging / Decrease Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -118,7 +118,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPhone / Charging / Complete
+# @Alias: Home Assistant / Companion App / IOS / iPhone / Charging / Complete
 # @Device: iPhone 8
 # @Device_URL: https://www.techradar.com/reviews/iphone-8-review
 # @Trigger:
@@ -129,8 +129,8 @@
 # @Action:
 #  - Notify / Living Room Soundbar
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPhoneChargingComplete'
-  alias: Home Assitant / Companion App / IOS / iPhone / Charging / Complete
+- id: 'HomeAssistantCompanionAppIOSiPhoneChargingComplete'
+  alias: Home Assistant / Companion App / IOS / iPhone / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger

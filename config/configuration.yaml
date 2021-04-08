@@ -24,21 +24,11 @@ logger: !include logger.yaml
 discovery: !include discovery.yaml
 input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml
+light: !include light.yaml
 
 ################################################################################
 ## @integrations
 ################################################################################
-
-################################################################################
-## @integration: Xiaomi Philips Light
-## @integration_url: https://www.home-assistant.io/integrations/xiaomi_miio/#xiaomi-philips-light
-################################################################################
-light:
-  - platform: xiaomi_miio
-    name: Xiaomi Philips Smart LED Bulb
-    host: !secret xiaomi_philips_kitchen_light_3_host
-    token: !secret xiaomi_philips_kitchen_light_3_token
-    model: philips.light.bulb
 
 ################################################################################
 ## @integration: Yeelight

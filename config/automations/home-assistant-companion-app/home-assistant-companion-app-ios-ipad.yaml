@@ -1,6 +1,6 @@
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 5
+# @Alias: Home Assistant / Companion App / IOS / iPad / Location / Update / 5
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
@@ -11,8 +11,8 @@
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPadLocationUpdate5'
-  alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 5
+- id: 'HomeAssistantCompanionAppIOSiPadLocationUpdate5'
+  alias: Home Assistant / Companion App / IOS / iPad / Location / Update / 5
   description: 'Update iPad Location for Battery Stats every 5 minutes'
   
   # trigger
@@ -34,7 +34,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 30
+# @Alias: Home Assistant / Companion App / IOS / iPad / Location / Update / 30
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
@@ -45,8 +45,8 @@
 # @Action:
 #  - Update Location
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPadLocationUpdate30'
-  alias: Home Assitant / Companion App / IOS / iPad / Location / Update / 30
+- id: 'HomeAssistantCompanionAppIOSiPadLocationUpdate30'
+  alias: Home Assistant / Companion App / IOS / iPad / Location / Update / 30
   description: 'Update iPad Location for Battery Stats every 5 minutes'
   
   # trigger
@@ -68,7 +68,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Increase Location Frequency
+# @Alias: Home Assistant / Companion App / IOS / iPad / Charging / Increase Location Frequency
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
@@ -76,8 +76,8 @@
 # @Action:
 #  - Automation / Turn On / HomeAssitantCompanionAppIOSiPadLocationUpdate5
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPadChargingIncreaseLocationFrequency'
-  alias: Home Assitant / Companion App / IOS / iPad / Charging / Increase Location Frequency
+- id: 'HomeAssistantCompanionAppIOSiPadChargingIncreaseLocationFrequency'
+  alias: Home Assistant / Companion App / IOS / iPad / Charging / Increase Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -93,7 +93,7 @@
       
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
+# @Alias: Home Assistant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
@@ -101,8 +101,8 @@
 # @Action:
 #  - Automation / Turn Off / HomeAssitantCompanionAppIOSiPadLocationUpdate5
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPadChargingDecreaseLocationFrequency'
-  alias: Home Assitant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
+- id: 'HomeAssistantCompanionAppIOSiPadChargingDecreaseLocationFrequency'
+  alias: Home Assistant / Companion App / IOS / iPad / Charging / Decrease Location Frequency
   description: 'Increase Location Frequency When Charging'
 
   # trigger
@@ -118,7 +118,7 @@
 
 ######################################################################################################
 # @Automation
-# @Alias: Home Assitant / Companion App / IOS / iPad / Charging / Complete
+# @Alias: Home Assistant / Companion App / IOS / iPad / Charging / Complete
 # @Device: iPad 6th Generation
 # @Device_URL: https://support.apple.com/kb/sp774?locale=en_MT
 # @Trigger:
@@ -128,8 +128,8 @@
 # @Action:
 #  - Notify / Living Room Soundbar
 ######################################################################################################
-- id: 'HomeAssitantCompanionAppIOSiPadChargingComplete'
-  alias: Home Assitant / Companion App / IOS / iPad / Charging / Complete
+- id: 'HomeAssistantCompanionAppIOSiPadChargingComplete'
+  alias: Home Assistant / Companion App / IOS / iPad / Charging / Complete
   description: 'Notify When Charging Complete'
   
   # trigger

@@ -2,10 +2,6 @@ routine_night:
   alias: Routine / Good Night
   sequence:
 
-  # turn on night boolean
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.night_mode
-
   # turn on kitchen, living room and hall light
   - service: light.turn_on
     entity_id: 
@@ -52,16 +48,27 @@ routine_night:
     entity_id:
       - switch.72627180bcddc292737e
       - switch.bedroom_bulb_3
+  
+  # delay
+  - delay: "00:04:00"
+
+  # turn off / living room
+  - service: light.turn_off
+    entity_id: 
+      - light.living_room_lights
       
   # delay
   - delay: "00:08:00"
 
-  # turn off / kitchen / living room
+  # turn off / kitchen
   - service: light.turn_off
     entity_id: 
       - light.kitchen_bulb_1
       - light.kitchen_bulb_2
       - light.xiaomi_philips_smart_led_bulb
-      - light.living_room_lights
+
+  # turn on night boolean
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.night_mode
 
   mode: single

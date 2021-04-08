@@ -1,0 +1,58 @@
+################################################################################
+## @integration: Xiaomi Philips Light
+## @integration_url: https://www.home-assistant.io/integrations/xiaomi_miio/#xiaomi-philips-light
+################################################################################
+- platform: xiaomi_miio
+  name: Xiaomi Philips Smart LED Bulb
+  host: !secret xiaomi_philips_kitchen_light_3_host
+  token: !secret xiaomi_philips_kitchen_light_3_token
+  model: philips.light.bulb
+
+- platform: group
+  name: Kitchen Lights
+  entities:
+    - light.kitchen_bulb_1
+    - light.kitchen_bulb_2
+
+- platform: group
+  name: Dining Room Lights
+  entities:
+    - light.dining_room_lights
+    - light.dining_room_lights_2
+
+- platform: group
+  name: Living Room Lights
+  entities:
+    - light.living_room_lights
+
+- platform: group
+  name: Office Lights
+  entities:
+    - light.office_light_1
+    - light.office_light_2
+
+- platform: group
+  name: Rack Room Lights
+  entities:
+    - light.rack_room_bulb_1
+    - light.rack_room_bulb_2
+    - light.rack_room_bulb_3
+
+- platform: group
+  name: Hall Lights
+  entities:
+    - light.hall_bulb
+
+- platform: group
+  name: Bedroom Lights
+  entities:
+    - light.bedroom_bulb_1
+    - light.bedroom_bulb_2
+
+- platform: group
+  name: Main Staircase Lights
+  entities:
+    - light.mainstaircase_bulb_1
+    - light.mainstaircase_bulb_2
+    
+    

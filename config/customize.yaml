@@ -47,6 +47,15 @@ light.dining_room_lights_2:
   friendly_name: Dining Room Light 2
 
 #################################################################
+## @Device: Kitchen Motion Sensor
+#################################################################
+binary_sensor.motion_sensor_158d0003ce12be:
+  friendly_name: Kitchen Motion Sensor
+
+sensor.battery_158d0003ce12be:
+  friendly_name: Kitchen Motion Sensor Battery
+
+#################################################################
 ## @Device: Hall Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0002413b7c:

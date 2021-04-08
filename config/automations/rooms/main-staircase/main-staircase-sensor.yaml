@@ -25,7 +25,10 @@
   
   #action
   action:
-  - service: script.turn_on_main_staircase_lights
+  - service: light.turn_on
+    entity_id:
+      - light.mainstaircase_bulb_1
+      - light.mainstaircase_bulb_2
 
 ######################################################################################################
 # @Automation
@@ -54,4 +57,7 @@
   
   #action
   action:
-  - service: script.turn_off_main_staircase_lights
+    - service: light.turn_off
+      entity_id:
+        - light.mainstaircase_bulb_1
+        - light.mainstaircase_bulb_2

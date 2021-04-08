@@ -35,10 +35,11 @@ notify_base_living_soundbar:
       volume_level: 0.4
 
   # play tts messgae
-  - service: tts.google_translate_say
+  - service: tts.cloud_say
     data:
       entity_id: media_player.living_room_soundbar
-      language: 'en'
+      options:
+          gender: female
       message: > 
         {{ title }}. {{ message }}
 
