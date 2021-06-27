@@ -1,0 +1,71 @@
+routine_goodbye:
+  alias: Routine / Good Bye
+  sequence:
+
+  # turn on mainstaircase
+  - service: light.turn_on
+    entity_id: 
+      - light.mainstaircase_bulb_1
+      - light.mainstaircase_bulb_2
+
+  # turn off / mainstaircase automation
+  - service: automation.turn_off
+    entity_id: automation.staircase_sensor_1_motion_not_detected_switch_off_staircase
+
+  # turn off lights
+  - service: light.turn_off
+    entity_id: 
+      - light.kitchen_bulb_1
+      - light.kitchen_bulb_2
+      - light.xiaomi_philips_smart_led_bulb
+      - light.living_room_lights
+      - light.hall_bulb
+      - light.bedroom_bulb_1
+      - light.bedroom_bulb_2
+      - light.rack_room_bulb_1
+      - light.rack_room_bulb_2
+      - light.rack_room_bulb_3
+      - light.office_light_1
+      - light.office_light_2
+      - light.dining_room_lights
+      - light.dining_room_lights_2
+  
+  # check doors and windows
+  - service: script.turn_on
+    entity_id: script.doors_windows_check
+
+  # turn off air conditioners
+  - service: climate.turn_off
+    entity_id:
+      - climate.1ebfaa4e
+      - climate.1e5418e7
+      - climate.1e541900
+  
+  # turn off media
+  - service: media_player.turn_off
+    entity_id:
+      - media_player.living_room_tv
+      - media_player.kitchen_display
+      - media_player.bedroom_wifi
+      - media_player.roof_speaker
+  
+  # turn off smart plugs
+  - service: switch.turn_off
+    entity_id:
+      - switch.72627180bcddc292737e
+      - switch.bedroom_bulb_3
+        
+  # delay
+  - delay: "00:10:00"
+
+  # turn on / mainstaircase automation
+  - service: automation.turn_on
+    entity_id: automation.staircase_sensor_1_motion_not_detected_switch_off_staircase
+
+  # turn off / main staircase
+  - service: light.turn_off
+    entity_id: 
+      - light.mainstaircase_bulb_1
+      - light.mainstaircase_bulb_2
+
+  mode: single

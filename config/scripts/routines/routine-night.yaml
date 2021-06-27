@@ -20,9 +20,9 @@ routine_night:
   # turn off air conditioners
   - service: climate.turn_off
     entity_id:
-      - climate.office_ac
-      - climate.kitchen_ac
-      - climate.living_room_ac
+      - climate.1ebfaa4e
+      - climate.1e5418e7
+      - climate.1e541900
   
   # turn off media
   - service: media_player.turn_off
@@ -42,6 +42,8 @@ routine_night:
       - light.mainstaircase_bulb_2
       - light.office_light_1
       - light.office_light_2
+      - light.dining_room_lights
+      - light.dining_room_lights_2
   
   # turn off smart plugs
   - service: switch.turn_off
@@ -58,7 +60,7 @@ routine_night:
       - light.living_room_lights
       
   # delay
-  - delay: "00:08:00"
+  - delay: "00:04:00"
 
   # turn off / kitchen
   - service: light.turn_off

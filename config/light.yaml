@@ -26,7 +26,7 @@
     - light.living_room_lights
 
 - platform: group
-  name: Office Lights
+  name: Study Lights
   entities:
     - light.office_light_1
     - light.office_light_2

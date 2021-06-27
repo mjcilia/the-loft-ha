@@ -1,0 +1,203 @@
+######################################################################################################
+# @Automation
+# @Room: Kitchen
+# @Description: Toggles Kitchen Lights on Cube Shake
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Yeelight LED Bulb 1S (White)
+# @Device_URL: https://en.yeelight.com/product/819.html
+# @Trigger:
+#  - Kitchen Cube / Action
+# @Action:
+#  - Toggle / Kitchen Lights
+######################################################################################################
+- id: 'KitchenCubeShakeToggleKitchenLights'
+  alias: Kitchen Cube / Shake / Toggle Kitchen Lights
+  description: 'Toggles Kitchen Lights on Cube Shake'
+
+  #trigger
+  trigger:
+  - event_data:
+      action_type: shake_air
+      entity_id: binary_sensor.cube_158d00028f8633
+    event_type: xiaomi_aqara.cube_action
+    platform: event
+  
+  #action
+  action:
+    - service: light.toggle
+      data:
+        entity_id:
+          - light.kitchen_bulb_1
+          - light.kitchen_bulb_2
+        transition: 1
+
+######################################################################################################
+# @Automation
+# @Room: Kitchen
+# @Description: Toggles Living room switch on Cube flip90
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Teckin Smart Plug
+# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
+# @Trigger:
+#  - Kitchen Cube / Flip90
+# @Action:
+#  - Toggle / Living Room Bulb/Switch
+######################################################################################################
+- id: KitchenCubeFlip90ToggleLivingRoomBulb
+  alias: Kitchen Cube / Flip90 / Toggle Living Room Bulb
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: flip90
+  
+  #action
+  action:
+  - service: switch.toggle
+    data:
+      entity_id: switch.72627180bcddc292737e
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Kitchen
+# @Description: Toggles Kitchen Lamp on Cube flip180
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Teckin Smart Plug
+# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
+# @Trigger:
+#  - Kitchen Cube / Flip180
+# @Action:
+#  - Toggle / Kitchen Lamp
+######################################################################################################
+- id: KitchenCubeFlip180ToggleKitchenLamp
+  alias: Kitchen Cube / Flip180 / Toggle Kitchen Lamp
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: flip180
+  
+  #action
+  action:
+    service: light.toggle
+    data:
+      entity_id:
+        - light.xiaomi_philips_smart_led_bulb
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Kitchen
+# @Description: Increases/Decreases Sonos Beam Volume depending
+# on cube rotation.
+# @Device: Aqara Magic Cube
+# @Device_URL: https://www.aqara.com/us/cube.html
+# @Device: Sonos Beam
+# @Device_URL: https://www.sonos.com/en/shop/beam.html
+# @Trigger:
+#  - Kitchen Cube / Rotate
+# @Action:
+#  - Increase/Decrease Sonos Beam Volume
+######################################################################################################
+- id: KitchenCubeRotateSonosBeamVolume
+  alias: Kitchen Cube / Rotate / Sonos Beam Volume
+  description: 'Increases/Decreases Sonos Beam Volume depending on cube rotation.'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: rotate
+  
+  #action
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.living_room_soundbar
+      volume_level: >
+        {% set state = state_attr('media_player.living_room_soundbar','volume_level') -%}
+        {%-  if (trigger.event.data.action_value|int > 0) and (state < 1) -%}
+            {%- set state = state_attr('media_player.living_room_soundbar','volume_level') + 0.1 -%}
+        {%-  elif (trigger.event.data.action_value|int < 0) and (state > 0) -%}
+          {%- set state = state_attr('media_player.living_room_soundbar','volume_level') - 0.1 -%}
+        {%- endif %}
+        {{ state }}
+
+  - service: script.notify_base_tv
+    data:
+      title: "The Loft Notification"
+      message: "Volume set at {{ (state_attr('media_player.living_room_soundbar','volume_level')|float * 100) | round(0) }}%"
+  mode: single
+
+
+- id: KitchenCubeTapTwiceSwitchOffLivingRoomandKitchen
+  alias: Kitchen Cube / Tap Twice / Switch Off / Living Room and Kitchen
+  description: 'Switch off Kitchen and Living Room when tapping cube Twice'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: tap_twice
+
+  #action
+  action:
+    - service: light.turn_off
+      entity_id: 
+        - light.kitchen_bulb_1
+        - light.kitchen_bulb_2
+        - light.living_room_lights
+    - service: switch.turn_off
+      entity_id: switch.72627180bcddc292737e
+    - service: media_player.turn_off
+      entity_id:
+        - media_player.kitchen_display
+        - media_player.living_room_tv
+        - media_player.living_room_soundbar
+
+
+- id: KitchenCubeMoveLivingRoomTVChannelUp
+  alias: Kitchen Cube / Move / Living Room TV / Channel Up
+  description: 'Channel Up when moving cube'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: move
+
+  #action
+  action:
+    - service: script.living_room_tv_channel_up
+
+- id: KitchenCubeFreeFallLivingRoomTVChannelDown
+  alias: Kitchen Cube / Free Fall / Living Room TV / Channel Down
+  description: 'Channel Down when cube in free fall'
+
+  #trigger
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00028f8633
+      action_type: free_fall
+
+  #action
+  action:
+    - service: script.living_room_tv_channel_down

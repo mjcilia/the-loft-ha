@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    uptime:
+      friendly_name: uptime
+      value_template: >
+        {{ ((as_timestamp(now()) - as_timestamp(states('sensor.uptime'))) // 60| round (0)) >= 180  }}

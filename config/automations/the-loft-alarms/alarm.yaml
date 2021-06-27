@@ -1,0 +1,31 @@
+- id: 'Alarm Main'
+  alias: Alarm / Main
+  description: 'Main Alarm'
+  
+  # trigger
+  trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.motion_sensor_158d0001e19483
+      - binary_sensor.motion_sensor_158d0002413b7c
+      - binary_sensor.motion_sensor_158d00023ec75f
+      - binary_sensor.motion_sensor_158d0003ce121b
+      - binary_sensor.motion_sensor_158d0003ce12be
+      - binary_sensor.door_window_sensor_158d0002b771b8
+      - binary_sensor.door_window_sensor_158d0002b7b84e
+      - binary_sensor.door_window_sensor_158d0002c628be
+    from: 'off'
+    to: 'on'
+  
+  # condition 
+  condition:
+    - condition: state
+      entity_id: input_boolean.away_mode
+      state: 'on'
+  
+  # action
+  action:
+  - service: script.notify_base_app
+    data:
+      title: "The Loft Alert."
+      message: "Looks like someone is at home."

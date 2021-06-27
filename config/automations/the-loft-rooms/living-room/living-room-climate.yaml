@@ -1,0 +1,65 @@
+######################################################################################################
+# @Automation
+# @Room: Living Room
+# @Device: Gree Air Conditioner / Fairy Series
+# @Device_URL: https://btmalta.com/product/gree-fairy-wall-mounted-type/
+# @Device: Xiaomi Mi Door Window Sensor
+# @Device_URL: https://xiaomi-mi.com/sockets-and-sensors/xiaomi-mi-door-window-sensors/
+# @Trigger:
+#  - Living Room AC / ON
+# @Condition:
+#  - Living Room Door / Open
+# @Action:
+#  - Delay / 2 Minutes
+#  - Condition / Living Room AC / ON
+#  - Condition / Living Room Door / Open
+#  - Script / Notify / Base
+# @Action Follow Up:
+#  - Delay / 2 Minutes
+#  - Condition / Living Room AC / ON
+#  - Condition / Living Room Door / Open
+#  - Living Room AC / Off
+#  - Script / Notify / Base
+######################################################################################################
+- id: 'LivingRoomACLivingRoomDoorAlert'
+  alias: Living Room AC / Living Room Door / Alert
+  description: "Alerts if Living Room Door is open whilst trying to switch On Living Room Air 
+  Conditioner. If Living Room door is not closed, Living Room AC is switched off."
+
+  # trigger
+  trigger:
+  - platform: template
+    value_template: '{{ is_state("climate.1e541900", "off") == false }}'
+
+  # condition
+  condition:
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor_158d0002b771b8
+    state: 'on'
+
+  # action
+  action:
+  - delay: 00:02:00
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor_158d0002b771b8
+    state: 'on'
+  - condition: template
+    value_template: '{{ (is_state("climate.1e541900", "off") == false) }}'
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Alert"
+      message: "Living Room Door is Open! Close Living Room Door for Living Room AC to remain switched on."
+  
+  # action follow up
+  - delay: 00:02:00
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor_158d0002b771b8
+    state: 'on'
+  - condition: template
+    value_template: '{{ (is_state("climate.1e541900", "off") == false) }}'
+  - service: climate.turn_off
+    entity_id: climate.1e541900
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Alert"
+      message: "Living Room Door still open. Living Room AC has been switched off."

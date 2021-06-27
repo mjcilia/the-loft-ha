@@ -1,0 +1,23 @@
+######################################################################################################
+# @Automation
+# @Alias: Routine / Maintenance Mode / Turn Off
+# @Trigger:
+#  - Binary Sensor / Uptime Minutes / 180
+# @Action:
+#  - Maintenance Mode / Off
+######################################################################################################
+- id: 'RoutineMaintenanceModeTurnOff'
+  alias: Routine / Maintenance Mode / Turn Off
+  description: 'Turns Maintenance Mode Off if system is up for a minimum 3 hours.'
+  
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.uptime
+      to: 'on'
+  
+  # action
+  action:
+    # turn off maintenance mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.maintenance_mode

@@ -1,9 +1,21 @@
 #################################################################
+## @Device: Kitchen AC
+#################################################################
+climate.1e5418e7:
+  friendly_name: Kitchen AC
+
+#################################################################
 ## @Device: Kitchen Lamp
 #################################################################
 light.xiaomi_philips_smart_led_bulb:
   friendly_name: Kitchen Lamp
   icon: mdi:lightbulb
+
+#################################################################
+## @Device: Living Room AC
+#################################################################
+climate.1e541900:
+  friendly_name: Living Room AC
 
 #################################################################
 ## @Device: Living Room Table Switch
@@ -65,13 +77,19 @@ sensor.battery_158d0002413b7c:
   friendly_name: Hall Motion Sensor Battery
 
 #################################################################
-## @Device: Office Motion Sensor
+## @Device: Study Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0003ce121b:
-  friendly_name: Office Motion Sensor
+  friendly_name: Study Motion Sensor
 
 sensor.battery_158d0003ce121b:
-  friendly_name: Office Motion Sensor Battery
+  friendly_name: Study Motion Sensor Battery
+
+#################################################################
+## @Device: Study AC
+#################################################################
+climate.1ebfaa4e:
+  friendly_name: Study AC
 
 #################################################################
 ## @Device: Rack Room Motion Sensor

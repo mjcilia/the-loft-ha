@@ -13,6 +13,17 @@ google_actions:
       - media_player.bedroom_wifi
       - light.gateway_light_7c49eb1cf22f
       - light.gateway_light_7c49ebb19bf5
+      - light.study_lights
+      - light.dining_room_lights_3
+      - light.living_room_lights_2
+      - light.main_staircase_lights
+      - light.rack_room_lights
+      - light.bedroom_lights
+      - light.hall_lights
+      - light.kitchen_lights
+      - switch.1e5418e7_panel_light
+      - switch.1e541900_panel_light
+      - switch.1ebfaa4e_panel_light
       - script.check_living_room_door
       - script.notify_ios_android
       - script.notify_base_app
@@ -22,6 +33,7 @@ google_actions:
       - binary_sensor
       - camera
       - sensor
+      - input_boolean
       
   entity_config:
 
@@ -33,6 +45,9 @@ google_actions:
       room: kitchen
     light.kitchen_bulb_2:
       name: Kitchen Bulb 2
+      room: kitchen
+    light.xiaomi_philips_smart_led_bulb:
+      name: Kitchen Lamp
       room: kitchen
 
     #################################################################
@@ -66,7 +81,7 @@ google_actions:
     #################################################################
     light.hallway_bulb:
       name: Hall Bulb
-      room: hall
+      room: hallway
 
     #################################################################
     ## @lights: rack room
@@ -92,6 +107,12 @@ google_actions:
       room: bedroom
     switch.bedroom_bulb_3:
       name: Bedroom Bulb 3
+      room: bedroom
+    switch.jean:
+      name: Bedroom Perfume Diffuser
+      aliases:
+        - Perfume Diffuser
+        - Perfume
       room: bedroom
 
     #################################################################
@@ -123,7 +144,7 @@ google_actions:
     #################################################################
     ## @climate: kitchen
     #################################################################
-    climate.kitchen_ac:
+    climate.1e5418e7:
       name: Kitchen AC
       aliases:
         - Kitchen AC
@@ -132,7 +153,7 @@ google_actions:
     #################################################################
     ## @climate: living room
     #################################################################
-    climate.living_room_ac:
+    climate.1e541900:
       name: Living Room AC
       aliases:
         - Living Room AC
@@ -142,7 +163,7 @@ google_actions:
     #################################################################
     ## @climate: office
     #################################################################
-    climate.office_ac:
+    climate.1ebfaa4e:
       name: Office AC
       aliases:
         - Office AC

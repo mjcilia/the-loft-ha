@@ -4,10 +4,10 @@
 devices:
   !secret yeelight_kitchen_light_1_host:
     name: Kitchen Bulb 1
-    model: color2
+    model: color4
   !secret yeelight_kitchen_light_2_host:
     name: Kitchen Bulb 2
-    model: mono1
+    model: color4
   !secret yeelight_hall_light_host:
     name: Hall Bulb
     model: mono1

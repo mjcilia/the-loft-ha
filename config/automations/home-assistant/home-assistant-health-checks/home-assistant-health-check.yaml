@@ -4,12 +4,12 @@
 # @Trigger:
 #  - Time / 10:00:00
 # @Condition:
+# -  Time / Weekday / Saturday
 #  - State / Binary Sensor / Wireless Devices Battery Sensors / Off
 #  - State / Binary Sensor / Light Availability Sensors / Off
 #  - State / Binary Sensor / Switch Availability Sensors / Off
 #  - State / Binary Sensor / Climate Availability Sensors / Off
 #  - State / Binary Sensor / Media Availability Sensors / Off
-#  - State / Binary Sensor / Camera Availability Sensors / Off
 # @Action:
 #  - Notify / Mark
 ######################################################################################################
@@ -23,15 +23,17 @@
   
   #condition
   condition:
+    - condition: time
+      weekday:
+        - sat
     - condition: state
       entity_id: 
         - binary_sensor.wireless_devices_battery_sensors
         - binary_sensor.light_availability_sensor
         - binary_sensor.switch_availability_sensor
-        - binary_sensor.climate_availability_sensors
-        - binary_sensor.media_availability_sensors
-        - binary_sensor.camera_availability_sensors
-      state: 'off'
+        - binary_sensor.climate_availability_sensor
+        - binary_sensor.media_availability_sensor
+      state: 'off' 
   
   #action
   action:

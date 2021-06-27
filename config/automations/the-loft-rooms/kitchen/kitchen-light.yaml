@@ -1,0 +1,22 @@
+- id: 'KitchenLightsOnSetColor'
+  alias: Kitchen Lights / On / Set Color
+  description: 'Adjust Kitchen Colors'
+
+  #trigger
+  trigger:
+    - platform: state
+      entity_id:
+        - light.kitchen_bulb_1
+        - light.kitchen_bulb_2
+      from: 'off'
+      to: 'on'
+  
+  #action
+  action:
+    - service: yeelight.set_color_scene
+      data:
+        entity_id:
+          - light.kitchen_bulb_1
+          - light.kitchen_bulb_2
+        rgb_color: [255,187,130]
+        brightness: 100

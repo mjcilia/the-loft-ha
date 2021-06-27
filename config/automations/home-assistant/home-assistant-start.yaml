@@ -24,3 +24,16 @@
     entity_id: 
       - automation.home_assistant_companion_app_ios_ipad_location_update_5
       - automation.home_assistant_companion_app_ios_iphone_location_update_5
+  - choose:
+    # IF Maintenance Mode Off
+    - conditions:
+        - condition: state
+          entity_id: input_boolean.maintenance_mode
+          state: 'off'
+      # Switch on TV    
+      sequence:
+        - service: script.notify_base_app
+          data:
+            title: "The Loft Alert."
+            message: "Looks like there was a Power Failure! Power is now restored."
+        

@@ -16,7 +16,6 @@ homeassistant:
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
-climate: !include climate.yaml
 cloud: !include cloud.yaml
 binary_sensor: !include_dir_merge_list binary_sensors
 sensor: !include sensors.yaml

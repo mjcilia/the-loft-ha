@@ -8,6 +8,7 @@
         {{
           states.sensor
             |selectattr('attributes.device_class', 'in', ['battery'])
+            |rejectattr('attributes.voltage', 'undefined')
             |selectattr('attributes.voltage')
             |selectattr('state', '<', '15')
             |list|count > 0 

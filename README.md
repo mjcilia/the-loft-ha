@@ -3,12 +3,17 @@ Home Assistant Config
 
 ## Todo
 - [x] Add Batteries to Dashboard
-- [ ] Group Lights Per Room
+- [x] Group Lights Per Room
 - [ ] Water Heater Show/Hide Time
 - [ ] Health Check State Names Healthy/Error
 - [ ] Health Check Icons
-- [ ] Goodbye Routine
+- [x] Goodbye Routine
+- [ ] Goodbye Routine Check Devices
+- [ ] Vacation Mode
+- [ ] Away Mode
 - [ ] Document Scripts
+- [ ] Shower Water Duration as Input
+- [ ] Shower Water Check
 - [x] Format Good Night Routine / Check Windows
 - [ ] Rotate Kitchen Cube / Increase/Decrease Kitchen Hub Volume
 - [ ] TV Drop Down
