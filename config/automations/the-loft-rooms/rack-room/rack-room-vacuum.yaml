@@ -9,15 +9,21 @@
 #################################################################
 - id: 'VacuumNotifyLocationLeave'
   alias: Vacuum / Notify / Location Leave
+
+  #trigger
   trigger:
   - platform: state
     entity_id: group.the_loft_members
     from: home
     to: not_home
     for: 0:15
+  
+  #condition
   condition:
   - condition: template
     value_template: '{{ (state_attr("input_datetime.last_vacuum_clean", "day")|int) != (now().strftime("%-d")|int) }}'
+  
+  #action
   action:
   - service: script.notify_vacuum_app
   mode: single
@@ -32,6 +38,8 @@
 #################################################################
 - id: 'VacuumNotifyAction'
   alias: Vacuum / Notify / Action
+
+  #trigger
   trigger:
   - platform: event
     event_type: ios.notification_action_fired
@@ -41,6 +49,8 @@
     event_type: mobile_app_notification_action
     event_data:
       action: START_VACUUM
+  
+  #action
   action:
   - service: vacuum.start
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -56,6 +66,8 @@
 #################################################################
 - id: 'VacuumHelperDateSet'
   alias: 'Vacuum / Helper / Date / Set'
+
+  #trigger
   trigger:
   - platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -63,9 +75,84 @@
     from: Charging
     to: Cleaning
     for: 00:15:00
+
+  #action
   action:
   - service: input_datetime.set_datetime
     data:
       datetime: '{{ now().strftime("%Y-%m-%d %H:%M:%S") }}'
     entity_id: input_datetime.last_vacuum_clean
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Alias: Vacuum / Finish House / Away / Notification
+# @Device: Xiaomi Vacuum (1st Generation)
+# @Trigger:
+#  - Vacuum / Cleaning to Docked
+# @Condition:
+#  - The Loft Members / Away
+# @Action:
+#  - Notify / Mobile App
+######################################################################################################
+- id: 'VacuumFinishHouseAwayNotification'
+  alias: 'Vacuum / Finish House / Away / Notification'
+  
+  #trigger
+  trigger:
+  - platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    attribute: 'status'
+    to: 'Charging'
+    for: "00:01:00"
+
+  #condition
+  condition:
+    - condition: state
+      entity_id: "group.the_loft_members"
+      state: "away"
+
+  #action
+  action:
+  - service: script.notify_base_app
+    data:
+      title: "The Loft Notification"
+      message: "Nunu has finished Cleaning. Nunu Docked."
+  mode: single
+
+
+######################################################################################################
+# @Automation
+# @Alias: Vacuum / Finish Room / Home / Notification
+# @Device: Xiaomi Vacuum (1st Generation)
+# @Trigger:
+#  - Vacuum / Cleaning to Idle
+# @Condition:
+#  - The Loft Members / Home
+# @Action:
+#  - Notify / Living Room Soundbar
+######################################################################################################
+- id: 'VacuumFinishRoomHomeNotification'
+  alias: 'Vacuum / Finish Room / Home / Notification'
+  
+  #trigger
+  trigger:
+  - platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    attribute: 'status'
+    to: 'Idle'
+    for: "00:05:00"
+
+  #condition
+  condition:
+  - condition: state
+    entity_id: "group.the_loft_members"
+    state: "home"
+
+  #action
+  action:
+  - service: script.notify_base_living_soundbar
+    data:
+      title: "The Loft Notification"
+      message: "Nunu has finished cleaning. Please return Nunu to Dock."
   mode: single

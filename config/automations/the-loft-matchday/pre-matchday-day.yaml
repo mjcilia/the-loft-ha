@@ -1,0 +1,31 @@
+######################################################################################################
+# @Automation
+# @Alias: Pre Match Day / Day
+# @Trigger:
+#  - Time / 10:00:00
+# @Condition:
+#  - Pre Match Day / Binary Sensor / On
+# @Action:
+#  - Notify / Mark / App
+######################################################################################################
+- id: 'PreMatchDayDay'
+  alias: Pre Match Day / Day
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret match_update_daily_run_time
+  
+  #condition
+  condition:
+    - condition: state
+      entity_id: 
+        - binary_sensor.pre_matchday_day_sensor
+      state: 'on' 
+  
+  #action
+  action:
+    - service: script.notify_base_app_mark
+      data:
+        title: "The Loft Match Update"
+        message: "{{ state_attr('calendar.manchester_united_matches', 'message') }} @ {{ state_attr('calendar.manchester_united_matches', 'start_time') }}"

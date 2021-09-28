@@ -8,6 +8,10 @@
 # @Action:
 #  - Automation / Off / ios_iphone_location_update_5
 #  - Automation / Off / ios_ipad_location_update_5
+#  - Choose / Maintenance Mode / Off
+#  - Choose / True / Notify / Base App
+#  - Choose / Delay / 2 Minutes
+#  - Choose / Switch Off Bulbs
 ######################################################################################################
 - id: 'HomeAssistantStart'
   alias: Home Assistant / Start
@@ -36,4 +40,17 @@
           data:
             title: "The Loft Alert."
             message: "Looks like there was a Power Failure! Power is now restored."
-        
+        - service:  light.turn_off
+          data:
+            entity_id: 
+              - light.kitchen_bulb_1
+              - light.kitchen_bulb_2
+              - light.xiaomi_philips_smart_led_bulb
+              - light.hall_bulb
+              - light.bedroom_bulb_1
+              - light.bedroom_bulb_2
+              - light.mainstaircase_bulb_1
+              - light.mainstaircase_bulb_2
+              - light.rack_room_bulb_1
+              - light.rack_room_bulb_2
+              - light.rack_room_bulb_3

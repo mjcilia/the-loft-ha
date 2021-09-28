@@ -4,6 +4,6 @@
 the_loft_members:
   name: The Loft Members
   entities:
-    - device_tracker.mark_cilia
+    - device_tracker.iphone
     - device_tracker.jessica_cilia
   all: false

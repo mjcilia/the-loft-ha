@@ -22,10 +22,10 @@ devices:
     model: mono1
   !secret yeelight_bedroom_light_1_host:
     name: Bedroom Bulb 1
-    model: mono1
+    model: color1
   !secret yeelight_bedroom_light_2_host:
     name: Bedroom Bulb 2
-    model: mono1
+    model: color1
   !secret yeelight_mainstaircase_light_1_host:
     name: Mainstaircase Bulb 1
     model: mono1

@@ -58,6 +58,13 @@
 #  - Switch / On / 90 mins
 # @Action:
 #  - Water Heater / Off
+#  - Delay / 5 Minutes
+#  - Condition / Water Heater / On
+#  - Water Heater / Off
+#  - Delay / 5 Minutes
+#  - Condition / Water Heater / On
+#  - Notify / Base TTS
+
 ######################################################################################################
 - id: 'ShowerWaterHeaterOff90'
   alias: Shower / Water Heater / Off / 90
@@ -80,6 +87,20 @@
     data:
       title: "The Loft Notification"
       message: "Shower Water Heater is Warm. Water Heater is now switched off."
+  - delay: 00:05:00
+  - condition: state
+    entity_id: switch.spare_bathroom_water_heater_sw
+    state: 'on'
+  - service: switch.turn_off
+    entity_id: switch.spare_bathroom_water_heater_sw
+  - delay: 00:05:00
+  - condition: state
+    entity_id: switch.spare_bathroom_water_heater_sw
+    state: 'on'
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Alert"
+      message: "Shower Water Heater is Still Switched On. Turn off now."
 
 ######################################################################################################
 # @Automation
@@ -91,6 +112,12 @@
 #  - Switch / On / 60 mins
 # @Action:
 #  - Water Heater / Off
+#  - Delay / 5 Minutes
+#  - Condition / Water Heater / On
+#  - Water Heater / Off
+#  - Delay / 5 Minutes
+#  - Condition / Water Heater / On
+#  - Notify / Base TTS
 ######################################################################################################
 - id: 'ShowerWaterHeaterOff60'
   alias: Shower / Water Heater / Off / 60
@@ -113,3 +140,17 @@
     data:
       title: "The Loft Notification"
       message: "Shower Water Heater is Warm. Water Heater is now switched off."
+  - delay: 00:05:00
+  - condition: state
+    entity_id: switch.spare_bathroom_water_heater_sw
+    state: 'on'
+  - service: switch.turn_off
+    entity_id: switch.spare_bathroom_water_heater_sw
+  - delay: 00:05:00
+  - condition: state
+    entity_id: switch.spare_bathroom_water_heater_sw
+    state: 'on'
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Alert"
+      message: "Shower Water Heater is Still Switched On. Turn off now."

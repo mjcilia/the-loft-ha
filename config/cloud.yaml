@@ -77,11 +77,17 @@ google_actions:
       room: dining room
 
     #################################################################
-    ## @lights: hall way
+    ## @lights: hall
     #################################################################
     light.hallway_bulb:
       name: Hall Bulb
-      room: hallway
+      room: hall
+    switch.jean:
+      name: Hall Perfume Diffuser
+      aliases:
+        - Perfume Diffuser
+        - Perfume
+      room: hall
 
     #################################################################
     ## @lights: rack room
@@ -106,13 +112,7 @@ google_actions:
       name: Bedroom Bulb 2
       room: bedroom
     switch.bedroom_bulb_3:
-      name: Bedroom Bulb 3
-      room: bedroom
-    switch.jean:
-      name: Bedroom Perfume Diffuser
-      aliases:
-        - Perfume Diffuser
-        - Perfume
+      name: Bedroom Fan
       room: bedroom
 
     #################################################################

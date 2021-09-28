@@ -1,7 +1,7 @@
 notify_vacuum_app:
   alias: Notify / Vacuum / App
   sequence:
-  - service: notify.mobile_app_mark_cilia
+  - service: notify.mobile_app_iphone
     data:
       title: The Loft Notification
       message: Looks like no one is home. Do you want to switch on the Vacuum?

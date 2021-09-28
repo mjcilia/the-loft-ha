@@ -11,6 +11,7 @@
       - binary_sensor.motion_sensor_158d00023ec75f
       - binary_sensor.motion_sensor_158d0003ce121b
       - binary_sensor.motion_sensor_158d0003ce12be
+      - binary_sensor.presence_3
       - binary_sensor.door_window_sensor_158d0002b771b8
       - binary_sensor.door_window_sensor_158d0002b7b84e
       - binary_sensor.door_window_sensor_158d0002c628be

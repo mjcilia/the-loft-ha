@@ -1,0 +1,22 @@
+- id: 'MasterBedroomLightsOnSetColor'
+  alias: Master Bedroom / Lights / On / Set Color
+  description: 'Adjust Master Bedroom Colors'
+
+  #trigger
+  trigger:
+    - platform: state
+      entity_id:
+        - light.bedroom_bulb_1
+        - light.bedroom_bulb_2
+      from: 'off'
+      to: 'on'
+  
+  #action
+  action:
+    - service: yeelight.set_color_temp_scene
+      data:
+        entity_id:
+          - light.bedroom_bulb_1
+          - light.bedroom_bulb_2
+        kelvin: 4200
+        brightness: 35

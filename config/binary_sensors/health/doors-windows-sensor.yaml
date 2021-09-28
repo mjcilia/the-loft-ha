@@ -1,0 +1,23 @@
+- platform: template
+  sensors:
+    doors_windows_sensors:
+      friendly_name: 'Doors and Windows Sensors'
+      value_template: >-
+        {{ 
+          states.binary_sensor
+            |selectattr('attributes.device_class', 'in', ['opening'])
+            |selectattr('state', '==', 'on')
+            |list|count > 0
+        }}
+      attribute_templates: 
+        message: >-
+          {%- for binary_sensor in states %}
+            {%- if binary_sensor.attributes.device_class == "opening" %}
+              {%- if binary_sensor.state|string == "on" -%}    
+                {{ binary_sensor.attributes.friendly_name
+                  |replace("Sensor", "")
+                  + "is open. "
+                }}
+              {%- endif %}
+            {%- endif %}
+          {%- endfor %}

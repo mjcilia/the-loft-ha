@@ -9,3 +9,9 @@ shower_evening_time:
   has_date: false
   has_time: true
   initial: '16:00'
+
+chill_time:
+  name: Chill Time
+  has_date: false
+  has_time: true
+  initial: '19:00'

@@ -25,7 +25,7 @@
   condition:
   - condition: state
     entity_id: sensor.rmx1931_battery_state
-    state:  "charging"
+    state:  "full"
 
   - condition: state
     entity_id: "device_tracker.jessica_cilia"

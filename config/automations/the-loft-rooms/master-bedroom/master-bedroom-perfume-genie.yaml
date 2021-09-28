@@ -10,7 +10,7 @@
 #  - Boolean / Night Mode / Off
 # @Action:
 #  - Perfume Genie / Turn On
-#  - Delay / 15 Minutes
+#  - Delay / 30 Minutes
 #  - Perfume Genie / Turn Off
 ######################################################################################################
 - id: BedroomPerfumeGenieTimeOn
@@ -31,7 +31,7 @@
   action:
     - service: switch.turn_on
       entity_id: switch.jean
-    - delay: 00:15:00
+    - delay: 00:30:00
     - service: switch.turn_off
       entity_id: switch.jean
 
@@ -44,7 +44,7 @@
 # @Device: Perfume Genie (Rituals)
 # @Device_URL: https://www.rituals.com/en-nl/collection-story-perfumegenie.html
 # @Trigger:
-#  - Time / 21:35:00
+#  - Time / 21:50:00
 # @Condition:
 #  - Perfume Genie / On
 # @Action:
@@ -59,7 +59,7 @@
   # trigger
   trigger:
     - platform: time
-      at: "21:35:00"
+      at: "21:50:00"
 
   #condition
   condition:
@@ -79,3 +79,42 @@
       data:
         title: "The Loft Alert"
         message: "Perfume Genie (Jeane) is still powered on. Turn off now."
+
+
+######################################################################################################
+# @Automation
+# @Room: Bedroom
+# @Alias: Bedroom Perfume Genie / Hour / Termination
+# @Device: Perfume Genie (Rituals)
+# @Device_URL: https://www.rituals.com/en-nl/collection-story-perfumegenie.html
+# @Trigger:
+#  - Perfume Genie / On / 1 hour
+# @Action:
+#  - Perfume Genie / Turn Off
+#  - Delay / 5 Minutes
+#  - Condition / Perfume Genie / On
+#  - Notify
+######################################################################################################
+- id: 'BedroomPerfumeGenieHourTermination'
+  alias: Bedroom Perfume Genie / Hour / Termination
+
+  #trigger
+  trigger:
+  - platform: state
+    entity_id: switch.jean
+    from: 'off'
+    to: 'on'
+    for: '00:01:00'
+  
+  #action
+  action:
+  - service: switch.turn_off
+    entity_id: switch.jean
+  - delay: 00:05:00
+  - condition: state
+    entity_id: switch.jean
+    state: 'on'
+  - service: script.notify_base_tts
+    data:
+      title: "The Loft Alert"
+      message: "Perfume Genie (Jeane) has been powered on for over an hour. Turn off now."

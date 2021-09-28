@@ -17,6 +17,7 @@ Home Assistant Config
 - [x] Format Good Night Routine / Check Windows
 - [ ] Rotate Kitchen Cube / Increase/Decrease Kitchen Hub Volume
 - [ ] TV Drop Down
+- [ ] Remove Xiaomi Vacuum Config / Add Intgeration
 - [x] Health Check / Wireless Devices / Battery State / Below 15%
 - [x] Health Check / Wireless Devices / Availability
 - [x] Health Check / Light / Yeelight Bulbs / Availability

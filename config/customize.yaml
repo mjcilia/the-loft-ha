@@ -37,8 +37,8 @@ switch.72627180bcddc292737e:
 ## @Device: Bedroom Smart Plug
 #################################################################
 switch.bedroom_bulb_3:
-  friendly_name: Bedroom Bulb 3
-  icon: mdi:lightbulb
+  friendly_name: Bedroom Fan
+  icon: mdi:fan
 
 #################################################################
 ## @Device: Living Room Light 1
@@ -84,6 +84,15 @@ binary_sensor.motion_sensor_158d0003ce121b:
 
 sensor.battery_158d0003ce121b:
   friendly_name: Study Motion Sensor Battery
+
+#################################################################
+## @Device: Study Motion Sensor (New)
+#################################################################
+binary_sensor.study_motion_sensor:
+  friendly_name: Study Motion Sensor [Deconz]
+
+sensor.study_motion_sensor_battery_level:
+  friendly_name: Study Motion Sensor [Deconz] Battery
 
 #################################################################
 ## @Device: Study AC

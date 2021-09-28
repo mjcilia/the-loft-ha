@@ -24,7 +24,7 @@
   # condition
   condition:
     - condition: state
-      entity_id: "device_tracker.mark_cilia"
+      entity_id: "device_tracker.iphone"
       state: "home"
     - condition: time
       after: !secret home_assistant_companion_app_ios_after
@@ -32,7 +32,7 @@
   
   # action
   action:
-  - service: notify.mobile_app_mark_cilia
+  - service: notify.mobile_app_iphone
     data:
       message: "request_location_update"
 
@@ -62,7 +62,7 @@
   # condition
   condition:
     - condition: state
-      entity_id: "device_tracker.mark_cilia"
+      entity_id: "device_tracker.iphone"
       state: "home"
     - condition: time
       after: !secret home_assistant_companion_app_ios_after
@@ -70,7 +70,7 @@
   
   # action
   action:
-  - service: notify.mobile_app_mark_cilia
+  - service: notify.mobile_app_iphone
     data:
       message: "request_location_update"
 
@@ -93,13 +93,13 @@
   # trigger
   trigger:
     - platform: state
-      entity_id: sensor.mark_cilia_battery_state
+      entity_id: sensor.iphone_battery_state
       to:  "Charging"
     
   # condition
   condition:
     - condition: state
-      entity_id: "device_tracker.mark_cilia"
+      entity_id: "device_tracker.iphone"
       state: "home"
   
   # action
@@ -126,13 +126,13 @@
   # trigger
   trigger:
     - platform: state
-      entity_id: sensor.mark_cilia_battery_state
+      entity_id: sensor.iphone_battery_state
       to:  "Not Charging"
 
   # condition
   condition:
     - condition: state
-      entity_id: "device_tracker.mark_cilia"
+      entity_id: "device_tracker.iphone"
       state: "home"
     
   # action
@@ -160,18 +160,18 @@
   # trigger
   trigger:
     - platform: numeric_state
-      entity_id: sensor.mark_cilia_battery_level
+      entity_id: sensor.iphone_battery_level
       above: 99
       for: "00:10:00"
 
   # condition
   condition:
   - condition: state
-    entity_id: sensor.mark_cilia_battery_state
+    entity_id: sensor.iphone_battery_state
     state:  "Charging"
 
   - condition: state
-    entity_id: "device_tracker.mark_cilia"
+    entity_id: "device_tracker.iphone"
     state: "home"
   
   # action

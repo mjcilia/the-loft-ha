@@ -1,0 +1,34 @@
+- cal_id: ov0dk4m6dedaob7oqse4nrda4s@group.calendar.google.com
+  entities:
+  - device_id: manchester_united_matches
+    ignore_availability: true
+    name: Manchester United Matches
+    track: true
+
+- cal_id: jbaldacch@gmail.com
+  entities:
+  - device_id: jbaldacch_gmail_com
+    ignore_availability: true
+    name: jbaldacch@gmail.com
+    track: false
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: birthdays
+    ignore_availability: true
+    name: Birthdays
+    track: false
+
+- cal_id: en.mt#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_malta
+    ignore_availability: true
+    name: Holidays in Malta
+    track: false
+
+- cal_id: markjcilia@gmail.com
+  entities:
+  - device_id: markjcilia_gmail_com
+    ignore_availability: true
+    name: markjcilia@gmail.com
+    track: false

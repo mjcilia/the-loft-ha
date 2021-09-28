@@ -18,7 +18,7 @@ notify_base_app:
 notify_base_app_mark:
   alias: Notify / Base / App / Mark
   sequence:
-  - service: notify.mobile_app_mark_cilia
+  - service: notify.mobile_app_iphone
     data:
       title: "{{ title }}"
       message: "{{ message }}" 
