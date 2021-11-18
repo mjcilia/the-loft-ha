@@ -141,7 +141,7 @@
     entity_id: vacuum.xiaomi_vacuum_cleaner
     attribute: 'status'
     to: 'Idle'
-    for: "00:05:00"
+    for: "00:30:00"
 
   #condition
   condition:
@@ -152,6 +152,10 @@
   #action
   action:
   - service: script.notify_base_living_soundbar
+    data:
+      title: "The Loft Notification"
+      message: "Nunu has finished cleaning. Please return Nunu to Dock."
+  - service: script.notify_base_tv
     data:
       title: "The Loft Notification"
       message: "Nunu has finished cleaning. Please return Nunu to Dock."

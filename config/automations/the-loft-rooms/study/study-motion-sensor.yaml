@@ -21,7 +21,7 @@
 
   #trigger
   trigger:
-  - entity_id: binary_sensor.study_motion_sensor
+  - entity_id: binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
     platform: state
     from: 'off'
     to: 'on'
@@ -43,7 +43,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Study
-# @Alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
+# @Alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Light 1
 # @Device: LightWave Smart Dimmer (2 Gang)
 # @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
 # @Device: Xiaomi Mi Motion Sensor
@@ -62,7 +62,7 @@
 
   #trigger
   trigger:
-  - entity_id: binary_sensor.study_motion_sensor
+  - entity_id: binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
     platform: state
     from: 'on'
     to: 'off'
@@ -104,7 +104,7 @@
 
   #trigger
   trigger:
-  - entity_id: binary_sensor.study_motion_sensor
+  - entity_id: binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
     platform: state
     to: 'off'
     for:
@@ -147,7 +147,7 @@
 
   #trigger
   trigger:
-  - entity_id: binary_sensor.study_motion_sensor
+  - entity_id: binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
     platform: state
     to: 'on'
     for:

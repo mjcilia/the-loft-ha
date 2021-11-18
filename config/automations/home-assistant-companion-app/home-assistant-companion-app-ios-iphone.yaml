@@ -180,3 +180,7 @@
     data:
       title: "The Loft Notification"
       message: "Mark your phone is fully charged."
+  - service: script.notify_base_tv
+    data:
+      title: "The Loft Notification"
+      message: "Mark your phone is fully charged."

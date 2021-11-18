@@ -1,0 +1,25 @@
+######################################################################################################
+# @Automation
+# @Alias: Plex / Library Refresh
+# @Trigger:
+#  - Time / Secret / Plex Library Refresh Run Time /  10:00:00
+# @Action:
+#  - Plex Library Refresh / Movies
+#  - Plex Library Refresh / TV Shows
+######################################################################################################
+- id: 'Plex / Library Refresh'
+  alias: Plex / Library Refresh
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret plex_library_refresh_run_time
+  
+  #action
+  action:
+    - service: plex.refresh_library
+      data:
+        library_name: 'movies'
+    - service: plex.refresh_library
+      data:
+        library_name: TV Shows

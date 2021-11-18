@@ -27,3 +27,7 @@
       data:
         title: "The Loft Match Update"
         message: "{{ state_attr('calendar.manchester_united_matches', 'message') + ' kicking off in one hour!' }}"
+    - service: script.notify_base_tv
+      data:
+        title: "The Loft Match Update"
+        message: "{{ state_attr('calendar.manchester_united_matches', 'message') + ' kicking off in one hour!' }}"

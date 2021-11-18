@@ -92,12 +92,12 @@ webostv:
         mac: !secret webostv_mac
     customize:
       sources:
+        - Plex
         - youtube
         - netflix
         - PS4
         - GO Interactive
-        - Smart IPTV
-        - plex
+        - Smart IPTV   
 
 wake_on_lan:
 
@@ -113,6 +113,15 @@ xiaomi_aqara:
     - mac: !secret xiaomi_aqara_gateway_3_mac
       key: !secret xiaomi_aqara_gateway_3_key
       host: !secret xiaomi_aqara_gateway_3_host
+
+plant:
+  study_plant:
+    sensors:
+      moisture: sensor.study_plant_moisture
+      battery: sensor.study_plant_battery_level
+      temperature: sensor.study_plant_temperature
+      conductivity: sensor.study_plant_soil_conductivity
+      brightness: sensor.study_plant_illuminance
 
 #################################################################
 ## @notifications
