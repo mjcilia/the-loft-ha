@@ -20,3 +20,4 @@
           - light.bedroom_bulb_2
         kelvin: 4200
         brightness: 35
+  mode: single

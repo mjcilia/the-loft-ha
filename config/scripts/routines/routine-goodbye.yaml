@@ -7,6 +7,9 @@ routine_goodbye:
     entity_id: 
       - light.mainstaircase_bulb_1
       - light.mainstaircase_bulb_2
+      - light.philips_ltg002_ae417109_level_light_color_on_off
+      - light.philips_ltg002_f2c87209_level_light_color_on_off
+      - light.philips_ltg002_ce567909_level_light_color_on_off
 
   # turn off / mainstaircase automation
   - service: automation.turn_off
@@ -29,6 +32,9 @@ routine_goodbye:
       - light.office_light_2
       - light.dining_room_lights
       - light.dining_room_lights_2
+      - light.philips_ltg002_07a6cd08_level_light_color_on_off
+      - light.philips_ltg002_0e63c908_level_light_color_on_off
+      - light.philips_ltg002_3fb26c09_level_light_color_on_off
   
   # check doors and windows
   - service: script.turn_on
@@ -52,11 +58,21 @@ routine_goodbye:
   # turn off smart plugs
   - service: switch.turn_off
     entity_id:
-      - switch.72627180bcddc292737e
-      - switch.bedroom_bulb_3
-        
+      - switch.living_room_bulb_1_socket_1
+      - switch.bedroom_bulb_3_socket_1
+  
   # delay
-  - delay: "00:10:00"
+  - delay: "00:03:00"
+
+  # turn off / library
+  - service: light.turn_off
+    entity_id: 
+      - light.philips_ltg002_ae417109_level_light_color_on_off
+      - light.philips_ltg002_f2c87209_level_light_color_on_off
+      - light.philips_ltg002_ce567909_level_light_color_on_off
+
+  # delay
+  - delay: "00:07:00"
 
   # turn on / mainstaircase automation
   - service: automation.turn_on

@@ -34,7 +34,7 @@
         - condition: state
           entity_id: input_boolean.maintenance_mode
           state: 'off'
-      # Switch on TV    
+      # Notify and Turn Off All lights (Apart From Smart Switches)   
       sequence:
         - service: script.notify_base_app
           data:
@@ -45,12 +45,23 @@
             entity_id: 
               - light.kitchen_bulb_1
               - light.kitchen_bulb_2
+              - light.dining_room_lights
+              - light.dining_room_lights_2
+              - light.living_room_lights
               - light.xiaomi_philips_smart_led_bulb
               - light.hall_bulb
               - light.bedroom_bulb_1
               - light.bedroom_bulb_2
               - light.mainstaircase_bulb_1
               - light.mainstaircase_bulb_2
+              - light.office_light_1
+              - light.office_light_2
               - light.rack_room_bulb_1
               - light.rack_room_bulb_2
               - light.rack_room_bulb_3
+              - light.philips_ltg002_07a6cd08_level_light_color_on_off
+              - light.philips_ltg002_ce567909_level_light_color_on_off
+              - light.philips_ltg002_0e63c908_level_light_color_on_off
+              - light.philips_ltg002_f2c87209_level_light_color_on_off
+              - light.philips_ltg002_3fb26c09_level_light_color_on_off
+              - light.philips_ltg002_ae417109_level_light_color_on_off

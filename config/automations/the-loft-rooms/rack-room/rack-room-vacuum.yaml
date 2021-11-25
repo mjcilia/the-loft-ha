@@ -30,34 +30,6 @@
 
 #################################################################
 # @Automation
-# @Description: Switches on Vacuum from IOS action.
-# @Device: Xiaomi Vacuum (1st Generation)
-# @Device_URL:
-# @Trigger: IOS Event 
-# @Action: Starts Vacuum
-#################################################################
-- id: 'VacuumNotifyAction'
-  alias: Vacuum / Notify / Action
-
-  #trigger
-  trigger:
-  - platform: event
-    event_type: ios.notification_action_fired
-    event_data:
-      actionName: START_VACUUM
-  - platform: event
-    event_type: mobile_app_notification_action
-    event_data:
-      action: START_VACUUM
-  
-  #action
-  action:
-  - service: vacuum.start
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-  mode: single
-
-#################################################################
-# @Automation
 # @Description: Sets input_datetime.last_vacuum_clean to
 # todays date if vacuum has cleaned for 15 minuntes.
 # @Device: Xiaomi Vacuum (1st Generation)
@@ -102,8 +74,8 @@
   trigger:
   - platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
-    attribute: 'status'
-    to: 'Charging'
+    from: 'cleaning'
+    to: 'docked'
     for: "00:01:00"
 
   #condition
@@ -117,7 +89,7 @@
   - service: script.notify_base_app
     data:
       title: "The Loft Notification"
-      message: "Nunu has finished Cleaning. Nunu Docked."
+      message: "Nunu has finished Cleaning. Nunu has returned back to Dock."
   mode: single
 
 

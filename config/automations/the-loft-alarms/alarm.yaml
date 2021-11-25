@@ -1,3 +1,12 @@
+######################################################################################################
+# @Automation
+# @Alias:  Alarm / Main
+# @Trigger:
+#  - Motion Sensors / On
+#  - Door Windows Sensors / On
+# @Action:
+#  - Notify / App
+######################################################################################################
 - id: 'Alarm Main'
   alias: Alarm / Main
   description: 'Main Alarm'
@@ -9,9 +18,10 @@
       - binary_sensor.motion_sensor_158d0001e19483
       - binary_sensor.motion_sensor_158d0002413b7c
       - binary_sensor.motion_sensor_158d00023ec75f
+      - binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
+      - binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
       - binary_sensor.motion_sensor_158d0003ce121b
       - binary_sensor.motion_sensor_158d0003ce12be
-      - binary_sensor.presence_3
       - binary_sensor.door_window_sensor_158d0002b771b8
       - binary_sensor.door_window_sensor_158d0002b7b84e
       - binary_sensor.door_window_sensor_158d0002c628be

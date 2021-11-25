@@ -29,14 +29,14 @@ sensor.battery_158d0003e7c53f:
 #################################################################
 ## @Device: Living Room Smart Plug
 #################################################################
-switch.72627180bcddc292737e:
+switch.living_room_bulb_1_socket_1:
   friendly_name: Living Room Bulb 1
   icon: mdi:lightbulb
 
 #################################################################
 ## @Device: Bedroom Smart Plug
 #################################################################
-switch.bedroom_bulb_3:
+switch.bedroom_bulb_3_socket_1:
   friendly_name: Bedroom Fan
   icon: mdi:fan
 
@@ -59,6 +59,15 @@ light.dining_room_lights_2:
   friendly_name: Dining Room Light 2
 
 #################################################################
+## @Device: Dining Room Cube
+#################################################################
+binary_sensor.cube_158d0005d41224:
+  friendly_name: Dining Room Cube
+
+sensor.battery_158d0005d41224:
+  friendly_name: Dining Room Cube Battery
+
+#################################################################
 ## @Device: Kitchen Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0003ce12be:
@@ -77,13 +86,13 @@ sensor.battery_158d0002413b7c:
   friendly_name: Hall Motion Sensor Battery
 
 #################################################################
-## @Device: Study Motion Sensor
+## @Device: Library Motion Sensor
 #################################################################
-binary_sensor.motion_sensor_158d0003ce121b:
-  friendly_name: Study Motion Sensor
+binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone:
+  friendly_name: Library Motion Sensor 1 [ZHA]
 
-sensor.battery_158d0003ce121b:
-  friendly_name: Study Motion Sensor Battery
+sensor.lumi_lumi_sensor_motion_1b12ce03_power:
+  friendly_name: Library Motion Sensor 1 [ZHA] Battery
 
 #################################################################
 ## @Device: Study Motion Sensor (New)
@@ -135,6 +144,42 @@ binary_sensor.cube_158d00028f8633:
 
 sensor.battery_158d00028f8633:
   friendly_name: Kitchen Cube Battery
+
+#################################################################
+## @Device: Library Bulb 1
+#################################################################
+light.philips_ltg002_07a6cd08_level_light_color_on_off:
+  friendly_name: Library Bulb 1
+
+#################################################################
+## @Device: Library Bulb 2
+#################################################################
+light.philips_ltg002_ce567909_level_light_color_on_off:
+  friendly_name: Library Bulb 2
+
+#################################################################
+## @Device: Library Bulb 3
+#################################################################
+light.philips_ltg002_0e63c908_level_light_color_on_off:
+  friendly_name: Library Bulb 3
+
+#################################################################
+## @Device: Library Bulb 4
+#################################################################
+light.philips_ltg002_f2c87209_level_light_color_on_off:
+  friendly_name: Library Bulb 4
+
+#################################################################
+## @Device: Library Bulb 5
+#################################################################
+light.philips_ltg002_3fb26c09_level_light_color_on_off:
+  friendly_name: Library Bulb 5
+
+#################################################################
+## @Device: Library Bulb 6
+#################################################################
+light.philips_ltg002_ae417109_level_light_color_on_off:
+  friendly_name: Library Bulb 6
 
 #################################################################
 ## @Device: Living Room Door Sensor

@@ -25,7 +25,10 @@
   condition:
     - condition: time
       weekday:
-        - sat
+        - mon
+        - wed
+        - fri
+        - sun
     - condition: state
       entity_id: 
         - binary_sensor.wireless_devices_battery_sensors

@@ -54,5 +54,16 @@
   entities:
     - light.mainstaircase_bulb_1
     - light.mainstaircase_bulb_2
+
+- platform: group
+  name: Library Lights
+  entities:
+    - light.philips_ltg002_07a6cd08_level_light_color_on_off
+    - light.philips_ltg002_ce567909_level_light_color_on_off
+    - light.philips_ltg002_0e63c908_level_light_color_on_off
+    - light.philips_ltg002_f2c87209_level_light_color_on_off
+    - light.philips_ltg002_3fb26c09_level_light_color_on_off
+    - light.philips_ltg002_ae417109_level_light_color_on_off
+
     
     

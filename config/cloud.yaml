@@ -53,7 +53,7 @@ google_actions:
     #################################################################
     ## @lights: living room
     #################################################################
-    switch.72627180bcddc292737e:
+    switch.living_room_bulb_1_socket_1:
       name: Living Room Bulb 1
       room: living room
     light.living_room_lights:
@@ -111,7 +111,7 @@ google_actions:
     light.bedroom_bulb_2:
       name: Bedroom Bulb 2
       room: bedroom
-    switch.bedroom_bulb_3:
+    switch.bedroom_bulb_3_socket_1:
       name: Bedroom Fan
       room: bedroom
 

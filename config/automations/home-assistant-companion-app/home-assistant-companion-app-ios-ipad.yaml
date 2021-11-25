@@ -17,8 +17,8 @@
   
   # trigger
   trigger:
-  - platform: time_pattern
-    minutes: '/5'
+    - platform: time_pattern
+      minutes: '/5'
 
   # condition
   condition:
@@ -28,9 +28,9 @@
   
   # action
   action:
-  - service: notify.mobile_app_marks_ipad
-    data:
-      message: "request_location_update"
+    - service: notify.mobile_app_marks_ipad
+      data:
+        message: "request_location_update"
 
 ######################################################################################################
 # @Automation
@@ -51,8 +51,8 @@
   
   # trigger
   trigger:
-  - platform: time_pattern
-    minutes: '/30'
+    - platform: time_pattern
+      minutes: '/30'
   
   # condition
   condition:
@@ -62,9 +62,9 @@
   
   # action
   action:
-  - service: notify.mobile_app_marks_ipad
-    data:
-      message: "request_location_update"
+    - service: notify.mobile_app_marks_ipad
+      data:
+        message: "request_location_update"
 
 ######################################################################################################
 # @Automation
@@ -131,22 +131,27 @@
 - id: 'HomeAssistantCompanionAppIOSiPadChargingComplete'
   alias: Home Assistant / Companion App / IOS / iPad / Charging / Complete
   description: 'Notify When Charging Complete'
-  
+
   # trigger
   trigger:
     - platform: state
-      entity_id: sensor.marks_ipad_battery_state
-      from: "Charging"
-      to: "Full"
+      entity_id: sensor.marks_ipad_battery_level
+      to: "100"
+      for: "00:05:00"
 
+  # condition
   condition:
     - condition: state
-      entity_id: "group.the_loft_members"
+      entity_id: sensor.marks_ipad_battery_state
+      state:  "Charging"
+
+    - condition: state
+      entity_id: "device_tracker.iphone"
       state: "home"
   
   # action
   action:
-  - service: script.notify_base_tts
-    data:
-      title: "The Loft Notification"
-      message: "Tablet is fully charged."
+    - service: script.notify_base_tts
+      data:
+        title: "The Loft Notification"
+        message: "Tablet is fully charged."

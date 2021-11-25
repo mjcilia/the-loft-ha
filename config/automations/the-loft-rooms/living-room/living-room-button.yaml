@@ -27,7 +27,7 @@
   #action
   action:
     service: switch.toggle
-    entity_id: switch.72627180bcddc292737e
+    entity_id: switch.living_room_bulb_1_socket_1
 
 ######################################################################################################
 # @Automation

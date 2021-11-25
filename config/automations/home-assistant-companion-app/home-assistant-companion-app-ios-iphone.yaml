@@ -159,28 +159,28 @@
   
   # trigger
   trigger:
-    - platform: numeric_state
+    - platform: state
       entity_id: sensor.iphone_battery_level
-      above: 99
-      for: "00:10:00"
+      to: "100"
+      for: "00:05:00"
 
   # condition
   condition:
-  - condition: state
-    entity_id: sensor.iphone_battery_state
-    state:  "Charging"
+    - condition: state
+      entity_id: sensor.iphone_battery_state
+      state:  "Charging"
 
-  - condition: state
-    entity_id: "device_tracker.iphone"
-    state: "home"
+    - condition: state
+      entity_id: "device_tracker.iphone"
+      state: "home"
   
   # action
   action:
-  - service: script.notify_base_living_soundbar
-    data:
-      title: "The Loft Notification"
-      message: "Mark your phone is fully charged."
-  - service: script.notify_base_tv
-    data:
-      title: "The Loft Notification"
-      message: "Mark your phone is fully charged."
+    - service: script.notify_base_living_soundbar
+      data:
+        title: "The Loft Notification"
+        message: "Mark your phone is fully charged."
+    - service: script.notify_base_tv
+      data:
+        title: "The Loft Notification"
+        message: "Mark your phone is fully charged."

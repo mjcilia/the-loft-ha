@@ -8,12 +8,15 @@
         {{
           states.media_player
             |selectattr('state','in',['unavailable'])
+            |rejectattr('entity_id', 'equalto', 'media_player.plex_plex_for_lg_lg_oled55c8lla')
             |list|count > 0
         }}
       attribute_templates: 
         message: >-
           {%- for media in states.media_player %}
             {%- if media.state|string == "unavailable" %}
-              {{ media.name }} is {{ media.state }}!
+              {%- if media.name|string != "Plex (Plex for LG - LG OLED55C8LLA)" %}
+                {{ media.name }} is {{ media.state }}!
+              {%- endif %}
             {%- endif %}
           {%- endfor %}

@@ -9,7 +9,7 @@
 custom_components
 image
 tts
-misc
+.misc
 
 # Ignored Entry Files
 home-assistant.log
