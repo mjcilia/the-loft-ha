@@ -90,9 +90,8 @@
       action_type: flip180
   
   #action
-  #action
   action:
-    - service: script.routine_living_room_tv_go_interactive_tvm
+    - service: script.routine_living_room_tv_melita_tvm
 
   mode: single
 

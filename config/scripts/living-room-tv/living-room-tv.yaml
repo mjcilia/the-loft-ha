@@ -2,16 +2,16 @@ living_room_tv_channel_up:
   alias: Living Room / TV / Channel / Up
   sequence:
     choose:
-      # IF living room TV source is GO Interactive
+      # IF living room TV source is Melita
       - conditions:
         - condition: template
-          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'GO Interactive' }}"
-        # Go Interactive Channel Up   
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'Melita' }}"
+        # Melita Channel Up   
         sequence:
           - service: remote.send_command
             data:
               entity_id: remote.living_room_rm_pro_remote
-              device: GO Interactive
+              device: Melita
               command:
                 - CHANNELUP
       # IF living room TV source is Smart IPTV
@@ -29,16 +29,16 @@ living_room_tv_channel_down:
   alias: Living Room / TV / Channel / Down
   sequence:
     choose:
-      # IF living room TV source is GO Interactive
+      # IF living room TV source is Melita
       - conditions:
         - condition: template
-          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'GO Interactive' }}"
-        # Go Interactive Channel Up   
+          value_template: "{{ state_attr('media_player.living_room_tv', 'source') == 'Melita' }}"
+        # Melita Channel Up   
         sequence:
           - service: remote.send_command
             data:
               entity_id: remote.living_room_rm_pro_remote
-              device: GO Interactive
+              device: Melita
               command:
                 - CHANNELDOWN
       # IF living room TV source is Smart IPTV

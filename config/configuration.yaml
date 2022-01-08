@@ -24,6 +24,7 @@ logger: !include logger.yaml
 discovery: !include discovery.yaml
 input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
 light: !include light.yaml
 
 ################################################################################
@@ -37,32 +38,12 @@ light: !include light.yaml
 yeelight: !include yeelight.yaml
 
 ################################################################################
-## @integration: Xiaomi Miio
-## @integration_url: https://www.home-assistant.io/integrations/xiaomi_miio/
-################################################################################
-vacuum:
-  - platform: xiaomi_miio
-    host: !secret xiaomi_miio_vacuum_host
-    token: !secret xiaomi_miio_vacuum_token
-
-################################################################################
 ## @integration: Sonoff
 ## @integration_url: https://github.com/AlexxIT/SonoffLAN
 ################################################################################
 #sonoff:
 #  username: !secret sonoff_username
 #  password: !secret sonoff_password
-
-################################################################################
-## @integration: Synology Dsm
-## @integration_url: https://www.home-assistant.io/integrations/synology_dsm/
-################################################################################  
-synology_dsm:
-  - host: !secret synology_host
-    port: !secret synology_port
-    ssl: false
-    username: !secret synology_username
-    password: !secret synology_password
 
 ################################################################################
 ## @integration: Google Nest
@@ -96,7 +77,7 @@ webostv:
         - youtube
         - netflix
         - PS4
-        - GO Interactive
+        - Melita
         - Smart IPTV   
 
 wake_on_lan:
@@ -110,18 +91,20 @@ xiaomi_aqara:
     - mac: !secret xiaomi_aqara_gateway_2_mac
       key: !secret xiaomi_aqara_gateway_2_key
       host: !secret xiaomi_aqara_gateway_2_host
-    - mac: !secret xiaomi_aqara_gateway_3_mac
-      key: !secret xiaomi_aqara_gateway_3_key
-      host: !secret xiaomi_aqara_gateway_3_host
 
-plant:
-  study_plant:
-    sensors:
-      moisture: sensor.study_plant_moisture
-      battery: sensor.study_plant_battery_level
-      temperature: sensor.study_plant_temperature
-      conductivity: sensor.study_plant_soil_conductivity
-      brightness: sensor.study_plant_illuminance
+#################################################################
+## @integration: Spotify
+## @integration_url: https://www.home-assistant.io/integrations/spotify/
+#################################################################
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
+################################################################
+## @integration: Plant Monitor
+## @integration_url: https://www.home-assistant.io/integrations/plant/
+#################################################################
+plant: !include plant.yaml
 
 #################################################################
 ## @notifications

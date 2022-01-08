@@ -1,22 +1,22 @@
 ######################################################################################################
 # @Automation
 # @Room: Living Room
-# @Alias: Living Room TV / Smart IPTV / GO Interactive / Volume
+# @Alias: Living Room TV / Smart IPTV / Melita / Volume
 # @Device: LG Oled TV C8 55 inch
 # @Device_URL: https://www.lg.com/uk/tvs/lg-OLED55C8PLA
 # @Device: Sonos Beam
 # @Device_URL: https://www.sonos.com/en/shop/beam.html
 # @Trigger:
 #  - Living Room TV / Source / Smart IPTV
-#  - Living Room TV / Source / GO Interactive
+#  - Living Room TV / Source / Melita
 # @Condition:
 #  - Living Room Soundbar / Volume / NOT / 0.25
 # @Action:
 #  - Living Room Soundbar / Volume / 0.25
 ######################################################################################################
-- id: 'LivingRoomTVSmartIPTVGOInteractiveVolume'
-  alias: Living Room TV / Smart IPTV / GO Interactive / Volume
-  description: 'Adjust Living Room Soundbar Volume when Living Room TV Source is IPTV or GO Interactive'
+- id: 'LivingRoomTVSmartIPTVMelitaolume'
+  alias: Living Room TV / Smart IPTV / Melita / Volume
+  description: 'Adjust Living Room Soundbar Volume when Living Room TV Source is IPTV or Melita'
   
   #trigger
   trigger:
@@ -24,7 +24,7 @@
       value_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'Smart IPTV') }}"
       for: "00:00:03"
     - platform: template
-      value_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'GO Interactive') }}"
+      value_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'Melita') }}"
       for: "00:00:03"
   
   #condition
@@ -95,8 +95,8 @@
 
 
 - id: 'LivingRoomTVGOInteractiveOn'
-  alias: Living Room TV / GO Interactive / On
-  description: 'Switch On GO Interactive Set Top Box On when Living Room is Switched On.'
+  alias: Living Room TV / Melita / On
+  description: 'Switch On Melita Set Top Box On when Living Room is Switched On.'
 
   #trigger
   trigger:
@@ -117,6 +117,6 @@
     - service: remote.send_command
       data:
         entity_id: remote.living_room_rm_pro_remote
-        device: GO Interactive
+        device: Melita
         command:
           - power

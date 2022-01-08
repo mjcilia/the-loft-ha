@@ -1,0 +1,67 @@
+######################################################################################################
+# @Automation
+# @Alias: Plant / Study / Moisture
+# @Device: Xiaomi Mi Flora
+# @Device_URL: https://www.amazon.com/Xiaomi-Moisture-Testing-Gardens-International/dp/B074TY93JM
+# @Trigger:
+#  - Time / 10:00:00
+# @Condition:
+#  - Plant Moisture / Below / 15
+# @Action:
+#  - Notify / Mobile App
+######################################################################################################
+- id: "PlantStudyMoisture"
+  alias: "Plant / Study / Moisture"
+  description: 'Study Plant Moisture Check'
+  
+  # trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+  
+  # condition 
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.study_plant_moisture
+      below: 25
+  
+  # action
+  action:
+  - service: script.notify_base_app
+    data:
+      title: "The Loft Notification."
+      message: "Study Plant needs watering. Water plant."
+
+######################################################################################################
+# @Automation
+# @Alias: Plant / Study / Conductivity
+# @Device: Xiaomi Mi Flora
+# @Device_URL: https://www.amazon.com/Xiaomi-Moisture-Testing-Gardens-International/dp/B074TY93JM
+# @Trigger:
+#  - Time / 10:00:00
+# @Condition:
+#  - Plant Moisture / Below / 500
+# @Action:
+#  - Notify / Mobile App
+######################################################################################################
+- id: "PlantStudyConductivity"
+  alias: "Plant / Study / Conductivity"
+  description: 'Study Plant Conductivity Check'
+  
+  # trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+  
+  # condition 
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.study_plant_soil_conductivity
+      below: 500
+  
+  # action
+  action:
+  - service: script.notify_base_app
+    data:
+      title: "The Loft Notification."
+      message: "Study Plant needs Fertiliser."

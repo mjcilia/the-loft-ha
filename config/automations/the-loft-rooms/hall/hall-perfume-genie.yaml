@@ -19,6 +19,8 @@
   # trigger
   trigger:
     - platform: time
+      at: "09:15:00"
+    - platform: time
       at: "21:15:00"
 
   #condition
@@ -60,7 +62,7 @@
     entity_id: switch.jean
     from: 'off'
     to: 'on'
-    for: '00:01:00'
+    for: '01:00:00'
   
   #action
   action:

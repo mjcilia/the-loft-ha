@@ -1,0 +1,40 @@
+spotify_bedrooom_speaker:
+  alias: Spotify Bedroom Speaker
+  sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: "Kitchen Display"
+
+baby_playlist_sleep:
+  alias: Baby Playlist Sleep
+  sequence:
+    - service: script.spotify_bedrooom_speaker
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.spotify
+      data:
+        media_content_id: "https://open.spotify.com/playlist/37i9dQZF1DX0DxcHtn4Hwo?si=a4c9c79de2734399"
+        media_content_type: playlist
+
+baby_playlist_sleep_2:
+  alias: Baby Playlist Sleep 2
+  sequence:
+    - service: script.spotify_bedrooom_speaker
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.spotify
+      data:
+        media_content_id: "https://open.spotify.com/playlist/37i9dQZF1DX0C7garUJEEP?si=0599e96f34834329"
+        media_content_type: playlist
+
+baby_playlist_lullaby:
+  alias: Baby Playlist Lullaby
+  sequence:
+    - service: script.spotify_bedrooom_speaker
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.spotify
+      data:
+        media_content_id: "https://open.spotify.com/playlist/37i9dQZF1DXbADqT0j1Cxt?si=09db73b91e124aca"
+        media_content_type: playlist

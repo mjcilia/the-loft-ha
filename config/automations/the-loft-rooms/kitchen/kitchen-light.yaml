@@ -38,4 +38,4 @@
               - light.kitchen_bulb_2
             rgb_color: [255,187,130]
             brightness: 100
-  mode: single
+  mode: parallel

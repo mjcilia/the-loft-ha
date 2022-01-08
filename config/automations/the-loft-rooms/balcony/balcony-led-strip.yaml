@@ -16,18 +16,12 @@
   # trigger
   trigger:
   - platform: time
-    at: "17:30:00"
+    at: "17:00:00"
   
   # action
   action:
-  - service: light.turn_on
-    entity_id: light.balcony_light_strip
-    data:
-      effect: Colorful
-      brightness: 255
-      hs_color:
-        - 29.836
-        - 71.765
+  - service: switch.turn_on
+    entity_id: switch.bedroom_bulb_3_socket_1
 
 ######################################################################################################
 # @Automation
@@ -46,9 +40,9 @@
   #trigger
   trigger:
   - platform: time
-    at: "23:30:00"
+    at: "23:59:00"
   
-  #action
+  # action
   action:
-    - service: light.turn_off
-      entity_id: light.balcony_light_strip
+  - service: switch.turn_off
+    entity_id: switch.bedroom_bulb_3_socket_1
