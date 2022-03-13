@@ -22,3 +22,4 @@ secrets.yaml
 .sonoff.json
 webostv.conf
 .google.token
+zigbee.db

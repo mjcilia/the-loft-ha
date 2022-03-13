@@ -42,27 +42,26 @@
 ######################################################################################################
 # @Automation
 # @Room: Hall
-# @Alias: Hall Perfume Genie / Hour / Termination
+# @Alias: Hall Perfume Genie / 30 Minute / Termination
 # @Device: Perfume Genie (Rituals)
 # @Device_URL: https://www.rituals.com/en-nl/collection-story-perfumegenie.html
 # @Trigger:
-#  - Perfume Genie / On / 1 hour
+#  - Perfume Genie / On / 30 Minutes
 # @Action:
 #  - Perfume Genie / Turn Off
 #  - Delay / 5 Minutes
 #  - Condition / Perfume Genie / On
 #  - Notify
 ######################################################################################################
-- id: 'HallPerfumeGenieHourTermination'
-  alias: Hall Perfume Genie / Hour / Termination
+- id: 'HallPerfumeGenieTermination'
+  alias: Hall Perfume Genie / 30 min / Termination
 
   #trigger
   trigger:
   - platform: state
     entity_id: switch.jean
     from: 'off'
-    to: 'on'
-    for: '01:00:00'
+    for: '00:30:00'
   
   #action
   action:

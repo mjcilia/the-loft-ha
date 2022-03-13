@@ -1,5 +1,10 @@
-- id: 'MasterBedroomLightsOnSetColor'
-  alias: Master Bedroom / Lights / On / Set Color
+######################################################################################################
+# @Automation
+# @Room: Master Bedroom
+# @Alias: Master Bedroom / Light/ Bulb 1 / On / Set Color
+######################################################################################################
+- id: 'MasterBedroomLightBulb1OnSetColor'
+  alias: Master Bedroom / Light/ Bulb 1 / On / Set Color
   description: 'Adjust Master Bedroom Colors'
 
   #trigger
@@ -7,17 +12,74 @@
     - platform: state
       entity_id:
         - light.bedroom_bulb_1
+      from: 'off'
+      to: 'on'
+  
+  #action
+  action:
+    - alias: "Set Light and Dim Lights if Night Mode On"
+      choose:
+        # IF Night Mode On
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.night_mode
+              state: "on"
+          # Dimmed Mode
+          sequence:
+          - service: yeelight.set_color_temp_scene
+            data:
+              entity_id:
+                - light.bedroom_bulb_1
+              kelvin: 4200
+              brightness: 15
+      default:
+        - service: yeelight.set_color_temp_scene
+          data:
+            entity_id:
+              - light.bedroom_bulb_1
+            kelvin: 4200
+            brightness: 35
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Master Bedroom
+# @Alias: Master Bedroom / Light/ Bulb 2 / On / Set Color
+######################################################################################################
+- id: 'MasterBedroomLightBulb2OnSetColor'
+  alias: Master Bedroom / Light/ Bulb 2 / On / Set Color
+  description: 'Adjust Master Bedroom Colors'
+
+  #trigger
+  trigger:
+    - platform: state
+      entity_id:
         - light.bedroom_bulb_2
       from: 'off'
       to: 'on'
   
   #action
   action:
-    - service: yeelight.set_color_temp_scene
-      data:
-        entity_id:
-          - light.bedroom_bulb_1
-          - light.bedroom_bulb_2
-        kelvin: 4200
-        brightness: 35
+    - alias: "Set Light and Dim Lights if Night Mode On"
+      choose:
+        # IF Night Mode On
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.night_mode
+              state: "on"
+          # Dimmed Mode
+          sequence:
+          - service: yeelight.set_color_temp_scene
+            data:
+              entity_id:
+                - light.bedroom_bulb_2
+              kelvin: 4200
+              brightness: 15
+      default:
+        - service: yeelight.set_color_temp_scene
+          data:
+            entity_id:
+              - light.bedroom_bulb_2
+            kelvin: 4200
+            brightness: 35
   mode: single

@@ -15,7 +15,7 @@
   action:
     - alias: 'Set Light and Dim Lights if Night Mode On' 
       choose:
-        # IF Maintenance Mode Off
+        # IF Night Mode On
         - conditions:
             - condition: state
               entity_id: input_boolean.night_mode

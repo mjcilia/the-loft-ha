@@ -7,3 +7,48 @@ the_loft_members:
     - device_tracker.iphone
     - device_tracker.jessica_cilia
   all: false
+
+staircase_motion_sensors:
+  name: Staircase Motion Sensors
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.motion_sensor_158d0001e19483
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_ias_zone
+  all: false
+study_motion_sensors:
+  name: Study Motion Sensors
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_836eef07_ias_zone
+  all: false
+
+study_occupancy_sensors:
+  name: Study Occupancy Sensors
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.lumi_lumi_sensor_motion_34464102_occupancy
+    - binary_sensor.lumi_lumi_sensor_motion_aq2_836eef07_occupancy
+  all: false
+
+library_motion_sensors:
+  name: Library Motion Sensors
+  icon: mdi:motion-sensor
+  entities:
+    - binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
+    - binary_sensor.lumi_lumi_sensor_motion_3013ce03_ias_zone
+
+library_lights_1:
+  name: Library Lights Group 1
+  entities:
+    - light.philips_ltg002_07a6cd08_level_light_color_on_off
+    - light.philips_ltg002_0e63c908_level_light_color_on_off
+    - light.philips_ltg002_3fb26c09_level_light_color_on_off
+  all: true
+
+library_lights_2:
+  entities:
+    - light.philips_ltg002_ce567909_level_light_color_on_off
+    - light.philips_ltg002_f2c87209_level_light_color_on_off
+    - light.philips_ltg002_ae417109_level_light_color_on_off
+  all: true

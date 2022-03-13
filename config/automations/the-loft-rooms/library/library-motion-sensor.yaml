@@ -10,10 +10,12 @@
 # @Trigger:
 #  - Motion / Detected
 # @Condition:
-#  - 08:00 / 16:00
+#  - 08:00 / 16:00 OR Light Schedule Override
 #  - Library Automation Override / Off
+#  - Library Motion Sensor 2 / Motion Detected Automatiom / Not Triggered / 300ms
+#  - Library Light Group 2 / Off
 # @Action:
-#  - Library Lights (x3) / On
+#  - Library Lights (x6) / On
 ######################################################################################################
 - id: 'LibraryMotionSensor1MotionDetectedSwitchOnLibrary'
   alias: Library Motion Sensor 1 / Motion Detected / Switch On Library
@@ -27,11 +29,25 @@
 
   #condition
   condition:
-  - condition: time
-    before: !secret light_condition_before
-    after: !secret light_condition_after
+  #Check for Time Schedule or Time Automation Override Input Boolean
+  - condition: or
+    conditions:
+      - condition: time
+        before: input_datetime.light_schedule_time_before
+        after: input_datetime.light_schedule_time_after
+      - condition: state
+        entity_id: input_boolean.light_schedule_time_automation_override
+        state: 'on'
+  #Check for Library Automation Override Input Boolean
   - condition: state
     entity_id: input_boolean.library_automation_override
+    state: 'off'
+   #Check for Last Trigger for Motion Sensor 2 Automation
+  - condition: template
+    value_template: >
+        {{(as_timestamp(now()) - as_timestamp(states.automation.library_motion_sensor_2_motion_detected_switch_on_library.attributes.last_triggered | default(0)) | int > 5)}}
+  - condition: state
+    entity_id: group.library_lights_2
     state: 'off'
 
   #action
@@ -64,7 +80,7 @@
 # @Condition
 #  - Library Automation Override / Off
 # @Action:
-#  - Library Lights (x3) / Off
+#  - Library Lights (x6) / Off
 #  - Delay (300ms)
 ######################################################################################################
 - id: 'LibraryMotionSensor1MotionNotDetectedSwitchOnLibrary'

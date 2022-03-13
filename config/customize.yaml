@@ -2,20 +2,31 @@
 ## @Device: Kitchen AC
 #################################################################
 climate.1e5418e7:
-  friendly_name: Kitchen AC
-
-#################################################################
-## @Device: Kitchen Lamp
-#################################################################
-light.xiaomi_philips_smart_led_bulb:
-  friendly_name: Kitchen Lamp
-  icon: mdi:lightbulb
+  friendly_name: Kitchen Air Condition
 
 #################################################################
 ## @Device: Living Room AC
 #################################################################
 climate.1e541900:
-  friendly_name: Living Room AC
+  friendly_name: Living Room Air Condition
+
+#################################################################
+## @Device: Study AC
+#################################################################
+climate.1ebfaa4e:
+  friendly_name: Study Air Condition
+
+#################################################################
+## @Device: Nursery AC
+#################################################################
+climate.c6663ec6:
+  friendly_name: Nursery Air Condition
+
+#################################################################
+## @Device: Bedroom AC
+#################################################################
+climate.c6004175:
+  friendly_name: Bedroom Air Condition
 
 #################################################################
 ## @Device: Living Room Table Switch
@@ -79,35 +90,46 @@ sensor.battery_158d0003ce12be:
 #################################################################
 ## @Device: Hall Motion Sensor
 #################################################################
-binary_sensor.motion_sensor_158d0002413b7c:
+binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone:
   friendly_name: Hall Motion Sensor
 
-sensor.battery_158d0002413b7c:
+sensor.lumi_lumi_sensor_motion_7c3b4102_power:
   friendly_name: Hall Motion Sensor Battery
 
 #################################################################
 ## @Device: Library Motion Sensor
 #################################################################
 binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone:
-  friendly_name: Library Motion Sensor 1 [ZHA]
+  friendly_name: Library Motion Sensor 1
 
 sensor.lumi_lumi_sensor_motion_1b12ce03_power:
-  friendly_name: Library Motion Sensor 1 [ZHA] Battery
+  friendly_name: Library Motion Sensor 1 Battery
 
 #################################################################
-## @Device: Study Motion Sensor (New)
+## @Device: Library Motion Sensor 2
+#################################################################
+binary_sensor.lumi_lumi_sensor_motion_3013ce03_ias_zone:
+  friendly_name: Library Motion Sensor 2
+sensor.lumi_lumi_sensor_motion_3013ce03_power:
+  friendly_name: Library Motion Sensor 2 Battery
+
+#################################################################
+## @Device: Study Motion Sensor
 #################################################################
 binary_sensor.lumi_lumi_sensor_motion_34464102_ias_zone:
-  friendly_name: Study Motion Sensor [ZHA]
+  friendly_name: Study Motion Sensor
 
 sensor.lumi_lumi_sensor_motion_34464102_power:
-  friendly_name: Study Motion Sensor [ZHA] Battery
+  friendly_name: Study Motion Sensor Battery
 
 #################################################################
-## @Device: Study AC
+## @Device: Study Motion Sensor 2
 #################################################################
-climate.1ebfaa4e:
-  friendly_name: Study AC
+binary_sensor.lumi_lumi_sensor_motion_aq2_836eef07_ias_zone:
+  friendly_name: Study Motion Sensor 2
+
+sensor.lumi_lumi_sensor_motion_aq2_836eef07_power:
+  friendly_name: Study Motion Sensor 2 Battery
 
 #################################################################
 ## @Device: Rack Room Motion Sensor
@@ -119,6 +141,15 @@ sensor.battery_158d00023ec75f:
   friendly_name: Rack Room Motion Sensor Battery
 
 #################################################################
+## @Device: Nursery Temperature Sensor
+#################################################################
+sensor.lumi_lumi_weather_8a81f207_temperature:
+  friendly_name: Nursery Temperature
+
+sensor.lumi_lumi_weather_8a81f207_power:
+  friendly_name: Nursery Temperature Battery
+
+#################################################################
 ## @Device: Staircase Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0001e19483:
@@ -126,6 +157,15 @@ binary_sensor.motion_sensor_158d0001e19483:
 
 sensor.battery_158d0001e19483:
   friendly_name: Staircase Motion Sensor 1 Battery
+
+#################################################################
+## @Device: Staircase Motion Sensor 2
+#################################################################
+binary_sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_ias_zone:
+  friendly_name: Staircase Motion Sensor 2
+
+sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_power:
+  friendly_name: Staircase Motion Sensor 2 Battery
 
 #################################################################
 ## @Device: Bedroom Cube
@@ -214,3 +254,9 @@ sensor.battery_158d0002c628be:
 switch.spare_bathroom_water_heater_sw:
   friendly_name: Shower Water Heater
   icon: mdi:water
+
+#################################################################
+## @Device: Bedroom Switch
+#################################################################
+sensor.lumi_lumi_sensor_switch_39219a07_power:
+  friendly_name: Bedroom Switch Battery

@@ -4,14 +4,15 @@
 night_mode:
   name: Night Mode
   icon: mdi:weather-night
-
 maintenance_mode:
   name: Maintenance Mode
   icon: mdi:application-braces
-
+submarine_mode:
+  name: Submarine Mode
+  icon: mdi:submarine
 away_mode:
   name: Away Mode
-  icon: mdi:application-braces
+  icon: mdi:shield-lock
 
 ################################################################################
 ## @automation-overrides
@@ -19,19 +20,19 @@ away_mode:
 hall_automation_override:
   name: Hall Automation Override
   icon: mdi:robot
-
-rack_room_automation_override:
-  name: Rack Room Automation Override
-  icon: mdi:robot 
-
 study_automation_override:
   name: Study Automation Override
   icon: mdi:robot
-
 library_automation_override:
   name: Library Automation Override
   icon: mdi:robot
-
 main_staircase_automation_override:
   name: Main Staircase Automation Override
+  icon: mdi:robot
+
+################################################################################
+## @light time automation-override
+################################################################################
+light_schedule_time_automation_override:
+  name: Light Schedule Automation Override
   icon: mdi:robot

@@ -10,8 +10,13 @@ shower_evening_time:
   has_time: true
   initial: '16:00'
 
-chill_time:
-  name: Chill Time
+light_schedule_time_before:
+  name: Light Schedule Time - Before
   has_date: false
   has_time: true
-  initial: '19:00'
+  initial: '08:00'
+light_schedule_time_after:
+  name: Light Schedule Time - After
+  has_date: false
+  has_time: true
+  initial: '15:00'

@@ -21,15 +21,20 @@
   #trigger
   trigger:
   - platform: state
-    entity_id: binary_sensor.motion_sensor_158d0002413b7c
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone
     from: 'off'
     to: 'on'
   
   #condition
   condition:
-  - condition: time
-    before: !secret light_condition_before
-    after: !secret light_condition_after
+  - condition: or
+    conditions:
+      - condition: time
+        before: input_datetime.light_schedule_time_before
+        after: input_datetime.light_schedule_time_after
+      - condition: state
+        entity_id: input_boolean.light_schedule_time_automation_override
+        state: 'on'
   - condition: state
     entity_id: input_boolean.hall_automation_override
     state: 'off'
@@ -61,7 +66,7 @@
   #trigger
   trigger:
   - platform: state
-    entity_id: binary_sensor.motion_sensor_158d0002413b7c
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone
     from: 'on'
     to: 'off'
     

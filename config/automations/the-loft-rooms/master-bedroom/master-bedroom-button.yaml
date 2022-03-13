@@ -1,0 +1,53 @@
+######################################################################################################
+# @Automation
+# @Room: Master Bedroom
+# @Alias: Bedroom Button / Single Click / Toggle Bedroom Bulb 1
+######################################################################################################
+- id: BedroomButtonSingleClickToggleBedroomBulb1
+  alias: Bedroom Button / Single Click / Toggle Bedroom Bulb 1
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: fb4442a9c9774fa16348482736f8b2a4
+        command: click
+
+  condition:
+    - condition: template
+      value_template: "{{trigger.event.data.args.click_type == 'single'}}"
+
+  #action
+  action:
+    - service: light.toggle
+      data:
+        entity_id:
+          - light.bedroom_bulb_1
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Master Bedroom
+# @Alias: Bedroom Button / Double Click / Toggle Submarine Mode
+######################################################################################################
+- id: BedroomButtonDoubleClickToggleSubmarineMode
+  alias: Bedroom Button / Double Click / Toggle Submarine Mode
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: fb4442a9c9774fa16348482736f8b2a4
+        command: click
+
+  condition:
+    - condition: template
+      value_template: "{{trigger.event.data.args.click_type == 'double'}}"
+
+  #action
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.submarine_mode
+  mode: single

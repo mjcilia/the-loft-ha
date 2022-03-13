@@ -22,13 +22,6 @@
     - light.office_light_2
 
 - platform: group
-  name: Rack Room Lights
-  entities:
-    - light.rack_room_bulb_1
-    - light.rack_room_bulb_2
-    - light.rack_room_bulb_3
-
-- platform: group
   name: Hall Lights
   entities:
     - light.hall_bulb
@@ -54,6 +47,3 @@
     - light.philips_ltg002_f2c87209_level_light_color_on_off
     - light.philips_ltg002_3fb26c09_level_light_color_on_off
     - light.philips_ltg002_ae417109_level_light_color_on_off
-
-    
-    
