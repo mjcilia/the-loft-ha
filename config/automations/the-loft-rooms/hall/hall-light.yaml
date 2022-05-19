@@ -1,3 +1,8 @@
+######################################################################################################
+# @Automation
+# @Room: Hall
+# @Alias: Hall Light / On / Brightness
+######################################################################################################
 - id: 'HallLightOnBrightness'
   alias: Hall Light / On / Brightness
   description: 'Adjust Hall Light Color'
@@ -19,13 +24,14 @@
             - condition: state
               entity_id: input_boolean.night_mode
               state: 'on'
-          # Set Kitchen Bulbs in Dimmed Mode   
+          # Set Hall Bulb in Dimmed Mode   
           sequence:
             - service: light.turn_on
               target:
                 entity_id: light.hall_bulb
               data:
-                brightness_pct: 20
+                brightness_pct: 5
+    
       default:
         # Set Kitchen Bulbs in Non Dimmed Mode  
         - service: light.turn_on
@@ -33,4 +39,5 @@
             entity_id: light.hall_bulb
           data:
             brightness_pct: 100
+            
   mode: single

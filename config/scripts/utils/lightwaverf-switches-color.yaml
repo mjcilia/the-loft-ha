@@ -2,17 +2,47 @@ lightwaverf_switch_color:
   alias: Lightwaverf / Switches / Color
   sequence:
   # Set Dining Room Light Switch 
-  - service: lightwave2.set_led_rgb
+  - service: light.turn_on
     data:
-      entity_id: light.dining_room_lights
-      rgb: '#ffffff'
-  # Set Living Room Light Switch
-  - service: lightwave2.set_led_rgb
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.dining_room_lights_led
+  
+  - service: light.turn_on
     data:
-      entity_id: light.living_room_lights
-      rgb: '#ffffff'
-  # Set Office Light Switch
-  - service: lightwave2.set_led_rgb
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.dining_room_lights_led_2
+
+  # Set Living Room Light Switch 
+  - service: light.turn_on
     data:
-      entity_id: light.office_light_1
-      rgb: '#ffffff'
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.living_room_lights_led
+
+  # Set Office Light Switch 
+  - service: light.turn_on
+    data:
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.office_light_2_led
+  
+  - service: light.turn_on
+    data:
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.office_light_2_led_2
+
+ # Set Nursery Light Switch 
+  - service: light.turn_on
+    data:
+      color_name: white
+      brightness: 170
+    target:
+      entity_id: light.nursery_light_led

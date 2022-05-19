@@ -1,22 +1,10 @@
 ######################################################################################################
 # @Automation
 # @Room: Hall
-# @Alias: Hall Motion Sensor / Motion Detected / Switch On Hall
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Detected
-# @Condition:
-#  - Time / 08:00 / 16:00
-#  - Hall Automation Override Off
-# @Action:
-#  - Hall Light / On
+# @Alias: Hall Motion Sensor / Motion / Hall Light
 ######################################################################################################
-- id: 'HallMotionSensorMotionDetectedSwitchOnHall'
-  alias: Hall Motion Sensor / Motion Detected / Switch On Hall
+- id: 'HallMotionSensorMotionHallLight'
+  alias: Hall Motion Sensor / Motion / Hall Light
 
   #trigger
   trigger:
@@ -41,41 +29,39 @@
   
   #action
   action:
-  - entity_id: light.hall_bulb
-    service: light.turn_on
+  - service: light.turn_on
+    target: light.hall_bulb
+  - wait_for_trigger:
+      platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone
+      from: "on"
+      to: "off"
+  - delay:
+      seconds: 30
+  - service: light.turn_off
+    target: light.hall_bulb
 
 ######################################################################################################
 # @Automation
 # @Room: Hall
 # @Alias: Hall Motion Sensor / Motion Not Detected / Switch Off Hall
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Not Detected
-# @Condition:
-#  - Hall Automation Override Off
-# @Action:
-#  - Hall Light / Off
 ######################################################################################################
-- id: 'HallMotionSensorMotionNotDetectedSwitchOffHall'
-  alias: Hall Motion Sensor / Motion Not Detected / Switch Off Hall
+# - id: 'HallMotionSensorMotionNotDetectedSwitchOffHall'
+#   alias: Hall Motion Sensor / Motion Not Detected / Switch Off Hall
 
-  #trigger
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone
-    from: 'on'
-    to: 'off'
+#   #trigger
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.lumi_lumi_sensor_motion_7c3b4102_ias_zone
+#     from: 'on'
+#     to: 'off'
     
-  condition:
-  - condition: state
-    entity_id: input_boolean.hall_automation_override
-    state: 'off'
+#   condition:
+#   - condition: state
+#     entity_id: input_boolean.hall_automation_override
+#     state: 'off'
   
-  #action
-  action:
-  - service: light.turn_off
-    entity_id: light.hall_bulb
+#   #action
+#   action:
+#   - service: light.turn_off
+#     entity_id: light.hall_bulb

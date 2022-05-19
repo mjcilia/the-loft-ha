@@ -1,0 +1,24 @@
+######################################################################################################
+# @Automation
+# @Alias: Night Mode / On / Off
+######################################################################################################
+- id: 'NightModeOnOff'
+  alias: Night Mode / On / Off
+  description: 'Runs Night Mode Script on State Change'
+  
+  #trigger
+  trigger:
+  - entity_id: input_boolean.night_mode
+    platform: state
+    from: 'off'
+    to: 'on'
+
+  # action
+  action:
+  - service: script.routine_night
+  - wait_for_trigger:
+      platform: state
+      entity_id: input_boolean.night_mode
+      from: "on"
+      to: "off"
+  - service: script.routine_night_off

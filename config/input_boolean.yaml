@@ -13,6 +13,9 @@ submarine_mode:
 away_mode:
   name: Away Mode
   icon: mdi:shield-lock
+wfh_mode:
+  name: Working From Home Mode
+  icon: mdi:desk-lamp
 
 ################################################################################
 ## @automation-overrides

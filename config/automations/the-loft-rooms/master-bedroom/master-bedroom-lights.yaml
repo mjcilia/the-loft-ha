@@ -19,6 +19,7 @@
   action:
     - alias: "Set Light and Dim Lights if Night Mode On"
       choose:
+
         # IF Night Mode On
         - conditions:
             - condition: state
@@ -31,7 +32,8 @@
               entity_id:
                 - light.bedroom_bulb_1
               kelvin: 4200
-              brightness: 15
+              brightness: 1
+
       default:
         - service: yeelight.set_color_temp_scene
           data:
@@ -74,7 +76,7 @@
               entity_id:
                 - light.bedroom_bulb_2
               kelvin: 4200
-              brightness: 15
+              brightness: 1
       default:
         - service: yeelight.set_color_temp_scene
           data:

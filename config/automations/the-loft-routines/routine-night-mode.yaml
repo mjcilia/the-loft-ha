@@ -1,12 +1,6 @@
 ######################################################################################################
 # @Automation
 # @Alias: Routine / Night Mode / Turn On
-# @Trigger:
-#  - Time / 23:59:00
-# @Condition:
-#  - Night Mode / Off
-# @Action:
-#  - Night Mode / On
 ######################################################################################################
 - id: 'RoutineNightModeTurnOn'
   alias: Routine / Night Mode / Turn On
@@ -32,12 +26,6 @@
 ######################################################################################################
 # @Automation
 # @Alias: Routine / Night Mode / Turn Off
-# @Trigger:
-#  - Time / 06:00:00
-# @Condition:
-#  - Night Mode / On
-# @Action:
-#  - Night Mode / Off
 ######################################################################################################
 - id: 'RoutineNightModeTurnOff'
   alias: Routine / Night Mode / Turn Off

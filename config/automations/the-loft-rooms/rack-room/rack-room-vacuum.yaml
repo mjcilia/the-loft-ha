@@ -58,14 +58,8 @@
 
 ######################################################################################################
 # @Automation
+# @Room: Nursery
 # @Alias: Vacuum / Finish House / Away / Notification
-# @Device: Xiaomi Vacuum (1st Generation)
-# @Trigger:
-#  - Vacuum / Cleaning to Docked
-# @Condition:
-#  - The Loft Members / Away
-# @Action:
-#  - Notify / Mobile App
 ######################################################################################################
 - id: 'VacuumFinishHouseAwayNotification'
   alias: 'Vacuum / Finish House / Away / Notification'
@@ -81,7 +75,7 @@
   condition:
   - condition: state
     entity_id: 'group.the_loft_members'
-    state: 'away'
+    state: 'not_home'
 
   #action
   action:
@@ -94,14 +88,8 @@
 
 ######################################################################################################
 # @Automation
+# @Room: Nursery
 # @Alias: Vacuum / Finish Room / Home / Notification
-# @Device: Xiaomi Vacuum (1st Generation)
-# @Trigger:
-#  - Vacuum / Cleaning to Idle
-# @Condition:
-#  - The Loft Members / Home
-# @Action:
-#  - Notify / Living Room Soundbar
 ######################################################################################################
 - id: 'VacuumFinishRoomHomeNotification'
   alias: 'Vacuum / Finish Room / Home / Notification'

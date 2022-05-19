@@ -1,0 +1,49 @@
+######################################################################################################
+# @Automation
+# @Alias: Power Outage
+######################################################################################################
+- id: "PowerOutage"
+  alias: "Power Outage"
+  
+  # trigger
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_input_voltage
+      below: '120'
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OL'
+      to: 'OB DISCHRG'
+  
+  #action
+  action:
+    - service: script.notify_base_app
+      data:
+        title: "The Loft Alert."
+        message: "Looks like there is a Power Failure!"
+
+######################################################################################################
+# @Automation
+# @Alias: Power Restored
+######################################################################################################
+- id: "PowerRestored"
+  alias: "Power Restored"
+  
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OB DISCHRG'
+      to: 'OL CHRG'
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OB DISCHRG'
+      to: 'OL'
+  
+  #action
+  action:
+    - service: script.homeassistant_power_outage
+    - service: script.notify_base_app
+      data:
+        title: "The Loft Alert."
+        message: "Power has been Restored!"

@@ -13,29 +13,12 @@
   
   #action
   action:
-    - alias: 'Set Light and Dim Lights if Night Mode On' 
-      choose:
-        # IF Night Mode On
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.night_mode
-              state: 'on'
-          # Set Kitchen Bulbs in Dimmed Mode   
-          sequence:
-            - service: yeelight.set_color_scene
-              data:
-                entity_id:
-                  - light.kitchen_bulb_1
-                  - light.kitchen_bulb_2
-                rgb_color: [255,221,194]
-                brightness: 100
-      default:
-        # Set Kitchen Bulbs in Non Dimmed Mode  
-        - service: yeelight.set_color_scene
-          data:
-            entity_id:
-              - light.kitchen_bulb_1
-              - light.kitchen_bulb_2
-            rgb_color: [255,187,130]
-            brightness: 100
+    # Set Kitchen Bulbs in Non Dimmed Mode  
+    - service: yeelight.set_color_scene
+      data:
+        entity_id:
+          - light.kitchen_bulb_1
+          - light.kitchen_bulb_2
+        rgb_color: [255,187,130]
+        brightness: 100
   mode: parallel

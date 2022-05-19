@@ -1,0 +1,82 @@
+######################################################################################################
+# @Automation
+# @Room: Living
+# @Alias: Living / Switch / Single Click
+######################################################################################################
+- id: "LivingSwitchSingleClick"
+  alias: Living / Switch / Single Click
+  description: "Set Light to 100"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.living_room_lights"
+        code: 257
+
+  #action
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lights
+      data:
+        brightness: 100
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Living
+# @Alias: Living / Switch / Double Click
+######################################################################################################
+- id: "LivingSwitchDoubleClick"
+  alias: Living / Switch / Double Click
+  description: "Set Light to 170"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.living_room_lights"
+        code: 258
+
+  #action
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lights
+      data:
+        brightness: 170
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Living
+# @Alias: Living / Switch / Triple Click
+######################################################################################################
+- id: "LivingSwitchTripleClick"
+  alias: Living / Switch / Triple Click
+  description: "Set Light to 255"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.living_room_lights"
+        code: 259
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.living_room_lights"
+        code: 768
+
+  #action
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room_lights
+      data:
+        brightness: 255
+
+  mode: single

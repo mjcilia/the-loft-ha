@@ -25,6 +25,12 @@ google_actions:
       - light.hall_lights
       - light.library_lights
       - light.kitchen_lights
+      - light.dining_room_lights_led
+      - light.dining_room_lights_led_2
+      - light.living_room_lights_led
+      - light.office_light_2_led
+      - light.office_light_2_led_2
+      - light.linkplus_led
       - switch.1e5418e7_panel_light
       - switch.1e5418e7_panel_light_2
       - switch.1e5418e7_fresh_air

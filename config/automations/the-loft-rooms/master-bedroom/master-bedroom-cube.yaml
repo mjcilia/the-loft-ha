@@ -1,15 +1,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Bedroom
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger:
-#  - Bedroom Cube / Shake
-# @Action:
-#  - Toggle / Bedroom Lights
-#  - Hall Light / Off
+# @Alias: Bedroom Cube / Shake / Toggle Bedroom Lights
 ######################################################################################################
 - id: BedroomCubeShakeAlertToggleBedroomLights
   alias: Bedroom Cube / Shake / Toggle Bedroom Lights
@@ -29,23 +21,16 @@
       entity_id: 
         - light.bedroom_bulb_1
         - light.bedroom_bulb_2
-      brightness: 50
-      transition: 1
+      
   - service: light.turn_off
-    entity_id: light.hall_bulb
+    entity_id: light.hall_lights
+
   mode: single
 
 ######################################################################################################
 # @Automation
 # @Room: Bedroom
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger:
-#  - Bedroom Cube / Flip 90
-# @Action:
-#  - Toggle / Bedroom Bulb 1
+# @Alias: Bedroom Cube / Flip90 / Toggle Bedroom Light 1
 ######################################################################################################
 - id: BedroomCubeFlip90ToggleBedroomLight1
   alias: Bedroom Cube / Flip90 / Toggle Bedroom Light 1
@@ -63,21 +48,12 @@
   - service: light.toggle
     data:
       entity_id: light.bedroom_bulb_1
-      brightness: 50
-      transition: 1
   mode: single
 
 ######################################################################################################
 # @Automation
 # @Room: Bedroom
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger:
-#  - Bedroom Cube / Flip 180
-# @Action:
-#  - Toggle / Bedroom Bulb 2
+# @Alias: Bedroom Cube / Flip90 / Toggle Bedroom Light 2
 ######################################################################################################
 - id: BedroomCubeFlip180ToggleBedroomLight2
   alias: Bedroom Cube / Flip180 / Toggle Bedroom Light 2
@@ -95,22 +71,12 @@
   - service: light.toggle
     data:
       entity_id: light.bedroom_bulb_2
-      brightness: 50
-      transition: 1
   mode: single
 
 ######################################################################################################
 # @Automation
 # @Room: Bedroom
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger:
-#  - Bedroom Cube / Tap Twice
-# @Action:
-#  - Script / Off / Bedroom / Lights
-#  - Script / Off / Hall / Lights
+# @Alias: Bedroom Cube / Tap Twice / Switch Off Bedroom and Hall Lights
 ######################################################################################################
 - id: BedroomCubeTapTwiceSwitchOffBedroomAndHallLights
   alias: Bedroom Cube / Tap Twice / Switch Off Bedroom and Hall Lights
@@ -125,22 +91,20 @@
   
   #action
   action:
-  - service: script.turn_off_bedroom_lights
-  - service: script.turn_off_hall_light
+  - service: light.turn_off
+    data:
+      entity_id: 
+        - light.bedroom_bulb_1
+        - light.bedroom_bulb_2
+        - light.hall_lights
+
   mode: single
 
-#################################################################
+######################################################################################################
 # @Automation
-# @Room: Master Bedroom
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Trigger:
-#  - Bedroom Cube / Rotate
-# @Action:
-#  - Increase/Decrease / Bedroom Lights / Brightness
-#################################################################
+# @Room: Bedroom
+# @Alias: Bedroom Cube / Rotate / Brightness Bedroom Lights
+######################################################################################################
 - id: BedroomCubeRotateBrightnessBedroomLights
   alias: Bedroom Cube / Rotate / Brightness Bedroom Lights
   description: 'Increases/Decreases Light brightness depending on cube rotation.'

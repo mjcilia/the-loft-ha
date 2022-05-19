@@ -2,15 +2,6 @@
 # @Automation
 # @Room: Living Room
 # @Alias: Living Room Button / Single Click / Toggle Living Room Bulb
-# @Device: Xiaomi Mi Wireless Switch
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
-# switch-for-mi-smart-home/category/759/
-# @Device: Teckin Smart Plug
-# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
-# @Trigger:
-#  - Mi Wireless Switch / Single Click
-# @Action:
-#  - Toggle Living Room Bulb
 ######################################################################################################
 - id: 'LivingRoomButtonSingleClickToggleLivingRoomBulb'
   alias: Living Room Button / Single Click / Toggle Living Room Bulb
@@ -33,15 +24,6 @@
 # @Automation
 # @Room: Living Room
 # @Alias: Living Room Button / Double Click / Toggle Living Room Light
-# @Device: Xiaomi Mi Wireless Switch
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
-# switch-for-mi-smart-home/category/759/
-# @Device: LightWave Smart Dimmer (2 Gang)
-# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
-# @Trigger:
-#  - Mi Wireless Switch / Double Click
-# @Action:
-#  - Toggle Living Room Lights (Front Light)
 ######################################################################################################
 - id: 'LivingRoomButtonDoubleClickToggleLivingRoomLight'
   alias: Living Room Button / Double Click / Toggle Living Room Light
@@ -66,13 +48,6 @@
 # @Automation
 # @Room: Living Room
 # @Alias: Living Room Button / Long Press Click / Routine / Night
-# @Device: Xiaomi Mi Wireless Switch
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23930/s/xiaomi-mi-wireless-
-# switch-for-mi-smart-home/category/759/
-# @Trigger:
-#  - Mi Wireless Switch / Long Press Click 
-# @Action:
-#  - Routine / Goodnight
 ######################################################################################################
 - id: 'LivingRoomButtonLongPressClickRoutineNight'
   alias: Living Room Button / Long Press Click / Routine / Night
@@ -87,4 +62,5 @@
   
   #action
   action:
-    service: script.routine_night
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.night_mode

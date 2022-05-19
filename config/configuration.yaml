@@ -32,10 +32,13 @@ light: !include light.yaml
 ################################################################################
 
 ################################################################################
-## @integration: Yeelight
-## @integration_url: https://www.home-assistant.io/integrations/yeelight/
+## @integration: Sonos
+## @integration_url: https://www.home-assistant.io/integrations/sonos/
 ################################################################################
-yeelight: !include yeelight.yaml
+sonos:
+  media_player:
+    hosts:
+      - !secret sonos_living_room_soundbar
 
 ################################################################################
 ## @integration: Sonoff
@@ -64,23 +67,23 @@ google:
   client_secret: !secret google_client_secret
   track_new_calendar: false
 
-webostv:
-  - name: Living Room TV
-    host: !secret webostv_host
-    turn_on_action:
-      service: wake_on_lan.send_magic_packet
-      data:
-        mac: !secret webostv_mac
-    customize:
-      sources:
-        - Plex
-        - youtube
-        - netflix
-        - PS4
-        - Melita
-        - Smart IPTV   
+# webostv:
+#   - name: Living Room TV
+#     host: !secret webostv_host
+#     turn_on_action:
+#       service: wake_on_lan.send_magic_packet
+#       data:
+#         mac: !secret webostv_mac
+#     customize:
+#       sources:
+#         - Plex
+#         - youtube
+#         - netflix
+#         - PS4
+#         - Melita
+#         - Smart IPTV   
 
-wake_on_lan:
+wake_on_lan: # enables `wake_on_lan` integration
 
 xiaomi_aqara:
   discovery_retry: 10

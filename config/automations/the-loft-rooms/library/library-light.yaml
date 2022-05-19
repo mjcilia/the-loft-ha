@@ -2,12 +2,6 @@
 # @Automation
 # @Room: Library
 # @Alias: Library Lights / On / Set Color
-# @Device: Philips Hue White Ambience (GU10)
-# @Device_URL: https://www.philips-hue.com/en-us/p/hue-white-ambiance-2-pack-gu10/046677542405
-# @Trigger:
-#  - Library Lights (x3) / On
-# @Action:
-#  - Set Library Light Color
 ######################################################################################################
 - id: "LibraryLightsOnSetColor"
   alias: Library Lights / On / Set Color
@@ -41,7 +35,7 @@
               target:
                 entity_id: "{{ trigger.entity_id }}"
               data:
-                brightness: 170
+                brightness: 60
                 color_temp: 345
       default:
         # Set Library Bulbs in Non Dimmed Mode

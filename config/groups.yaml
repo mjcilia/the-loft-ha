@@ -15,6 +15,7 @@ staircase_motion_sensors:
     - binary_sensor.motion_sensor_158d0001e19483
     - binary_sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_ias_zone
   all: false
+  
 study_motion_sensors:
   name: Study Motion Sensors
   icon: mdi:motion-sensor

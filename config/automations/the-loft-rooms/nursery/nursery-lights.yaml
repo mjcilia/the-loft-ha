@@ -1,0 +1,82 @@
+######################################################################################################
+# @Automation
+# @Room: Nursery
+# @Alias: Nursery / Switch / Single Click
+######################################################################################################
+- id: "NurserySwitchSingleClick"
+  alias: Nursery / Switch / Single Click
+  description: "Set Light to 100"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.nursery_light"
+        code: 257
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.nursery_light
+        brightness: 100
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Nursery
+# @Alias: Nursery / Switch / Double Click
+######################################################################################################
+- id: "NurserySwitchDoubleClick"
+  alias: Nursery / Switch / Double Click
+  description: "Set Light to 170"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.nursery_light"
+        code: 258
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.nursery_light
+        brightness: 170
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Nursery
+# @Alias: Nursery / Switch / Triple Click
+######################################################################################################
+- id: "NurserySwitchTripleClick"
+  alias: Nursery / Switch / Triple Click
+  description: "Set Light to 255"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.nursery_light"
+        code: 259
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.nursery_light"
+        code: 768
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.nursery_light
+        brightness: 255
+
+  mode: single

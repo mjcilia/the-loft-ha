@@ -47,3 +47,15 @@
     - light.philips_ltg002_f2c87209_level_light_color_on_off
     - light.philips_ltg002_3fb26c09_level_light_color_on_off
     - light.philips_ltg002_ae417109_level_light_color_on_off
+
+- platform: group
+  name: WIFI Lights
+  entities:
+    - light.kitchen_bulb_1
+    - light.kitchen_bulb_2
+    - light.kitchen_lamp
+    - light.hall_bulb
+    - light.bedroom_bulb_1
+    - light.bedroom_bulb_2
+    - light.mainstaircase_bulb_1
+    - light.mainstaircase_bulb_2

@@ -2,19 +2,6 @@
 # @Automation
 # @Room: Kitchen
 # @Alias: Kitchen Motion Sensor / Motion Detected / Switch On Kitchen Lights
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Detected
-# @Condition:
-#  - Night Mode / On
-# @Action:
-#  - Kitchen Bulb 1 / On
-#  - Kitchen Bulb 2 / On
-#  - Kitchen Lamp / On
 ######################################################################################################
 - id: 'KitchenMotionSensorMotionDetectedSwitchOnKitchenLights'
   alias: Kitchen Motion Sensor / Motion Detected / Switch On Kitchen Lights
@@ -36,28 +23,13 @@
   action:
   - service: light.turn_on
     entity_id: 
-      - light.kitchen_bulb_1
-      - light.kitchen_bulb_2
-      - light.xiaomi_philips_smart_led_bulb
+      - light.kitchen_lamp
     
 
 ######################################################################################################
 # @Automation
 # @Room: Kitchen
 # @Alias: Kitchen Motion Sensor / Motion Detected / Switch On Kitchen Lamp
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Not Detected
-# @Condition:
-#  - Night Mode / On
-# @Action:
-#  - Kitchen Bulb 1 / Off
-#  - Kitchen Bulb 2 / Off
-#  - Kitchen Lamp / Off
 ######################################################################################################
 - id: 'KitchenMotionSensorMotionNotDetectedSwitchOffKitchenLights'
   alias: Kitchen Motion Sensor / Motion Not Detected / Switch Off Kitchen Lights
@@ -79,6 +51,4 @@
   action:
   - service: light.turn_off
     entity_id: 
-      - light.kitchen_bulb_1
-      - light.kitchen_bulb_2
-      - light.xiaomi_philips_smart_led_bulb
+      - light.kitchen_lamp

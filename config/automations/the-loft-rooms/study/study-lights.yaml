@@ -1,0 +1,149 @@
+######################################################################################################
+# @Automation
+# @Room: Study
+# @Alias: Study / Switch 1 / Switch 2 / Single Click / Up
+######################################################################################################
+- id: "StudySwitch1Switch2SingleClickUp"
+  alias: Study / Switch 1 / Switch 2 / Single Click / Up
+  description: "Set Light to 100"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 257
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 257
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 170
+        entity_id: "{{ trigger.event.data.entity_id }}"
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Study
+# @Alias: Study / Switch 1 / Switch 2 / Double Click / Up
+######################################################################################################
+- id: "StudySwitch1Switch2DoubleClickUp"
+  alias: Study / Switch 1 / Switch 2 / Double Click / Up
+  description: "Set Light to 170"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 258
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 258
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 255
+        entity_id: "{{ trigger.event.data.entity_id }}"
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Study
+# @Alias: Study / Switch 1 / Switch 2 / Triple Click / Long Press / Up
+######################################################################################################
+- id: "StudySwitch1Switch2TripleClickLongPressUp"
+  alias: Study / Switch 1 / Switch 2 / Triple Click / Long Press / Up
+  description: "Set Light to 255"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 259
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 768
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 259
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 768
+
+  #action
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 255
+        entity_id:
+          - light.office_light_1
+          - light.office_light_2
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.wfh_mode
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Study
+# @Alias: Study / Switch 1 / Switch 2 / Triple Click / Long Press /  Down
+######################################################################################################
+- id: "StudySwitch1Switch2TripleClickLongPressDown"
+  alias: Study / Switch 1 / Switch 2 / Triple Click / Long Press / Down
+  description: "Switch Off Lights and Turn Off WFH Mode"
+
+  #trigger
+  trigger:
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 1103
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_1"
+        code: 4864
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 1103
+    - platform: event
+      event_type: lightwave2.click
+      event_data:
+        entity_id: "light.office_light_2"
+        code: 4864
+
+  #action
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.office_light_1
+        - light.office_light_2
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.wfh_mode
+
+  mode: single

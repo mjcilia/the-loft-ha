@@ -2,30 +2,29 @@ routine_night:
   alias: Routine / Good Night
   sequence:
 
-  # turn on kitchen, living room, library(3) and hall light
+  # turn on kitchen lamp, hall and bedroom bulb 1
   - service: light.turn_on
-    entity_id: 
-      - light.kitchen_bulb_1
-      - light.kitchen_bulb_2
-      - light.xiaomi_philips_smart_led_bulb
-      - light.living_room_lights
-      - light.philips_ltg002_07a6cd08_level_light_color_on_off
-      - light.philips_ltg002_0e63c908_level_light_color_on_off
-      - light.philips_ltg002_3fb26c09_level_light_color_on_off
+    entity_id:
+      - light.kitchen_lamp
       - light.hall_bulb
       - light.bedroom_bulb_1
-      - light.bedroom_bulb_2
+
+  # turn on living room lamp
+  - service: switch.turn_on
+    entity_id:
+      - switch.living_room_bulb_1_socket_1
 
   # check doors and windows
   - service: script.turn_on
     entity_id: script.doors_windows_check
 
-  # turn off air conditioners
+  # turn off air conditioners (apart from Main Bedroom)
   - service: climate.turn_off
     entity_id:
       - climate.1ebfaa4e
       - climate.1e5418e7
       - climate.1e541900
+      - climate.c6663ec6
   
   # turn off media
   - service: media_player.turn_off
@@ -38,55 +37,52 @@ routine_night:
   # turn off lights
   - service: light.turn_off
     entity_id: 
-      - light.rack_room_bulb_1
-      - light.rack_room_bulb_2
-      - light.rack_room_bulb_3
+      - light.kitchen_bulb_1
+      - light.kitchen_bulb_2
       - light.mainstaircase_bulb_1
       - light.mainstaircase_bulb_2
+      - light.nursery_light
       - light.office_light_1
       - light.office_light_2
       - light.dining_room_lights
       - light.dining_room_lights_2
-      - light.philips_ltg002_ae417109_level_light_color_on_off
-      - light.philips_ltg002_f2c87209_level_light_color_on_off
+      - light.living_room_lights_2
+      - light.philips_ltg002_07a6cd08_level_light_color_on_off
       - light.philips_ltg002_ce567909_level_light_color_on_off
+      - light.philips_ltg002_0e63c908_level_light_color_on_off
+      - light.philips_ltg002_f2c87209_level_light_color_on_off
+      - light.philips_ltg002_3fb26c09_level_light_color_on_off
+      - light.philips_ltg002_ae417109_level_light_color_on_off
   
   # turn off smart plugs
   - service: switch.turn_off
     entity_id:
-      - switch.living_room_bulb_1_socket_1
       - switch.bedroom_bulb_3_socket_1
   
-  # delay
-  - delay: "00:04:00"
+  # Disable library automation
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.library_automation_override
 
-  # turn off / living room
-  - service: light.turn_off
-    entity_id: 
-      - light.living_room_lights
-      
   # delay
   - delay: "00:04:00"
 
   # turn off / kitchen
   - service: light.turn_off
     entity_id: 
-      - light.kitchen_bulb_1
-      - light.kitchen_bulb_2
-      - light.xiaomi_philips_smart_led_bulb
+      - light.kitchen_lamp
 
-  # delay
-  - delay: "00:00:30"
+  # turn off living room lamp
+  - service: switch.turn_off
+    entity_id:
+      - switch.living_room_bulb_1_socket_1
+  
+  mode: single
 
-  # turn off / library
-  - service: light.turn_off
-    entity_id: 
-      - light.philips_ltg002_07a6cd08_level_light_color_on_off
-      - light.philips_ltg002_0e63c908_level_light_color_on_off
-      - light.philips_ltg002_3fb26c09_level_light_color_on_off
-
-  # turn on night boolean
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.night_mode
+routine_night_off:
+  alias: Routine / Good Night / Off
+  sequence:
+    # Enable Library automation
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.library_automation_override
 
   mode: single

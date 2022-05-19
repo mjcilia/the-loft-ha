@@ -1,15 +1,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Dining Room
-# @Description: Toggles Dining Room Lights on Cube Shake
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: LightWave Smart Dimmer (2 Gang)
-# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
-# @Trigger:
-#  - Dining Room Cube / Shake
-# @Action:
-#  - Toggle / Dining Room Lights
+# @Alias: Dining Room Cube / Shake / Toggle Dining Room Lights
 ######################################################################################################
 - id: 'DiningRoomCubeShakeToggleDiningRoomLights'
   alias: Dining Room Cube / Shake / Toggle Dining Room Lights
@@ -36,15 +28,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Dining Room
-# @Description: Toggles Living room switch on Cube flip90
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Teckin Smart Plug
-# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
-# @Trigger:
-#  - Dining Room Cube / Flip90
-# @Action:
-#  - Toggle / Living Room Bulb/Switch
+# @Alias: Dining Room Cube / Flip90 / Toggle Living Room Bulb
 ######################################################################################################
 - id: DiningRoomCubeFlip90ToggleLivingRoomBulb
   alias: Dining Room Cube / Flip90 / Toggle Living Room Bulb
@@ -68,15 +52,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Dining Room
-# @Description: Switches on TV on News Channel on Cube flip180
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Teckin Smart Plug
-# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
-# @Trigger:
-#  - Dining Room Cube / Flip180
-# @Action:
-#  - Script / Living Room TV / TVM
+# @Alias: Dining Room Cube / Flip180 / Living Room TV / TVM
 ######################################################################################################
 - id: DiningRoomCubeFlip180LivingRoomTVTVM
   alias: Dining Room Cube / Flip180 / Living Room TV / TVM
@@ -98,16 +74,7 @@
 ######################################################################################################
 # @Automation
 # @Room: Dining Room
-# @Description: Increases/Decreases Sonos Beam Volume depending
-# on cube rotation.
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Sonos Beam
-# @Device_URL: https://www.sonos.com/en/shop/beam.html
-# @Trigger:
-#  - Dining Room Cube / Rotate
-# @Action:
-#  - Increase/Decrease Sonos Beam Volume
+# @Alias: Dining Room Cube / Rotate / Sonos Beam Volume
 ######################################################################################################
 - id: DiningRoomCubeRotateSonosBeamVolume
   alias: Dining Room Cube / Rotate / Sonos Beam Volume
@@ -146,27 +113,6 @@
 # @Automation
 # @Room: Dining Room
 # @Alias: Dining Room Cube / Tap Twice / Switch Off / Rooms (Kitchen/Living/Dining)
-# @Description: Switch off Kitchen, Living and Dining Room when tapping cube twice.
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Device: Yeelight LED Bulb 1S (White)
-# @Device_URL: https://en.yeelight.com/product/819.html
-# @Device: LightWave Smart Dimmer (2 Gang)
-# @Device_URL: https://lightwaverf.com/collections/all/products/l22-smart-dimmer-2-gang
-# @Device: Teckin Smart Plug
-# @Device_URL: https://www.teckinhome.com/%E5%89%AF%E6%9C%AC-ss30-new
-# @Device: Sonos Beam
-# @Device_URL: https://www.sonos.com/en/shop/beam.html
-# @Device: Google Hub Max
-# @Device_URL: https://store.google.com/us/product/google_nest_hub_max?hl=en-US
-# @Trigger:
-#  - Dining Room Cube / Tap Twice
-# @Action:
-#  - Switch Off / Lights / Kitchen
-#  - Switch Off / Lights / Living
-#  - Switch Off / Lights / Dining
-#  - Switch Off / Media / Kitchen
-#  - Switch Off / Media / Living
 ######################################################################################################
 - id: DiningRoomCubeTapTwiceSwitchOffKitchenLivingDining
   alias: Dining Room Cube / Tap Twice / Switch Off / Rooms (Kitchen/Living/Dining)
@@ -196,36 +142,5 @@
         - media_player.kitchen_display
         - media_player.living_room_tv
         - media_player.living_room_soundbar
-
-  mode: single
-
-######################################################################################################
-# @Automation
-# @Room: Dining Room
-# @Alias: Dining Room Cube / Free Fall / Living Room TV / Channel Down
-# @Description: Shannel Down when cube in free fall.
-# @Device: Aqara Magic Cube
-# @Device_URL: https://www.aqara.com/us/cube.html
-# @Trigger:
-#  - Dining Room Cube / Free Fall
-# @Action:
-#  - Script / Living Room TV Channel Down
-######################################################################################################
-
-- id: DiningRoomCubeFreeFallLivingRoomTVChannelDown
-  alias: Dining Room Cube / Free Fall / Living Room TV / Channel Down
-  description: 'Channel Down when cube in free fall'
-
-  #trigger
-  trigger:
-  - platform: event
-    event_type: xiaomi_aqara.cube_action
-    event_data:
-      entity_id: binary_sensor.cube_158d0005d41224
-      action_type: free_fall
-
-  #action
-  action:
-    - service: script.living_room_tv_channel_down
 
   mode: single

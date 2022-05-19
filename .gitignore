@@ -10,12 +10,13 @@ custom_components
 image
 tts
 .misc
+nest
 
 # Ignored Entry Files
 home-assistant.log
-home-assistant_v2.db
-home-assistant_v2.db-shm
-home-assistant_v2.db-wal
+home-assistant.log.*
+home-assistant_v2
+home-assistant_v2.*
 secrets.yaml
 
 # Ignored Integration Generated Files
