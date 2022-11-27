@@ -18,6 +18,9 @@
   - condition: state
     entity_id: input_boolean.night_mode
     state: 'on'
+  - condition: state
+    entity_id: input_boolean.kitchen_automation_override
+    state: 'off'
   
   #action
   action:
@@ -46,6 +49,9 @@
   - condition: state
     entity_id: input_boolean.night_mode
     state: 'on'
+  - condition: state
+    entity_id: input_boolean.kitchen_automation_override
+    state: 'off'
   
   #action
   action:

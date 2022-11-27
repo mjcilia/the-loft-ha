@@ -1,0 +1,65 @@
+######################################################################################################
+# @Script
+# @Alias: Home Assistant / Power Outage
+######################################################################################################
+homeassistant_power_outage:
+  alias: 'HomeAssistant / Power Outage'
+  description: 'Switches off Wifi and Zigbee Based Lights'
+  sequence:
+    - choose:
+        # IF Maintenance Mode Off
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.maintenance_mode
+              state: 'off'
+          # Notify and Turn Off All lights (Apart From Smart Switches)
+          sequence:
+            - delay:
+                minutes: 2
+            # Switch Off Zigbee Lights
+            - service: script.homeassistant_power_outage_zigbee_lights
+            # Switch Off Wifi Lights Sequence
+            - service: script.homeassistant_power_outage_wifi_lights
+  mode: single
+
+######################################################################################################
+# @Script
+# @Alias: Home Assistant / Power Outage / Zigbee Lights
+######################################################################################################
+homeassistant_power_outage_zigbee_lights:
+  alias: 'Home Assistant / Power Outage / Zigbee Lights'
+  description: 'Switches off Zibgee Lights. 3 Tries.'
+  sequence:
+    - repeat:
+        sequence:
+          - service: light.turn_off
+            entity_id: light.library_lights
+          - delay:
+              minutes: 5
+        until:
+          - condition: state
+            entity_id: light.library_lights
+            state: 'off'
+          - condition: template
+            value_template: '{{ repeat.index <= 2 }}'
+
+######################################################################################################
+# @Script
+# @Alias: Home Assistant / Power Outage / Wifi Lights
+######################################################################################################
+homeassistant_power_outage_wifi_lights:
+  alias: 'Home Assistant / Power Outage / Wifi Lights'
+  description: 'Switches off Wifi Lights. 3 Tries.'
+  sequence:
+    - repeat:
+        sequence:
+          - service: light.turn_off
+            entity_id: light.wifi_lights
+          - delay:
+              minutes: 5
+        until:
+          - condition: state
+            entity_id: light.wifi_lights
+            state: 'off'
+          - condition: template
+            value_template: '{{ repeat.index <= 2 }}'

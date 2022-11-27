@@ -1,8 +1,0 @@
-- platform: template
-  sensors:
-    pre_matchday_hour_sensor:
-      friendly_name: 'Pre Matchday Hour Sensor'
-      value_template: >-
-        {% set gamedaydate = as_timestamp(state_attr('calendar.manchester_united_matches', 'start_time')) | int | timestamp_custom('%Y-%m-%d, %H:%M', false) %}
-        {% set onehouroffset = as_timestamp(now() + timedelta( hours = 1 )) | int | timestamp_custom('%Y-%m-%d, %H:%M', true) %}
-        {{ gamedaydate == onehouroffset }}

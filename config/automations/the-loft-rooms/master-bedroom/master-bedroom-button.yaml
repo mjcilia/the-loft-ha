@@ -1,6 +1,5 @@
 ######################################################################################################
 # @Automation
-# @Room: Master Bedroom
 # @Alias: Bedroom Button / Single Click / Toggle Bedroom Bulb 1
 ######################################################################################################
 - id: BedroomButtonSingleClickToggleBedroomBulb1
@@ -28,11 +27,10 @@
 
 ######################################################################################################
 # @Automation
-# @Room: Master Bedroom
-# @Alias: Bedroom Button / Double Click / Toggle Submarine Mode
+# @Alias: Bedroom Button / Double Click / Toggle Bedroom Bulb 2
 ######################################################################################################
-- id: BedroomButtonDoubleClickToggleSubmarineMode
-  alias: Bedroom Button / Double Click / Toggle Submarine Mode
+- id: BedroomButtonDoubleClickBedroomBulb2
+  alias: Bedroom Button / Double Click / Toggle Bedroom Bulb 2
 
   #triggger
   trigger:
@@ -48,6 +46,49 @@
 
   #action
   action:
-    - service: input_boolean.toggle
-      entity_id: input_boolean.submarine_mode
+    - service: light.toggle
+      data:
+        entity_id:
+          - light.bedroom_bulb_2
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Alias: Bedroom Button / Long Press / Toggle Submarine Mode
+######################################################################################################
+- id: BedroomButtoLongPressToggleSubmarineMode
+  alias: Bedroom Button / Long Press / Toggle Submarine Mode
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: fb4442a9c9774fa16348482736f8b2a4
+        command: hold
+
+  #action
+  action:
+    - wait_for_trigger:
+        - platform: event
+          event_type: zha_event
+          event_data:
+            device_id: fb4442a9c9774fa16348482736f8b2a4
+            command: release
+
+    - choose:
+        # IF Submarine Mode On
+        conditions:
+          - condition: state
+            entity_id: 'input_boolean.submarine_mode'
+            state: 'off'
+
+        # Run Submarine On Routine
+        sequence:
+          - service: script.routine_submarine_mode
+
+      default:
+        # Run Submarine Off Routine
+        - service: script.routine_submarine_mode_off
+
   mode: single

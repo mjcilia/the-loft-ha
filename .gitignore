@@ -6,17 +6,17 @@
 # Ignored Entry Folders
 .cloud
 .storage
+.misc
+.vscode
 custom_components
 image
-tts
-.misc
 nest
+tts
 
 # Ignored Entry Files
 home-assistant.log
-home-assistant.log.*
-home-assistant_v2
-home-assistant_v2.*
+home-assistant_v2.db
+home-assistant_v2.db-shm
 secrets.yaml
 
 # Ignored Integration Generated Files

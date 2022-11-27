@@ -1,5 +1,17 @@
 {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabCompletion": "on",
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "prettier.tabWidth": 2,
+    "prettier.quoteProps": "consistent",
+    "prettier.endOfLine": "lf",
+    "[home-assistant]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+    },
     "files.associations": {
-        "*.yaml": "home-assistant"
-    }
-}
+      "**/automations/**/*.yaml": "home-assistant",
+      "**/scripts/**/*.yaml": "home-assistant",
+    },
+  }

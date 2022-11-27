@@ -1,97 +1,144 @@
 ######################################################################################################
 # @Automation
 # @Room: Study
-# @Alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
+# @Alias: Study Motion Sensor / Motion Detected
 ######################################################################################################
-- id: 'StudyMotionSensorMotionDetectedSwitchOnOfficeLight1'
-  alias: Study Motion Sensor / Motion Detected / Switch On Office Light 1
-  description: 'Switch On Office Light 1 against Motion'
+- id: 'StudyMotionSensorMotionDetected'
+  alias: Study Motion Sensor / Motion Detected
+  description: 'Switch on and Set Study Light/s Brightness According to WFH Mode Input Boolean'
 
   #trigger
   trigger:
-  - entity_id: group.study_motion_sensors
-    platform: state
-    from: 'off'
-    to: 'on'
-  
+    - entity_id: group.study_motion_sensors
+      platform: state
+      from: 'off'
+      to: 'on'
+
   #condition
   condition:
-  - condition: state
-    entity_id: input_boolean.study_automation_override
-    state: 'off'
-    
+    # Only if the Study Automation Override is not Activated.
+    - condition: state
+      entity_id: input_boolean.study_automation_override
+      state: 'off'
+
   #action
   action:
-  - service: light.turn_on
-    data:
-      brightness: 170
-      entity_id:
-        - light.office_light_1
+    - alias: 'Switch on and Set Study Light/s Brightness According to WFH Mode Input Boolean'
+      choose:
+        # IF WFH MODE IS ON
+        conditions:
+          - condition: state
+            entity_id: input_boolean.wfh_mode
+            state: 'on'
+
+        # Turn on Both Study Lights (Full Brightness)
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id:
+                - light.office_light_1
+                - light.office_light_2
+
+      default:
+        # Turn on Study Light 1 (Partial Brightness)
+        - service: light.turn_on
+          data:
+            brightness: 170
+            entity_id:
+              - light.office_light_1
 
 ######################################################################################################
 # @Automation
 # @Room: Study
-# @Alias: Study Motion Sensor / Occupancy Not Detected / Switch Off Office Light 1
+# @Alias: Study Motion Sensor / Motion Not Detected
 ######################################################################################################
-- id: 'StudyMotionSensorOccupancyNotDetectedSwitchOffOfficeLights'
-  alias: Study Motion Sensor / Occupancy Not Detected / Switch Off Office Lights
+- id: 'StudyMotionSensorMotionNotDetected'
+  alias: Study Motion Sensor / Motion Not Detected
+  description: 'Switch off Study Light/s'
 
   #trigger
   trigger:
-  - entity_id: group.study_occupancy_sensors
-    platform: state
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 2
+    - entity_id: group.study_motion_sensors
+      platform: state
+      from: 'on'
+      to: 'off'
 
   #condition
   condition:
-  - condition: state
-    entity_id: input_boolean.study_automation_override
-    state: 'off'
-  - condition: state
-    entity_id: input_boolean.wfh_mode
-    state: 'on'
+    # Only if the Study Automation Override is not Activated.
+    - condition: state
+      entity_id: input_boolean.study_automation_override
+      state: 'off'
+    # Only if WFH Mode is off, else the occupancy sensor will take care of lights.
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'off'
 
   #action
   action:
-  - service: light.turn_off
-    data:
-      entity_id:
-        - light.office_light_1
-        - light.office_light_2
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.office_light_1
+          - light.office_light_2
 
 ######################################################################################################
 # @Automation
 # @Room: Study
-# @Alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Lights
+# @Alias: Study Motion Sensor / Occupancy Not Detected
 ######################################################################################################
-- id: 'StudyMotionSensorMotionNotDetectedSwitchOffOfficeLights'
-  alias: Study Motion Sensor / Motion Not Detected / Switch Off Office Lights
-
+- id: 'StudyMotionSensorOccupancyNotDetected'
+  alias: Study Motion Sensor / Occupancy Not Detected
   #trigger
   trigger:
-  - entity_id: group.study_motion_sensors
-    platform: state
-    from: 'on'
-    to: 'off'
+    - entity_id: group.study_occupancy_sensors
+      platform: state
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 2
 
   #condition
   condition:
-  - condition: state
-    entity_id: input_boolean.study_automation_override
-    state: 'off'
-  - condition: state
-    entity_id: input_boolean.wfh_mode
-    state: 'off'
-  
+    # Only if the Study Automation Override is not Activated.
+    - condition: state
+      entity_id: input_boolean.study_automation_override
+      state: 'off'
+    # Only if WFH Mode is on, else the motion off sensor will take care of lights.
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+
   #action
   action:
-  - service: light.turn_off
-    data:
-      entity_id:
-        - light.office_light_1
-        - light.office_light_2
+    - service: script.routine_wfh_break
 
-  
+######################################################################################################
+# @Automation
+# @Room: Study
+# @Alias: Study Motion Sensor / Occupancy Detected
+######################################################################################################
+- id: 'StudyMotionSensorOccupancDetected'
+  alias: Study Motion Sensor / Occupancy Detected
+  #trigger
+  trigger:
+    - entity_id: group.study_occupancy_sensors
+      platform: state
+      from: 'off'
+      to: 'on'
+
+  #condition
+  condition:
+    # Only if the Study Automation Override is not Activated.
+    - condition: state
+      entity_id: input_boolean.study_automation_override
+      state: 'off'
+    # Only if WFH Mode is on, else we don't want the WFH routine to kick off.
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+
+  #action
+  action:
+    - service: script.routine_wfh

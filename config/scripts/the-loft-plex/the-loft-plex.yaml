@@ -1,0 +1,11 @@
+plex_library_refresh:
+  alias: 'Plex / Library / Refresh'
+  description: 'Refreshes Movies and Series Plex Libraries'
+  sequence:
+    - service: plex.refresh_library
+      data:
+        library_name: 'movies'
+    - service: plex.refresh_library
+      data:
+        library_name: TV Shows
+  mode: single

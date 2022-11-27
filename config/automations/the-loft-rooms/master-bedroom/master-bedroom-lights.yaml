@@ -10,37 +10,37 @@
   #trigger
   trigger:
     - platform: state
-      entity_id:
-        - light.bedroom_bulb_1
+      entity_id: light.bedroom_bulb_1
       from: 'off'
       to: 'on'
-  
+
   #action
   action:
-    - alias: "Set Light and Dim Lights if Night Mode On"
+    - alias: 'Set Light and Dim Lights if Dimmed Mode is On'
       choose:
+        # IF Dimmed Mode is On
+        conditions:
+          - condition: state
+            entity_id: input_boolean.dimmed_mode
+            state: 'on'
 
-        # IF Night Mode On
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.night_mode
-              state: "on"
-          # Dimmed Mode
-          sequence:
+        # Set Color to Dimmed
+        sequence:
           - service: yeelight.set_color_temp_scene
+            entity_id: light.bedroom_bulb_1
             data:
-              entity_id:
-                - light.bedroom_bulb_1
               kelvin: 4200
               brightness: 1
 
+      # Default Action
       default:
+        # Set Color to Regular
         - service: yeelight.set_color_temp_scene
+          entity_id: light.bedroom_bulb_1
           data:
-            entity_id:
-              - light.bedroom_bulb_1
             kelvin: 4200
             brightness: 35
+
   mode: single
 
 ######################################################################################################
@@ -55,33 +55,35 @@
   #trigger
   trigger:
     - platform: state
-      entity_id:
-        - light.bedroom_bulb_2
+      entity_id: light.bedroom_bulb_2
       from: 'off'
       to: 'on'
-  
+
   #action
   action:
-    - alias: "Set Light and Dim Lights if Night Mode On"
+    - alias: 'Set Light and Dim Lights if Dimmed Mode is On'
       choose:
-        # IF Night Mode On
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.night_mode
-              state: "on"
-          # Dimmed Mode
-          sequence:
+        # IF Dimmed Mode is On
+        conditions:
+          - condition: state
+            entity_id: input_boolean.dimmed_mode
+            state: 'on'
+
+        # Set Color to Dimmed
+        sequence:
           - service: yeelight.set_color_temp_scene
+            entity_id: light.bedroom_bulb_2
             data:
-              entity_id:
-                - light.bedroom_bulb_2
               kelvin: 4200
               brightness: 1
+
+      # Default Action
       default:
+        # Set Color to Regular
         - service: yeelight.set_color_temp_scene
+          entity_id: light.bedroom_bulb_2
           data:
-            entity_id:
-              - light.bedroom_bulb_2
             kelvin: 4200
             brightness: 35
+
   mode: single

@@ -43,9 +43,9 @@
   
   #action
   action:
-  - service: switch.toggle
+  - service: light.toggle
     data:
-      entity_id: switch.living_room_bulb_1_socket_1
+      entity_id: light.sonoff_s26r2zb_f90cc124_on_off
 
   mode: single
 
@@ -135,8 +135,7 @@
         - light.living_room_lights
         - light.dining_room_lights
         - light.dining_room_lights_2
-    - service: switch.turn_off
-      entity_id: switch.living_room_bulb_1_socket_1
+        - light.sonoff_s26r2zb_f90cc124_on_off
     - service: media_player.turn_off
       entity_id:
         - media_player.kitchen_display

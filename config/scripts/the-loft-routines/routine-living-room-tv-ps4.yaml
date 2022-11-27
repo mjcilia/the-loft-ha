@@ -1,0 +1,4 @@
+routine_living_room_tv_ps4:
+  alias: Routine / Living Room / TV / PS4
+  sequence:
+  - service: script.living_room_tv_ps4

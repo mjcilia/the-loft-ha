@@ -3,13 +3,43 @@ notify_base_tts:
   sequence:
     - service: script.notify_base_tv
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"
+        title: '{{ title }}'
+        message: '{{ message }}'
     - service: script.notify_base_app
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"
+        title: '{{ title }}'
+        message: '{{ message }}'
     - service: script.notify_base_living_soundbar
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"   
+        title: '{{ title }}'
+        message: '{{ message }}'
+    - service: script.notify_base_study_roam
+      data:
+        title: '{{ title }}'
+        message: '{{ message }}'
+
+notify_base_speakers:
+  alias: Notify / Base
+  sequence:
+    # - service: script.turn_on
+    #   target:
+    #     entity_id: script.notify_base_living_soundbar
+    #   data:
+    #     title: '{{ title }}'
+    #     message: '{{ message }}'
+
+    # - service: script.turn_on
+    #   target:
+    #     entity_id: script.notify_base_study_roam
+    #   data:
+    #     title: '{{ title }}'
+    #     message: '{{ message }}'
+
+    - service: script.notify_base_living_soundbar
+      data:
+        title: '{{ title }}'
+        message: '{{ message }}'
+    - service: script.notify_base_study_roam
+      data:
+        title: '{{ title }}'
+        message: '{{ message }}'

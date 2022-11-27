@@ -1,0 +1,59 @@
+######################################################################################################
+# @Automation
+# @Alias: Health Check / Core
+# @Description: A daily aggregate health check (aggregating state for all heatlh binary sensors)
+# notifying the administrator when all devices are available.
+######################################################################################################
+- id: 'HealthCheckCore'
+  alias: 'Health Check / Core'
+  description: 'A daily aggregate health check (aggregating state for all heatlh binary sensors) notifying the administrator when all devices are available.'
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+  #condition
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - wed
+        - fri
+        - sun
+
+    - condition: state
+      entity_id:
+        - binary_sensor.wireless_devices_battery_sensors
+        - binary_sensor.light_availability_sensor
+        - binary_sensor.switch_availability_sensor
+        - binary_sensor.climate_availability_sensor
+        - binary_sensor.media_availability_sensor
+        - binary_sensor.vacuum_availability_sensor
+        - binary_sensor.zigbee_battery_sensor
+      state: 'off'
+
+    # Check Fan Availability Sensor if Summer Season Mode is On.
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.summer_season_mode
+              state: 'on'
+            - condition: state
+              entity_id: binary_sensor.fan_availability_sensor
+              state: 'off'
+        - condition: state
+          entity_id: input_boolean.summer_season_mode
+          state: 'off'
+
+  #action
+  action:
+    - service: script.notify_base_app_mark
+      data:
+        title: 'The Loft Notifcation'
+        message: 'Health Check Complete. Devices Healthy.'
+
+  #mode
+  mode: single

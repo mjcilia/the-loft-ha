@@ -1,131 +1,113 @@
 ######################################################################################################
 # @Automation
 # @Room: Library
-# @Alias: Library Motion Sensor 1 / Motion Detected / Switch On Library
-# @Device: Philips Hue White Ambience (GU10)
-# @Device_URL: https://www.philips-hue.com/en-us/p/hue-white-ambiance-2-pack-gu10/046677542405
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Detected
-# @Condition:
-#  - 08:00 / 16:00 OR Light Schedule Override
-#  - Library Automation Override / Off
-#  - Library Motion Sensor 2 / Motion Detected Automatiom / Not Triggered / 300ms
-#  - Library Light Group 2 / Off
-# @Action:
-#  - Library Lights (x6) / On
+# @Alias: Library Motion Sensor 1 / Motion Detected
 ######################################################################################################
-- id: 'LibraryMotionSensor1MotionDetectedSwitchOnLibrary'
-  alias: Library Motion Sensor 1 / Motion Detected / Switch On Library
+- id: 'LibraryMotionSensor1MotionDetected'
+  alias: Library Motion Sensor 1 / Motion Detected
 
   #trigger
   trigger:
-  - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
-    from: 'off'
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
+      from: 'off'
+      to: 'on'
 
   #condition
   condition:
-  #Check for Time Schedule or Time Automation Override Input Boolean
-  - condition: or
-    conditions:
-      - condition: time
-        before: input_datetime.light_schedule_time_before
-        after: input_datetime.light_schedule_time_after
-      - condition: state
-        entity_id: input_boolean.light_schedule_time_automation_override
-        state: 'on'
-  #Check for Library Automation Override Input Boolean
-  - condition: state
-    entity_id: input_boolean.library_automation_override
-    state: 'off'
-   #Check for Last Trigger for Motion Sensor 2 Automation
-  - condition: template
-    value_template: >
-        {{(as_timestamp(now()) - as_timestamp(states.automation.library_motion_sensor_2_motion_detected_switch_on_library.attributes.last_triggered | default(0)) | int > 5)}}
-  - condition: state
-    entity_id: group.library_lights_2
-    state: 'off'
+    # Check for Time Schedule or Time Automation Override Input Boolean
+    - condition: or
+      conditions:
+        - condition: time
+          before: input_datetime.light_schedule_time_before
+          after: input_datetime.light_schedule_time_after
+        - condition: state
+          entity_id: input_boolean.light_schedule_time_automation_override
+          state: 'on'
+
+    # Check for Library Automation Override Input Boolean
+    - condition: state
+      entity_id: input_boolean.library_automation_override
+      state: 'off'
+
+    # Check for Night Mode Input Boolean
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+    #Check for Last Trigger for Motion Sensor 2 Automation
+    - condition: template
+      value_template: >
+        {{(as_timestamp(now()) - as_timestamp(states.automation.library_motion_sensor_2_motion_detected.attributes.last_triggered | default(0)) | int > 5)}}
+
+    - condition: state
+      entity_id: group.library_lights_2
+      state: 'off'
 
   #action
   action:
-  - service: light.turn_on
-    target:
-      entity_id: light.philips_ltg002_07a6cd08_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_on
-    target:
-      entity_id: light.philips_ltg002_0e63c908_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_on
-    target:
-      entity_id: light.philips_ltg002_3fb26c09_level_light_color_on_off
+    - service: light.turn_on
+      target:
+        entity_id: light.philips_ltg002_07a6cd08_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_on
+      target:
+        entity_id: light.philips_ltg002_0e63c908_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_on
+      target:
+        entity_id: light.philips_ltg002_3fb26c09_level_light_color_on_off
 
 ######################################################################################################
 # @Automation
 # @Room: Library
-# @Alias: Library Motion Sensor 1 / Motion Not Detected / Switch Off Library
-# @Device: Philips Hue White Ambience (GU10)
-# @Device_URL: https://www.philips-hue.com/en-us/p/hue-white-ambiance-2-pack-gu10/046677542405
-# @Device: Xiaomi Mi Motion Sensor
-# @Device_URL: https://www.scanmalta.com/shop/catalog/product/view/id/23932/s/xiaomi-mi
-# -motion-sensor-for-mi-smart-home/
-# @Trigger:
-#  - Motion / Not Detected
-# @Condition
-#  - Library Automation Override / Off
-# @Action:
-#  - Library Lights (x6) / Off
-#  - Delay (300ms)
+# @Alias: Library Motion Sensor 1 / Motion Not Detected
 ######################################################################################################
-- id: 'LibraryMotionSensor1MotionNotDetectedSwitchOnLibrary'
-  alias: Library Motion Sensor 1 / Motion Not Detected / Switch Off Library
+- id: 'LibraryMotionSensor1MotionNotDetected'
+  alias: Library Motion Sensor 1 / Motion Not Detected
 
   #trigger
   trigger:
-  - platform: state
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
-    from: 'on'
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_1b12ce03_ias_zone
+      from: 'on'
+      to: 'off'
 
   #condition
   condition:
-  - condition: state
-    entity_id: input_boolean.library_automation_override
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.library_automation_override
+      state: 'off'
 
   #action
   action:
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_07a6cd08_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_ce567909_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_0e63c908_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_f2c87209_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_3fb26c09_level_light_color_on_off
-  - delay:
-      milliseconds: 300
-  - service: light.turn_off
-    target:
-      entity_id: light.philips_ltg002_ae417109_level_light_color_on_off
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_07a6cd08_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_ce567909_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_0e63c908_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_f2c87209_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_3fb26c09_level_light_color_on_off
+    - delay:
+        milliseconds: 300
+    - service: light.turn_off
+      target:
+        entity_id: light.philips_ltg002_ae417109_level_light_color_on_off

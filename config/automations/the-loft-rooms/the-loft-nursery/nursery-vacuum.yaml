@@ -1,0 +1,133 @@
+#################################################################
+# @Automation
+# @Description: Sends Notification if Away for 15 minutes and
+# vacuum has not been switched on for the day.
+# @Device: Xiaomi Vacuum (1st Generation)
+# @Device_URL:
+# @Trigger: Away
+# @Action: Sends Notification
+#################################################################
+# - id: 'VacuumNotifyLocationLeave'
+#   alias: Vacuum / Notify / Location Leave
+
+#   #trigger
+#   trigger:
+#   - platform: state
+#     entity_id: group.the_loft_members
+#     from: 'home'
+#     to: 'not_home'
+#     for: '00:15:00'
+
+#   #condition
+#   condition:
+#   - condition: template
+#     value_template: '{{ (state_attr("input_datetime.last_vacuum_clean", "day")|int) != (now().strftime("%-d")|int) }}'
+
+#   #action
+#   action:
+#   - service: script.notify_vacuum_app
+#   mode: single
+
+#################################################################
+# @Automation
+# @Description: Sets input_datetime.last_vacuum_clean to
+# todays date if vacuum has cleaned for 15 minuntes.
+# @Device: Xiaomi Vacuum (1st Generation)
+# @Trigger: Vacuum Cleans For 15 minutes
+# @Action: Sets Input DateTime to Today's date
+#################################################################
+# - id: 'VacuumHelperDateSet'
+#   alias: 'Vacuum / Helper / Date / Set'
+
+#   #trigger
+#   trigger:
+#   - platform: state
+#     entity_id: vacuum.xiaomi_vacuum_cleaner
+#     attribute: status
+#     from: 'docked'
+#     to: 'cleaning'
+#     for: '00:15:00'
+
+#   #action
+#   action:
+#   - service: input_datetime.set_datetime
+#     data:
+#       datetime: '{{ now().strftime('%Y-%m-%d %H:%M:%S') }}'
+#     entity_id: input_datetime.last_vacuum_clean
+#   mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Nursery
+# @Alias: Nursery / Vacuum / Finish House / Notification
+######################################################################################################
+- id: 'NurseryVacuumFinishHouseNotification'
+  alias: 'Nursery / Vacuum / Finish House / Notification'
+  description: 'Sends a notification upon finishing cleaning and being docked for 15 minutes.'
+
+  #trigger
+  trigger:
+    #Vacuum From Cleaning to Docked for 15 minutes
+    - platform: state
+      entity_id: vacuum.rockrobo_vacuum_v1
+      from: 'cleaning'
+      to: 'docked'
+      for: '00:15:00'
+
+  #condition
+  condition:
+    #The Loft Members Away
+    - condition: state
+      entity_id: 'group.the_loft_members'
+      state: 'not_home'
+
+  #action
+  action:
+    # Notify Companion Apps
+    - service: script.notify_base_app
+      data:
+        title: 'The Loft Notification'
+        message: 'Nunu has finished Cleaning. Nunu has returned back to Dock.'
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Room: Nursery
+# @Alias: Nursery / Vacuum / Finish Room / Notification
+######################################################################################################
+- id: 'NurseryVacuumFinishRoomNotification'
+  alias: 'Nursery / Vacuum / Finish Room / Notification'
+  description: 'Sends a notification upon finishing cleaning a room and being idle for 15 minutes.'
+
+  #trigger
+  trigger:
+    #Vacuum From Cleaning to Idle for 15 minutes
+    - platform: state
+      entity_id: vacuum.rockrobo_vacuum_v1
+      from: 'cleaning'
+      to: 'idle'
+      for: '00:15:00'
+
+  #condition
+  condition:
+    #The Loft Members Home
+    - condition: state
+      entity_id: 'group.the_loft_members'
+      state: 'home'
+
+  #action
+  action:
+    # Notify Living Room Soundbar
+    - service: script.notify_base_speakers
+      data:
+        title: 'The Loft Notification'
+        message: 'Nunu has finished cleaning. Please return Nunu to Dock.'
+
+    # Notify Living Room TV
+    - service: script.notify_base_tv
+      data:
+        title: 'The Loft Notification'
+        message: 'Nunu has finished cleaning. Please return Nunu to Dock.'
+
+  mode: single

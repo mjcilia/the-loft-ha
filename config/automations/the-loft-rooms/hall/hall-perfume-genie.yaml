@@ -15,20 +15,20 @@
 ######################################################################################################
 - id: HallPerfumeGenieTimeOn
   alias: Hall Perfume Genie / Time / On
-  
+
   # trigger
   trigger:
     - platform: time
-      at: "09:15:00"
+      at: '09:15:00'
     - platform: time
-      at: "21:15:00"
+      at: '21:15:00'
 
   #condition
   condition:
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'off'
-  
+
   #action
   action:
     - service: switch.turn_on
@@ -58,11 +58,16 @@
 
   #trigger
   trigger:
-  - platform: state
-    entity_id: switch.jean
-    from: 'off'
-    for: '00:30:00'
-  
+    - platform: state
+      entity_id: switch.jean
+      from: 'off'
+      for: '00:30:00'
+
+    - platform: state
+      entity_id: switch.jean
+      to: 'on'
+      for: '00:30:00'
+
   #action
   action:
     - service: switch.turn_off
@@ -73,5 +78,5 @@
       state: 'on'
     - service: script.notify_base_tts
       data:
-        title: "The Loft Alert"
-        message: "Perfume Genie (Jeane) has been powered on for over an hour. Turn off now."
+        title: 'The Loft Alert'
+        message: 'Perfume Genie (Jeane) has been powered on for over an hour. Turn off now.'

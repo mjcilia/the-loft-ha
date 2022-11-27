@@ -1,0 +1,22 @@
+routine_dinner:
+  alias: Routine / Dinner
+  sequence:
+
+  # turn on dining lights
+  - service: light.turn_on
+    entity_id: 
+      - light.dining_room_lights
+      - light.dining_room_lights_2
+  
+  # change Living Room TV to TVM
+  - service: script.turn_on
+    entity_id: script.routine_living_room_tv_melita_tvm
+  
+  # turn off media (except TV)
+  - service: media_player.turn_off
+    entity_id:
+      - media_player.kitchen_display
+      - media_player.bedroom_wifi
+      - media_player.roof_speaker
+        
+  mode: single

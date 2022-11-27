@@ -1,0 +1,50 @@
+notify_base_study_roam:
+  alias: Notify / Base / Study Roam
+  sequence:
+    # take snapshot
+    - service: sonos.snapshot
+      data:
+        entity_id: media_player.study_sonos_roam
+
+    # set volume
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.study_sonos_roam
+        volume_level: 0.4
+
+    # play sound effect
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.study_sonos_roam
+        media_content_id: https://raw.githubusercontent.com/mjcilia/the-loft-ha/main/config/sounds/the_loft_alert.mp3
+        media_content_type: music
+
+    # wait until tts has finished playing
+    - delay: '00:00:04'
+    - wait_template: "{{ not is_state('media_player.study_sonos_roam', 'playing') }}"
+
+    # increase volume for tts
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.study_sonos_roam
+        volume_level: 0.6
+
+    # play tts messgae
+    - service: tts.cloud_say
+      data:
+        entity_id: media_player.study_sonos_roam
+        cache: true
+        options:
+          gender: female
+        message: >
+          {{ title }}. {{ message }}
+
+    # wait until tts has finished playing
+    - delay: '00:00:02'
+    - wait_template: "{{ not is_state('media_player.study_sonos_roam', 'playing') }}"
+
+    # restore sonos snapshot
+    - service: sonos.restore
+      data:
+        entity_id: media_player.study_sonos_roam
+  mode: single

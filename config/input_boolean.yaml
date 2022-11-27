@@ -1,6 +1,9 @@
 ################################################################################
 ## @the-loft-modes
 ################################################################################
+dimmed_mode:
+  name: Dimmed Mode
+  icon: mdi:home-lightbulb-outline
 night_mode:
   name: Night Mode
   icon: mdi:weather-night
@@ -18,6 +21,13 @@ wfh_mode:
   icon: mdi:desk-lamp
 
 ################################################################################
+## @the-loft-seasons
+################################################################################
+summer_season_mode:
+  name: Summer Season Mode
+  icon: mdi:weather-sunny
+
+################################################################################
 ## @automation-overrides
 ################################################################################
 hall_automation_override:
@@ -31,6 +41,9 @@ library_automation_override:
   icon: mdi:robot
 main_staircase_automation_override:
   name: Main Staircase Automation Override
+  icon: mdi:robot
+kitchen_automation_override:
+  name: Kitchen Automation Override
   icon: mdi:robot
 
 ################################################################################

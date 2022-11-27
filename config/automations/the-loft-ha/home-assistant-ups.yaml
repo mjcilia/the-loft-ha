@@ -1,0 +1,69 @@
+######################################################################################################
+# @Automation
+# @Alias: Power Outage
+######################################################################################################
+- id: 'PowerOutage'
+  alias: 'Power Outage'
+
+  # trigger
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ups_input_voltage
+      below: '120'
+      for: '00:05:00'
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OL'
+      to: 'OB DISCHRG'
+      for: '00:05:00'
+
+  #action
+  action:
+    - service: script.notify_base_app
+      data:
+        title: 'The Loft Alert.'
+        message: 'Looks like there is a Power Failure!'
+
+######################################################################################################
+# @Automation
+# @Alias: Power Restored
+######################################################################################################
+- id: 'PowerRestored'
+  alias: 'Power Restored'
+
+  # trigger
+  trigger:
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OB DISCHRG'
+      to: 'OL CHRG'
+      for: '00:05:00'
+    - platform: state
+      entity_id: sensor.ups_status_data
+      from: 'OB DISCHRG'
+      to: 'OL'
+      for: '00:05:00'
+
+  #action
+  action:
+    - choose:
+        # IF Dimmed Mode is On
+        conditions:
+          - condition: state
+            entity_id: 'group.the_loft_members'
+            state: 'not_home'
+
+        # Set Hall Bulb in Dimmed Mode
+        sequence:
+          - service: script.homeassistant_power_outage
+          - service: script.notify_base_app
+            data:
+              title: 'The Loft Alert.'
+              message: 'Power has been Restored!'
+
+      default:
+        # Set Kitchen Bulbs in Non Dimmed Mode
+        - service: script.notify_base_app
+          data:
+            title: 'The Loft Alert.'
+            message: 'Power has been Restored!'

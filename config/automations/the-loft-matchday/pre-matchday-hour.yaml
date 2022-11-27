@@ -15,19 +15,19 @@
     - platform: state
       entity_id: binary_sensor.pre_matchday_hour_sensor
       from: 'off'
-      to: 'on' 
+      to: 'on'
 
   #action
   action:
     - service: script.notify_base_app_mark
       data:
-        title: "The Loft Match Update"
+        title: 'The Loft Match Update'
         message: "{{ state_attr('calendar.manchester_united_matches', 'message') + ' kicking off in one hour!' }}"
-    - service: script.notify_base_living_soundbar
+    - service: script.notify_base_speakers
       data:
-        title: "The Loft Match Update"
+        title: 'The Loft Match Update'
         message: "{{ state_attr('calendar.manchester_united_matches', 'message') + ' kicking off in one hour!' }}"
     - service: script.notify_base_tv
       data:
-        title: "The Loft Match Update"
+        title: 'The Loft Match Update'
         message: "{{ state_attr('calendar.manchester_united_matches', 'message') + ' kicking off in one hour!' }}"

@@ -1,0 +1,19 @@
+- platform: template
+  sensors:
+    vacuum_availability_sensor:
+      friendly_name: 'Vacuum Availability Sensors'
+      delay_on:
+        seconds: 60
+      value_template: >-
+        {{
+          states.vacuum
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
+        }}
+      attribute_templates: 
+        message: >-
+          {%- for vacuum in states.vacuum %}
+            {%- if vacuum.state|string == "unavailable" -%}
+              {{ vacuum.name }} is {{ vacuum.state }}!
+            {%- endif %}
+          {%- endfor %}

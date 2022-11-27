@@ -1,0 +1,73 @@
+routine_wfh:
+  alias: Routine / WFH / On
+  sequence:
+    # Turn On WFH Mode
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.wfh_mode
+
+    # Turn On Study Lights
+    - service: light.turn_on
+      data:
+        brightness: 255
+        entity_id:
+          - light.office_light_1
+          - light.office_light_2
+
+    # Turn On Study Power Outlets
+    - service: switch.turn_on
+      entity_id:
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_2
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_3
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_4
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_5
+
+    - choose:
+        # If Summer Season
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.summer_season_mode
+              state: 'on'
+          sequence:
+            - service: climate.turn_on
+              entity_id: climate.1ebfaa4e
+            - service: climate.set_hvac_mode
+              target:
+                entity_id: climate.1ebfaa4e
+              data:
+                hvac_mode: 'cool'
+    - service: script.notify_base_study_roam
+      data:
+        title: 'The Loft Notification'
+        message: 'Battlestation Activated'
+
+routine_wfh_off:
+  alias: Routine / WFH / Off
+  sequence:
+    # Turn Off WFH Mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.wfh_mode
+
+    # Turn Off Study Lights
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.office_light_2
+
+    # Turn Off Study Power Outlets
+    - service: switch.turn_off
+      entity_id:
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_2
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_3
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_4
+        - switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_5
+
+    # Turn Off Study AC
+    - service: climate.turn_off
+      entity_id: climate.1ebfaa4e
+
+    - service: script.notify_base_study_roam
+      data:
+        title: 'The Loft Notification'
+        message: 'Battlestation Deactivated'

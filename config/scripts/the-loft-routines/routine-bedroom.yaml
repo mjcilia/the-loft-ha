@@ -1,0 +1,38 @@
+routine_bedroom:
+  alias: Routine / Bedroom
+  sequence:
+    # Turn On Dimmed and Night Mode
+    - service: input_boolean.turn_on
+      entity_id:
+        - input_boolean.dimmed_mode
+        - input_boolean.night_mode
+
+    # Turn On Bedroom Light 2
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_bulb_2
+
+    # Turn Off Bedroom Light 1
+    - service: light.turn_off
+      entity_id:
+        - light.bedroom_bulb_1
+
+    - choose:
+        # If Summer Season
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.summer_season_mode
+              state: 'on'
+          sequence:
+            # Turn on Bedroom A/C
+            - service: climate.turn_on
+              entity_id: climate.c6004175
+            - service: climate.set_hvac_mode
+              target:
+                entity_id: climate.c6004175
+              data:
+                hvac_mode: 'cool'
+            # Turn on Bedroom Fan
+            - service: fan.turn_on
+              entity_id:
+                - fan.zhimi_fan_za5_2

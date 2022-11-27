@@ -40,14 +40,14 @@ sensor.battery_158d0003e7c53f:
 #################################################################
 ## @Device: Living Room Smart Plug
 #################################################################
-switch.living_room_bulb_1_socket_1:
-  friendly_name: Living Room Bulb 1
+light.sonoff_s26r2zb_f90cc124_on_off:
+  friendly_name: Living Room Side Lamp
   icon: mdi:lightbulb
 
 #################################################################
 ## @Device: Nursery Smart Plug
 #################################################################
-switch.bedroom_bulb_3_socket_1:
+switch.sonoff_s26r2zb_8a82c224_on_off:
   friendly_name: Nursery Wardrobe Lights
   icon: mdi:lightbulb
 
@@ -150,6 +150,15 @@ sensor.lumi_lumi_weather_8a81f207_power:
   friendly_name: Nursery Temperature Battery
 
 #################################################################
+## @Device: Crib Temperature Sensor
+#################################################################
+sensor.lumi_lumi_weather_5282f207_temperature:
+  friendly_name: Crib Temperature
+
+sensor.lumi_lumi_weather_5282f207_power:
+  friendly_name: Crib Temperature Battery
+
+#################################################################
 ## @Device: Staircase Motion Sensor
 #################################################################
 binary_sensor.motion_sensor_158d0001e19483:
@@ -166,15 +175,6 @@ binary_sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_ias_zone:
 
 sensor.lumi_lumi_sensor_motion_aq2_7c50ee07_power:
   friendly_name: Staircase Motion Sensor 2 Battery
-
-#################################################################
-## @Device: Bedroom Cube
-#################################################################
-binary_sensor.cube_158d00028aefda:
-  friendly_name: Bedroom Cube
-
-sensor.battery_158d00028aefda:
-  friendly_name: Bedroom Cube Battery
 
 #################################################################
 ## @Device: Kitchen Cube
@@ -260,3 +260,86 @@ switch.spare_bathroom_water_heater_sw:
 #################################################################
 sensor.lumi_lumi_sensor_switch_39219a07_power:
   friendly_name: Bedroom Switch Battery
+
+#################################################################
+## @Device: Living Room Fan
+#################################################################
+fan.zhimi_fan_za5:
+  friendly_name: Living Room Fan
+
+binary_sensor.zhimi_fan_za5_power_supply:
+  friendly_name: Living Room Fan Power Supply
+
+number.zhimi_fan_za5_oscillation_angle:
+  friendly_name: Living Room Fan Angle
+
+number.zhimi_fan_za5_led_brightness:
+  friendly_name: Living Room Fan Led Brightness
+
+switch.zhimi_fan_za5_buzzer:
+  friendly_name: Living Room Fan Sound
+
+switch.zhimi_fan_za5_ionizer:
+  friendly_name: Living Room Fan Ionizer
+
+switch.zhimi_fan_za5_child_lock:
+  friendly_name: Living Room Fan Child Lock
+
+
+#################################################################
+## @Device: Bedroom Fan
+#################################################################
+fan.zhimi_fan_za5_2:
+  friendly_name: Bedroom Fan
+
+binary_sensor.zhimi_fan_za5_power_supply_2:
+  friendly_name: Bedroom Fan Power Supply
+
+number.zhimi_fan_za5_oscillation_angle_2:
+  friendly_name: Bedroom Fan Angle
+
+number.zhimi_fan_za5_led_brightness_2:
+  friendly_name: Bedroom Fan Led Brightness
+
+switch.zhimi_fan_za5_buzzer_2:
+  friendly_name: Bedroom Fan Sound
+
+switch.zhimi_fan_za5_ionizer_2:
+  friendly_name: Bedroom Fan Ionizer
+
+switch.zhimi_fan_za5_child_lock_2:
+  friendly_name: Bedroom Fan Child Lock
+
+#################################################################
+## @Device: Study Power Outlets
+#################################################################
+switch.tz3000_o005nuxx_ts011f_931a66fe_on_off:
+  friendly_name: Study Power Outlet 1
+
+switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_2:
+  friendly_name: Study Power Outlet 2
+
+switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_3:
+  friendly_name: Study Power Outlet 3
+
+switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_4:
+  friendly_name: Study Power Outlet 4
+
+switch.tz3000_o005nuxx_ts011f_931a66fe_on_off_5:
+  friendly_name: Study USB Outlets
+
+#################################################################
+## @Device: Study Sonos Roam
+#################################################################
+
+media_player.study_sonos_roam:
+  friendly_name: Study Speaker
+
+number.study_sonos_roam_bass:
+  friendly_name: Study Speaker Bass
+
+sensor.study_sonos_roam_battery:
+  friendly_name: Study Speaker Battery
+
+switch.study_sonos_roam_crossfade: 
+  friendly_name: Study Speaker Crossfade

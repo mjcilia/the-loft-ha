@@ -38,7 +38,8 @@
   
   # action
   action:
-  - delay: 00:02:00
+  - delay:
+      minutes: 2
   - condition: state
     entity_id: binary_sensor.door_window_sensor_158d0002b771b8
     state: 'on'
@@ -50,7 +51,8 @@
       message: "Living Room Door is Open! Close Living Room Door for Kitchen AC to remain switched on."
       
   # action follow up
-  - delay: 00:02:00
+  - delay:
+      minutes: 2
   - condition: state
     entity_id: binary_sensor.door_window_sensor_158d0002b771b8
     state: 'on'

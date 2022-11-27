@@ -1,0 +1,19 @@
+- platform: template
+  sensors:
+    fan_availability_sensor:
+      friendly_name: 'Fan Availability Sensors'
+      delay_on:
+        seconds: 60
+      value_template: >-
+        {{ 
+          states.fan
+            |selectattr('state','in',['unavailable'])
+            |list|count > 0
+        }}
+      attribute_templates: 
+        message: >-
+          {%- for fan in states.fan %}
+            {%- if fan.state|string == "unavailable" -%}
+              {{ fan.name }} is {{ fan.state + ". "}}
+            {%- endif %}
+          {%- endfor %}

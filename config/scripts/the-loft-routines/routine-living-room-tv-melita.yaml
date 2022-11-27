@@ -1,0 +1,155 @@
+routine_living_room_tv_melita_tsn_1:
+  alias: Routine / Living Room / TV / Melita / TSN 1
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 1
+
+routine_living_room_tv_melita_tsn_2:
+  alias: Routine / Living Room / TV / Melita / TSN 2
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 2
+        
+routine_living_room_tv_melita_tsn_3:
+  alias: Routine / Living Room / TV / Melita / TSN 3
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 3
+        
+routine_living_room_tv_melita_tsn_4:
+  alias: Routine / Living Room / TV / Melita / TSN 4
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 4
+
+routine_living_room_tv_melita_tsn_5:
+  alias: Routine / Living Room / TV / Melita / TSN 5
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 5
+  
+routine_living_room_tv_melita_tsn_6:
+  alias: Routine / Living Room / TV / Melita / TSN 6
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 6
+
+routine_living_room_tv_melita_tsn_7:
+  alias: Routine / Living Room / TV / Melita / TSN 7
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 7
+
+routine_living_room_tv_melita_tsn_8:
+  alias: Routine / Living Room / TV / Melita / TSN 8
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 7
+        - 0
+        - 8
+
+routine_living_room_tv_melita_tvm:
+  alias: Routine / Living Room / TV / Melita / TVM
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 1
+        - 0
+        - 1
+
+routine_living_room_tv_melita_net:
+  alias: Routine / Living Room / TV / Melita / NET
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 1
+        - 0
+        - 2
+
+routine_living_room_tv_melita_one:
+  alias: Routine / Living Room / TV / Melita / ONE
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 1
+        - 0
+        - 3
+
+routine_living_room_tv_melita_tvm_2:
+  alias: Routine / Living Room / TV / Melita / TVM 2
+  sequence:
+  - service: script.living_room_tv_melita
+  - service: remote.send_command
+    data:
+      entity_id: remote.living_room_rm_pro_remote
+      device: Melita
+      command:
+        - 1
+        - 0
+        - 4

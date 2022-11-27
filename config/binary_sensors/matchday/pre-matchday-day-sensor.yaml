@@ -1,8 +1,0 @@
-- platform: template
-  sensors:
-    pre_matchday_day_sensor:
-      friendly_name: 'Pre Match Day Sensor'
-      value_template: >-
-        {% set gamedaydate = as_timestamp(state_attr('calendar.manchester_united_matches', 'start_time')) | timestamp_custom("%d", false) %}
-        {% set todaydate = as_timestamp(now()) | timestamp_custom("%d") %}
-        {{ (gamedaydate|int) == (todaydate|int + 1) }}

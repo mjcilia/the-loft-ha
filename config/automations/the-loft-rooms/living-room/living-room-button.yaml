@@ -6,7 +6,7 @@
 - id: 'LivingRoomButtonSingleClickToggleLivingRoomBulb'
   alias: Living Room Button / Single Click / Toggle Living Room Bulb
   description: 'Toggles Living Room Bulb on Single Click'
-  
+
   #trigger
   trigger:
     platform: event
@@ -17,8 +17,8 @@
 
   #action
   action:
-    service: switch.toggle
-    entity_id: switch.living_room_bulb_1_socket_1
+    service: light.toggle
+    entity_id: light.sonoff_s26r2zb_f90cc124_on_off
 
 ######################################################################################################
 # @Automation
@@ -35,7 +35,7 @@
     event_data:
       entity_id: binary_sensor.switch_158d0003e7c53f
       click_type: double
-  
+
   #action
   action:
     service: light.toggle
@@ -59,8 +59,7 @@
     event_data:
       entity_id: binary_sensor.switch_158d0003e7c53f
       click_type: long_click_press
-  
+
   #action
   action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.night_mode
+    - service: script.routine_night

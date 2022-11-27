@@ -1,0 +1,24 @@
+- platform: template
+  sensors:
+    zigbee_battery_sensor:
+      friendly_name: 'Zigbee Battery Sensors'
+      delay_on:
+          seconds: 60
+      value_template: >-
+        {{
+          states.sensor
+            |selectattr('attributes.device_class', 'in', ['battery'])
+            |rejectattr('attributes.battery_voltage', 'undefined')
+            |selectattr('attributes.battery_voltage')
+            |selectattr('state', '<', '15')
+            |list|count > 0
+        }}  
+      attribute_templates: 
+        message: >-
+          {%- for sensor in states %}
+            {%- if sensor.attributes.device_class == "battery" and sensor.attributes.battery_voltage %}
+              {%- if sensor.state|int < 15 %}
+                {{ sensor.attributes.friendly_name }} is at {{ sensor.state }}%
+              {%- endif %}
+            {%- endif %}
+          {%- endfor %}

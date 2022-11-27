@@ -1,0 +1,40 @@
+######################################################################################################
+# @Automation
+# @Alias: Health Check / Light
+# @Description: Checks and Alerts For Unavailable Light Entities. Automation is based
+# on a seperate custom input boolean.
+######################################################################################################
+- id: 'HealthCheckLight'
+  alias: 'Health Check / Light'
+  description: 'Checks and Alerts For Unavailable Light Entities. Automation is based on a seperate custom input boolean.'
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.light_availability_sensor
+      to: 'on'
+      for:
+        minutes: 30
+
+  # condition
+  condition:
+    - condition: time
+      after: !secret health_check_alert_after
+      before: !secret health_check_alert_before
+
+    - condition: state
+      entity_id: binary_sensor.light_availability_sensor
+      state: 'on'
+
+  #action
+  action:
+    - service: script.notify_base_app_mark
+      data:
+        title: 'The Loft Alert'
+        message: 'Health Check Failure! {{ state_attr("binary_sensor.light_availability_sensor", "message") }}'
+
+  #mode
+  mode: single

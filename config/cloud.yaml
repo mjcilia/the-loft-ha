@@ -78,8 +78,8 @@ google_actions:
     #################################################################
     ## @lights: living room
     #################################################################
-    switch.living_room_bulb_1_socket_1:
-      name: Living Room Bulb 1
+    light.sonoff_s26r2zb_f90cc124_on_off:
+      name: Living Side Lamp
       room: living room
     light.living_room_lights:
       name: Living Room Light 1
@@ -135,9 +135,6 @@ google_actions:
       room: bedroom
     light.bedroom_bulb_2:
       name: Bedroom Bulb 2
-      room: bedroom
-    switch.bedroom_bulb_3_socket_1:
-      name: Bedroom Fan
       room: bedroom
 
     #################################################################
@@ -206,6 +203,7 @@ google_actions:
     climate.1e5418e7:
       name: Kitchen AC
       aliases:
+        - Kitchen Climate
         - Kitchen AC
       room: kitchen
     
@@ -215,18 +213,40 @@ google_actions:
     climate.1e541900:
       name: Living Room AC
       aliases:
+        - Living Room Climate
+        - Living Climate
         - Living Room AC
         - Living AC
       room: living room
 
     #################################################################
-    ## @climate: office
+    ## @climate: study
     #################################################################
     climate.1ebfaa4e:
-      name: Office AC
+      name: Study AC
       aliases:
-        - Office AC
-      room: office
+        - Study AC
+      room: study
+
+    #################################################################
+    ## @climate: bedroom
+    #################################################################
+    climate.c6004175:
+      name: Bedroom AC
+      aliases:
+        - Bedroom Climate
+        - Bedroom AC
+      room: bedroom
+
+    #################################################################
+    ## @climate: nursery
+    #################################################################
+    climate.c6663ec6:
+      name: Nursery AC
+      aliases:
+        - Nursery Climate
+        - Nursery AC
+      room: nursery
 
     #################################################################
     ## @media: living room

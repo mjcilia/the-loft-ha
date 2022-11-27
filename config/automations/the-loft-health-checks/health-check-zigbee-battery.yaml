@@ -1,0 +1,40 @@
+######################################################################################################
+# @Automation
+# @Alias: Health Check / Zigbee Battery
+# @Description: Checks and Alerts For Zigbee Battery Devices which are below the 15% battery threshold.
+# Automation is based on a seperate custom input boolean.
+######################################################################################################
+- id: 'HealthCheckZigbeeBattery'
+  alias: 'Health Check / Zigbee Battery'
+  description: 'Checks and Alerts For Zigbee Battery Devices which are below the 15% battery threshold. Automation is based on a seperate custom input boolean.'
+
+  #trigger
+  trigger:
+    - platform: time
+      at: !secret health_check_daily_run_time
+
+    - platform: state
+      entity_id: binary_sensor.zigbee_battery_sensor
+      to: 'on'
+      for:
+        minutes: 30
+
+  # condition
+  condition:
+    - condition: time
+      after: !secret health_check_alert_after
+      before: !secret health_check_alert_before
+
+    - condition: state
+      entity_id: binary_sensor.zigbee_battery_sensor
+      state: 'on'
+
+  #action
+  action:
+    - service: script.notify_base_app_mark
+      data:
+        title: 'The Loft Alert'
+        message: 'Health Check Failure! {{ state_attr("binary_sensor.zigbee_battery_sensor", "message") }}'
+
+  #mode
+  mode: single

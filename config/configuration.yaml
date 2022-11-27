@@ -39,6 +39,7 @@ sonos:
   media_player:
     hosts:
       - !secret sonos_living_room_soundbar
+      - !secret sonos_office_sonos_roam
 
 ################################################################################
 ## @integration: Sonoff
@@ -51,7 +52,7 @@ sonos:
 ################################################################################
 ## @integration: Google Nest
 ## @integration_url: https://www.home-assistant.io/integrations/nest/
-################################################################################ 
+################################################################################
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
@@ -61,27 +62,11 @@ nest:
 ################################################################################
 ## @integration: Google Calendar
 ## @integration_url: https://www.home-assistant.io/integrations/nest/
-################################################################################ 
+################################################################################
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
   track_new_calendar: false
-
-# webostv:
-#   - name: Living Room TV
-#     host: !secret webostv_host
-#     turn_on_action:
-#       service: wake_on_lan.send_magic_packet
-#       data:
-#         mac: !secret webostv_mac
-#     customize:
-#       sources:
-#         - Plex
-#         - youtube
-#         - netflix
-#         - PS4
-#         - Melita
-#         - Smart IPTV   
 
 wake_on_lan: # enables `wake_on_lan` integration
 

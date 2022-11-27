@@ -1,0 +1,15 @@
+- platform: template
+  sensors:
+    wireless_devices_battery_sensors:
+      friendly_name: 'Wireless Devices Battery Sensors'
+      delay_on:
+          seconds: 60
+      value_template: >-
+        {{
+          states.sensor
+            |selectattr('attributes.device_class', 'in', ['battery'])
+            |rejectattr('attributes.voltage', 'undefined')
+            |selectattr('attributes.voltage')
+            |selectattr('state', '<', '15')
+            |list|count > 0 
+        }}    

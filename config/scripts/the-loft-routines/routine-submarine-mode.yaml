@@ -1,0 +1,44 @@
+routine_submarine_mode:
+  alias: Routine / Submarine Mode / On
+  sequence:
+    # Turn On Submarine Mode
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.submarine_mode
+
+    # Turn On Dimmed Mode
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.dimmed_mode
+
+    # disable automations (hall and library)
+    - service: input_boolean.turn_on
+      entity_id:
+        - input_boolean.hall_automation_override
+        - input_boolean.kitchen_automation_override
+
+    # switch on lights (bedroom bulb, hall and kitchen light)
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_bulb_2
+        - light.hall_bulb
+        - light.kitchen_lamp
+        - light.sonoff_s26r2zb_f90cc124_on_off
+
+routine_submarine_mode_off:
+  alias: Routine / Submarine Mode / Off
+  sequence:
+    # Turn Off Submarine Mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.submarine_mode
+
+    # enable automations (hall, library and kitchen)
+    - service: input_boolean.turn_off
+      entity_id:
+        - input_boolean.hall_automation_override
+        - input_boolean.kitchen_automation_override
+
+    # switch on lights (bedroom bulb, hall and kitchen light)
+    - service: light.turn_off
+      entity_id:
+        - light.hall_bulb
+        - light.kitchen_lamp
+        - light.sonoff_s26r2zb_f90cc124_on_off

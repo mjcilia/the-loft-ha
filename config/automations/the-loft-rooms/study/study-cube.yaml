@@ -1,0 +1,124 @@
+######################################################################################################
+# @Automation
+# @Alias: Study Cube / Shake
+######################################################################################################
+- id: StudyCubeShake
+  alias: Study Cube / Shake
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: afbead16eb33ef6d824a642d0efef31f
+        command: shake
+
+  #action
+  action:
+    - choose:
+        # IF WFH Mode On
+        conditions:
+          - condition: state
+            entity_id: input_boolean.wfh_mode
+            state: 'off'
+
+        # Run WFH On Routine
+        sequence:
+          - service: script.routine_wfh
+
+      default:
+        # Run WFH Off Routine
+        - service: script.routine_wfh_off
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Alias: Study Cube / Knock
+######################################################################################################
+- id: StudyCubeKnock
+  alias: Study Cube / Knock
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: afbead16eb33ef6d824a642d0efef31f
+        command: knock
+
+  #condition
+  condition:
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+
+  #action
+  action:
+    - service: script.routine_wfh_break
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Alias: Study Cube / Rotate Right
+######################################################################################################
+- id: StudyCubeRotateRight
+  alias: Study Cube / Rotate Right
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: afbead16eb33ef6d824a642d0efef31f
+        command: rotate_right
+
+  #condition
+  condition:
+    - condition: template
+      value_template: '{{ is_state("climate.1ebfaa4e", "off") == false }}'
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_temperature
+      target:
+        entity_id: climate.1ebfaa4e
+      data:
+        temperature: '{{ state_attr("climate.1ebfaa4e", "temperature") + 1 }}'
+
+  mode: single
+
+######################################################################################################
+# @Automation
+# @Alias: Study Cube / Rotate Left
+######################################################################################################
+- id: StudyCubeRotateLeft
+  alias: Study Cube / Rotate Left
+
+  #triggger
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: afbead16eb33ef6d824a642d0efef31f
+        command: rotate_left
+
+  #condition
+  condition:
+    - condition: template
+      value_template: '{{ is_state("climate.1ebfaa4e", "off") == false }}'
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+
+  action:
+    - service: climate.set_temperature
+      target:
+        entity_id: climate.1ebfaa4e
+      data:
+        temperature: '{{ state_attr("climate.1ebfaa4e", "temperature") - 1 }}'
+
+  mode: single

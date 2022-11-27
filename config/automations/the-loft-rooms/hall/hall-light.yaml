@@ -14,30 +14,31 @@
         - light.hall_bulb
       from: 'off'
       to: 'on'
-  
+
   #action
   action:
-    - alias: 'Set Light and Dim Lights if Night Mode On' 
+    - alias: 'Set Light and Dim Lights if Dimmed Mode is On'
       choose:
-        # IF Night Mode On
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.night_mode
-              state: 'on'
-          # Set Hall Bulb in Dimmed Mode   
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: light.hall_bulb
-              data:
-                brightness_pct: 5
-    
+        # IF Dimmed Mode is On
+        conditions:
+          - condition: state
+            entity_id: input_boolean.dimmed_mode
+            state: 'on'
+
+        # Set Hall Bulb in Dimmed Mode
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.hall_bulb
+            data:
+              brightness_pct: 5
+
       default:
-        # Set Kitchen Bulbs in Non Dimmed Mode  
+        # Set Kitchen Bulbs in Non Dimmed Mode
         - service: light.turn_on
           target:
             entity_id: light.hall_bulb
           data:
             brightness_pct: 100
-            
+
   mode: single
